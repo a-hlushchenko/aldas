@@ -9,6 +9,7 @@ admin/config.php
 admin/autorization/
 
 !index.html
+/index.php
 
 download/
 image/
