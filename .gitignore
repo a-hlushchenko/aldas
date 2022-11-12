@@ -1,0 +1,37 @@
+.htaccess
+/config.php
+admin/config.php
+
+/1.apk
+/*.xml
+/*.tar
+/*.rar
+admin/autorization/
+
+!index.html
+
+download/
+image/
+images/
+image/data/
+image/cache/
+system/cache/
+system/logs/
+min/
+zohoverify/
+.well-known/
+
+system/storage/
+storage/cache/
+storage/download/
+storage/logs/
+storage/session/
+storage/upload/
+storage/vendor/
+
+# vQmod log files
+vqmod/logs/*
+# vQmod cache files
+vqmod/vqcache/*
+vqmod/checked.cache
+vqmod/mods.cache

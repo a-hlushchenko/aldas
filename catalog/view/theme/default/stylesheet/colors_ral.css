@@ -1,0 +1,240 @@
+/* Базовый контейнер табов */
+.tabss {
+  /*min-width: 320px;
+  max-width: 800px;*/
+  width:450px;
+  padding: 0px;
+  margin: 0 auto;
+  float: right;
+  
+}
+/* Стили секций с содержанием */
+section {
+  display: none;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  margin-right: 174px;
+}
+.tabss input {
+  display: none;
+}
+/* Стили вкладок (табов) */
+.tabss label {
+  /*display: inline-block;*/
+  display: block;
+  clear: right;
+  float: right;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #aaa;
+  border: 1px solid #ddd;
+  background: #f1f1f1;
+  border-radius: 0 3px 3px 0;
+  /*width:70px;*/
+  width: 170px;
+  margin-right: 5px;
+}
+/* Шрифт-иконки от Font Awesome в формате Unicode */
+.tabss label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+/*.tabss label[for*="1"]:before {
+  content: "\f19a";
+}
+.tabss label[for*="2"]:before {
+  content: "\f17a";
+}
+.tabss label[for*="3"]:before {
+  content: "\f13b";
+}
+.tabss label[for*="4"]:before {
+  content: "\f13c";
+}*/
+/* изменения стиля заголовков вкладок при наведении */
+.tabss label:hover {
+  color: #888;
+  cursor: pointer;
+}
+/* стили для активной вкладки */
+.tabss input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-right: 1px solid #009933;
+  border-left: 1px solid #fff;
+  background: #fff;
+  /*width: 75px;*/
+  width: 175px;
+  margin-right: 0;
+}
+/* активация секций с помощью переключателя :checked */
+/*#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+}*/
+.color_h {
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.tabss.tableft {
+  float: left;
+  width:380px;
+}
+.tabss.tableft label {
+  clear: left;  
+  float: left;  
+  width: 130px;
+  margin-left: 5px;
+  padding: 15px 0; 
+  border-radius: 3px 0 0 3px;
+}
+.tabss.tableft input:checked + label {
+  width: 135px;
+  margin-left: 0px;
+  border-left: 1px solid #009933;
+  border-right: 1px solid #FFFFFF;
+}
+.tabss.tableft section {
+  margin-right: 0;
+  margin-left: 132px;
+  position: relative;
+  padding: 0 10px 0 0;
+  /*width: 246px;*/
+}
+.tabss.tableft .bg .bg1 {
+  /*position: absolute;*/
+  /*margin:10px;*/
+}
+.tabss.tableft .bg {
+  /*width:266px;*/
+  margin:10px 0 10px 10px;
+}
+.tabss.tableft img {
+  width:100%;
+  max-width: 501px;
+  height:auto;
+  margin:0;
+}
+.tabss.tableft .c_replace {
+  position: absolute;
+  margin:10px 10px 0 0;
+  top:0;
+  /*color: hsla(120,100%,50%,0.1);*/
+  /*opacity: 0.1;*/
+}
+#tab_ral, #tab_fasad {
+  width: 50%;
+}
+#modal-colors .modal-body {
+    padding: 0 10px;
+}
+/* медиа запросы для различных типов носителей */  
+@media (max-width: 1199px) {
+    section {
+      margin-right: 124px;
+    }
+    .tabss input:checked + label {
+      width: 125px;
+    }
+    .tabss label {
+      width: 120px;
+      padding: 15px 5px;
+    }
+}
+@media (max-width: 992px) {
+  section {
+    padding: 5px;
+  }
+  .tabss.tableft section {
+    padding: 0 5px 0 0;
+  }
+  /*.tabss.tableft .bg .bg1, .tabss.tableft .c_replace {
+      margin: 5px;
+  }*/
+  #tab_ral .name_color span {
+    display: none;
+  }
+  #tab_ral .col {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+  }
+  .tabss.tableft input:checked + label {
+    width: 95px;
+  }
+  .tabss.tableft label {
+    width: 90px; 
+  }
+  .tabss.tableft section {
+    margin-left: 92px;
+  }
+}
+@media (max-width: 767px) {
+  #modal-colors .modal-dialog {
+    width: 90%!important;
+  }
+  #tab_ral.tabss label {
+    font-size: 0;
+  }
+  .tabss input:checked + label {
+    width: 55px;
+  }
+  .tabss label {
+    width: 50px;
+  }
+  section {
+    margin-right: 49px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .tabss label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+   #modal-colors .modal-body {
+      padding: 0 5px;
+  }
+  .tabss.tableft label {
+      display: inline-block;
+      float: none;
+      margin:0;
+      width: 32%!important;
+      padding:7px 0;
+      margin-bottom: 5px;
+  }
+  .tabss.tableft section {
+    margin-left: 0;
+  }
+  section {
+    margin-right: 54px;
+  }
+
+}
+@media screen and (max-width: 520px) {
+  #tab_ral, #tab_fasad {
+    width: 100%;
+  }
+  .tabss.tableft label {
+    width: 23.8%!important;
+  }
+  #modal-colors .modal-dialog {
+    width: 95%!important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .tabss label {
+    padding: 15px;
+  }
+  #modal-colors .modal-body {
+      padding: 0;
+  }
+
+}    

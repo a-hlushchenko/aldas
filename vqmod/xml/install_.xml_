@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <code>edit-05092015</code>
+    <name>Admin quick edit product for Opencart 2.x</name>
+    <version>1.01 (for Opencart 2.x)</version>
+    <author>OpenCart.su (opencartsu@mail.ru)</author>
+    <vqmver required="true">2.5.0</vqmver>
+    <link>http://opencart.su</link>
+
+
+        <file name="system/startup.php,system/engine/*.php,system/library/*.php,admin/controller/extension/*.php">
+        <operation error="skip" info="For non OCMod includes/requires">
+            <search position="replace" regex="true"><![CDATA[~(require|include)(_once)?\((?!modification\()([^)]+)~]]></search>
+            <add><![CDATA[$1$2(VQMod::modCheck($3)]]></add>
+        </operation>
+        <operation error="skip" info="For OCMod includes/requires - OPERATION MUST BE AFTER NON OCMOD INCLUDES/REQUIRES OPERATION">
+            <search position="replace" regex="true"><![CDATA[~(require|include)(_once)?\(modification\(([^)]+)~]]></search>
+            <add><![CDATA[$1$2(VQMod::modCheck(modification($3), $3]]></add>
+        </operation>
+    </file>
+
+
+
+<file name="admin/view/template/common/header.tpl">
+        <operation>
+            <search trim="true" index="0"><![CDATA[
+            </head>
+            ]]></search>
+            <add position="before" trim="false" offset="0"><![CDATA[
+             <!-- x-editable -->
+             <link href="view/javascript/bootstrap/css/bootstrap-editable.css" rel="stylesheet"/>
+             <script src="view/javascript/bootstrap/js/bootstrap-editable.min.js"></script>
+             <!-- main-editable -->
+             <script src="view/javascript/main-editable.js"></script>
+            <!-- switch-toggle -->
+            <link href="view/javascript/bootstrap/css/bootstrap-toggle.min.css" rel="stylesheet">
+            <script src="view/javascript/bootstrap/js/bootstrap-toggle.min.js"></script>
+            ]]></add>
+        </operation>
+    </file>
+
+
+    <file name="admin/view/template/common/filemanager.tpl">
+     <operation>
+     <search trim="true"><![CDATA[
+     $('#modal-image').load($(this).attr('href'));
+     ]]></search>
+     <add position="replace" trim="false" offset="0"><![CDATA[
+     $('.tooltip').hide().remove();
+     $('#modal-image').load($(this).attr('href'), function() { $('.modal-backdrop').remove(); $('.modal-dialog').css('z-index','1400'); $(this).prepend('<div class="modal-backdrop  in" data-dismiss="modal" style="min-height: 100%;z-index:1300;"></div>');  });
+     ]]></add>
+     </operation>
+
+     <operation>
+     <search trim="true"><![CDATA[
+     $('#modal-image').load(url);
+     ]]></search>
+     <add position="replace" trim="false" offset="0"><![CDATA[
+     $('.tooltip').hide().remove();
+     $('#modal-image').load(url, function() {  $('.modal-backdrop').remove(); $('.modal-dialog').css('z-index','1400'); $(this).prepend('<div class="modal-backdrop in" data-dismiss="modal" style="min-height: 100%;z-index:1300;"></div>');  });
+     ]]></add>
+     </operation>
+
+      <operation>
+      <search trim="true"><![CDATA[
+        $('#<?php echo $thumb; ?>').find('img').attr('src', $(this).find('img').attr('src'));
+    ]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[
+    <?php if (strstr($thumb,'imageedit-')) { ?>
+    var dataid = $('#<?php echo $thumb; ?>').attr('data-id');
+    var img_100 = $(this).find('img').attr('src');
+    var img_40 =  img_100.replace("-100x100", "-40x40");
+    var img = img_100.replace("-100x100", "");
+    var imginsert = $(this).next().find('input').val();
+    $.post("index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>", {name: "image", pk: dataid, value: imginsert}, function(data, textStatus, jqXHR){
+             if(jqXHR.status!=200) {alert('error update img:'+jqXHR.status+'|'+textStatus);}
+             else { $('#<?php echo $thumb; ?>').find('img').attr('src',img_100).css({'max-width':'50px','max-height':'50px'});  }
+             }).fail(function() { window.location.replace('index.php?route=catalog/product'); });
+
+    <?php } else { ?>
+    $('#<?php echo $thumb; ?>').find('img').attr('src', $(this).find('img').attr('src'));
+    <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+
+
+
+
+
+<file name="admin/controller/common/login.php">
+        <operation>
+            <search trim="true"><![CDATA[
+return new Action('common/login');
+    ]]></search>
+            <add position="before" trim="false" offset="0"><![CDATA[
+if(isset($this->request->get['route']) && $this->request->get['route']=="catalog/product/quickeditopencartsu") {
+echo "Not Authorized"; header("HTTP/1.1 401 Not Authorized");
+exit();
+}
+            ]]></add>
+        </operation>
+</file>
+
+
+
+
+    <file name="admin/controller/catalog/product.php">
+        <operation>
+            <search trim="true"><![CDATA[
+    public function edit() {
+    ]]></search>
+            <add position="before" trim="false" offset="0"><![CDATA[
+public function quickeditopencartsu() {
+
+if(isset($_POST['pk'])) { $setid=$_POST['pk']; }
+if(isset($_POST['name'])) { $setname=$_POST['name']; } else { $setname="";}
+if(isset($_POST['value'])) { $setvalue=$_POST['value']; }
+if(isset($_POST['lang'])) { $lang=$_POST['lang']; }
+$dbname="product";
+$idname="product_id";
+$andsql="";
+if(strstr($setname,"name:")) { $arrsetname=explode(":",$setname); $setname=$arrsetname[0]; $lang=$arrsetname[1]; $dbname="product_description"; $andsql=" AND `language_id`='$lang'"; }
+elseif($setname=="special") { $dbname="product_special"; $setname="price"; $andsql=" AND `priority`='1'";   }
+
+if(!isset($setid,$setname,$setvalue)) { header("HTTP/1.1 400 not set value"); }
+elseif (!$this->user->hasPermission('modify', 'catalog/product')) {
+            header("HTTP/1.1 400 access denied for demo");
+}
+else {
+// Set setname
+if($this->db->query("UPDATE " . DB_PREFIX . "$dbname SET `$setname`='$setvalue' WHERE `$idname` = '$setid'$andsql") == 1) { header("HTTP/1.1 200 ok"); }
+else { header("HTTP/1.1 400 mysql error on update (see log)"); }
+}
+}
+            ]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[
+    $this->response->setOutput($this->load->view('catalog/product_list.tpl', $data));
+    ]]></search>
+            <add position="before" trim="false" offset="0"><![CDATA[
+        $data['languages'] = $this->config->get('config_language_id');
+        $data['tab_special'] = $this->language->get('tab_special');
+        $data['entry_image'] = $this->language->get('entry_image');
+            ]]></add>
+        </operation>
+    </file>
+
+
+
+
+    <file name="admin/view/template/catalog/product_list.tpl">
+        <operation>
+            <search trim="true" index="0"><![CDATA[<div id="content">]]></search>
+            <add position="after" trim="false" offset="0"><![CDATA[<script>
+$(function(){
+    // Image Manager
+    $(document).delegate('a[data-toggle=\'imageedit\']', 'click', function(e) {
+        e.preventDefault();
+
+        $('.popover').hide();
+        $('.popover').remove();
+            $(element).popover('hide', function() {
+                $('.popover').remove();
+            });
+
+
+        var element = this;
+        var idelement = $(element).attr('data-id');
+
+        $(element).popover({
+            html: true,
+            placement: 'right',
+            trigger: 'manual',
+            content: function() {
+                return '<button type="button" id="button-image-edit" data-id='+idelement+' class="btn btn-primary"><i class="fa fa-pencil"></i></button> <button type="button" id="button-clear-edit-image" data-id='+idelement+' class="btn btn-danger"><i class="fa fa-trash-o"></i></button>&nbsp;<button type="button" id="button-close-edit-image" class="btn btn-default btn-sm editable-cancel" style="margin-top:-50px;margin-right:-25px;"><i class="fa fa-close"></i></button>';
+            }
+        });
+
+        $(element).popover('toggle');
+
+        $('#button-image-edit').on('click', function() {
+            $('#modal-image').remove();
+
+            $.ajax({
+                url: 'index.php?route=common/filemanager&token=' + getURLVar('token') + '&target=null&thumb=imageedit-' + idelement,
+                dataType: 'html',
+                beforeSend: function() {
+                    $('#button-image-edit i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+                    $('#button-image-edit').prop('disabled', true);
+                },
+                complete: function() {
+                    $('#button-image-edit i').replaceWith('<i class="fa fa-pencil"></i>');
+                    $('#button-image-edit').prop('disabled', false);
+                },
+                success: function(html) {
+                  var str = html.toString();
+                  if(str.indexOf('<title>') + 1) { window.location.replace('index.php?route=catalog/product'); }
+                   else {
+                    $('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+                    $('#modal-image').modal('show');
+                    }
+                }
+            });
+
+            $(element).popover('hide', function() {
+                $('.popover').remove();
+            });
+        });
+
+        $('#button-clear-edit-image').on('click', function() {
+           if (confirm("<?php echo "$button_delete $entry_image ?";?>")) {
+             $.post("index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>", {name: "image", pk: idelement, value: "no_image.png"}, function(data, textStatus, jqXHR){
+             if(jqXHR.status!=200) {alert('error delete img:'+jqXHR.status+'|'+textStatus);}
+             else { $('#img'+idelement).attr('src', '../image/cache/no_image-40x40.png'); }
+             }).fail(function() { window.location.replace('index.php?route=catalog/product'); });
+
+             $(element).popover('hide', function() {
+                $('.popover').remove();
+             });
+           }
+        });
+
+    $('#button-close-edit-image').on('click', function() {
+     $(element).popover('hide', function() {
+       $('.popover').remove();
+     });
+    });
+
+
+  $('body').on('click', function (e) {
+    $(element).popover('hide', function() {
+      $('.popover').remove();
+    });
+  });
+
+ });
+
+});
+</script>
+<style>
+.label h3 {
+  color: #555;
+}
+.label a {
+ color: #fff;
+ border-bottom: dashed 1px #fff;
+}
+</style>
+]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<td class="text-left"><?php echo $product['name']; ?></td>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[<td class="text-left"><a href="javascript:" class="ocedit" data-name="name:<?php echo $languages; ?>" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>" data-type="text" data-placement="right" data-title="<?php echo $column_name; ?>"><?php echo $product['name']; ?></a></td>]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<?php echo $product['model']; ?>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[<a href="javascript:" class="ocedit" data-name="model" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>" data-type="text" data-placement="right" data-title="<?php echo $column_model; ?>"><?php echo $product['model']; ?></a>]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<?php echo $product['price']; ?>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[<a href="javascript:" class="ocedit" data-name="price" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>" data-type="text" data-placement="right" data-title="<?php echo $column_price; ?>"><?php echo $product['price']; ?></a>]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<?php echo $product['special']; ?>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[<a href="javascript:" class="ocedit" data-name="special" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>" data-type="text" data-placement="right" data-title="<?php echo $tab_special; ?>"><?php echo $product['special']; ?></a>]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<?php echo $product['quantity']; ?>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[<a href="javascript:" class="ocedit" data-name="quantity" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>" data-type="text" data-placement="right" data-title="<?php echo $column_quantity; ?>"><?php echo $product['quantity']; ?></a>]]></add>
+        </operation>
+        <operation>
+            <search trim="true"><![CDATA[<?php echo $product['status']; ?>]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[
+<input class="toggle-event-status" data-onstyle="success" data-on="<?php echo $data['text_enabled'];?>" data-off="<?php echo $data['text_disabled'];?>" <?php if($product['status']==$data['text_enabled']) {echo "checked=checked"; } ?> type="checkbox" data-toggle="toggle" data-name="status" data-pk="<?php echo $product['product_id']; ?>" data-url="index.php?route=catalog/product/quickeditopencartsu&token=<?php echo $token; ?>">
+    ]]></add>
+       </operation>
+        <operation>
+            <search trim="true"><![CDATA[<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="img-thumbnail" />]]></search>
+            <add position="replace" trim="false" offset="0"><![CDATA[
+            <a href="javascript:" id="imageedit-<?php echo $product['product_id']; ?>" data-id="<?php echo $product['product_id']; ?>" data-toggle="imageedit" class="img-thumbnail"><img id="img<?php echo $product['product_id']; ?>" src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
+            ]]></add>
+        </operation>
+    </file>
+</modification>

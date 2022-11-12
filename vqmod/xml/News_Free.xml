@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>News Free</name>
+    <version>2.1.2</version>
+    <author>vdhoangson</author>
+
+    <file name="admin/view/template/common/menu.tpl">
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                <li id="dashboard"><a href="<?php echo $home; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_dashboard; ?></span></a></li>
+            ]]></search>
+            <add><![CDATA[
+            <li id="news"><a class="parent"><i class="fa fa-pencil fa-fw"></i> <span>Новости</span></a>
+                <ul>
+                    <li><a href="<?php echo $news_category; ?>"><?php echo $category_heading_title; ?></a></li>
+                    <li><a href="<?php echo $article; ?>"><?php echo $article_heading_title; ?></a></li>
+                    <li><a href="<?php echo $news_review; ?>"><?php echo $review_heading_title; ?></a></li>
+                    <li><a href="<?php echo $set; ?>"><?php echo $set_title; ?></a></li>
+                    <li><a class="parent">Модули</a>
+			        <ul>
+			          <li><a href="<?php echo $news_by_category; ?>">Новости по категории</a></li>
+			          <li><a href="<?php echo $news_article_category; ?>">Категории</a></li>
+			          <li><a href="<?php echo $news_carousel; ?>">Карусель новостей по Категории</a></li>
+			        </ul>
+			      </li>
+                    <li><a href="<?php echo $news_setting; ?>"><?php echo $setting_heading_title; ?></a></li>
+                    <li><a href="<?php echo $news_pro; ?>">Go To Pro</a></li>
+                </ul>
+            </li>
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/controller/common/menu.php">
+        <operation>
+            <search position="after"><![CDATA[
+                $data['openbay_link_amazonus_links'] = $this->url->link('openbay/amazonus/itemlinks', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></search>
+            <add><![CDATA[
+                $data['article'] = $this->url->link('news/article', 'token=' . $this->session->data['token'], 'SSL');
+                $data['news_category'] = $this->url->link('news/category', 'token=' . $this->session->data['token'], 'SSL');
+                $data['news_review'] = $this->url->link('news/review', 'token=' . $this->session->data['token'], 'SSL');
+                $data['news_setting'] = $this->url->link('news/setting', 'token=' . $this->session->data['token'], 'SSL');
+                $data['set'] = $this->url->link('news/setting', 'token=' . $this->session->data['token'], 'SSL');
+
+                $data['news_by_category'] = $this->url->link('module/news_by_category', 'token=' . $this->session->data['token'], 'SSL');
+                $data['news_article_category'] = $this->url->link('module/news_category', 'token=' . $this->session->data['token'], 'SSL');
+                $data['news_carousel'] = $this->url->link('module/news_carousel', 'token=' . $this->session->data['token'], 'SSL');
+
+                $data['news_pro'] = $this->url->link('news/pro', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+                $data['text_openbay_order_import'] = $this->language->get('text_openbay_order_import');
+            ]]></search>
+            <add><![CDATA[
+
+                $this->load->language('news/category');
+                $data['category_heading_title'] = $this->language->get('heading_title');
+                $this->load->language('news/article');
+                $data['article_heading_title'] = $this->language->get('heading_title');
+                $this->load->language('news/review');
+                $data['review_heading_title'] = $this->language->get('heading_title');
+                $this->load->language('news/setting');
+                $data['setting_heading_title'] = $this->language->get('heading_title');
+                $this->load->language('news/set');
+                $data['set_title'] = $this->language->get('heading_title');
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/model/setting/store.php">
+        <operation>
+            <search position="before"><![CDATA[
+                public function getTotalStoresByOrderStatusId($order_status_id) {
+            ]]></search>
+            <add><![CDATA[
+            public function getTotalStoresByArticleId($article_id) {
+                $account_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_account_id' AND `value` = '" . (int)$article_id . "' AND store_id != '0'");
+
+                $checkout_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_checkout_id' AND `value` = '" . (int)$article_id . "' AND store_id != '0'");
+
+                return ($account_query->row['total'] + $checkout_query->row['total']);
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/common/header.php">
+        
+        <operation>
+            <search position="before"><![CDATA[
+                $data['language'] = $this->load->controller('common/language');
+            ]]></search>
+            <add><![CDATA[
+                // Menu News
+        $this->load->model('news/category');
+
+        $this->load->model('news/article');
+
+        $news_cat = $this->model_news_category->getCategories(0);
+
+        foreach ($news_cat as $category) {
+            if ($category['top']) {
+                // Level 2
+                $children_news = array();
+
+                $child_cat = $this->model_news_category->getCategories($category['category_id']);
+
+                foreach ($child_cat as $child) {
+                    $fil = array(
+                        'filter_category_id'  => $child['category_id'],
+                        'filter_sub_category' => true
+                    );
+
+                    $article_total = $this->model_news_article->getTotalArticles($fil);
+
+                    $children_news[] = array(
+                        'name'  => $child['name'] . ($this->config->get('news_article_count') ? ' (' . $article_total . ')' : ''),
+                        'href'  => $this->url->link('news/category', 'news_path=' . $category['category_id'] . '_' . $child['category_id'])
+                    );
+                }
+
+                // Level 1
+                $data['categories'][] = array(
+                    'name'     => $category['name'],
+                    'children' => $children_news,
+                    'column'   => $category['column'] ? $category['column'] : 1,
+                    'href'     => $this->url->link('news/category', 'news_path=' . $category['category_id'])
+                );
+            }
+        }
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search position="before"><![CDATA[
+                $data['title'] = $this->document->getTitle();
+            ]]></search>
+            <add><![CDATA[
+            	if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/stylesheet/news_stylesheet.css')) {
+					$this->document->addStyle('catalog/view/theme/'.$this->config->get('config_template') . '/stylesheet/news_stylesheet.css');
+				} else {
+					$this->document->addStyle('catalog/view/theme/default/stylesheet/news_stylesheet.css');
+				}
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/common/dashboard.php">
+        <operation>
+            <search position="after"><![CDATA[
+               $data['header'] = $this->load->controller('common/header');
+            ]]></search>
+            <add><![CDATA[
+                $this->load->model('news/review');
+
+        $news_review = $this->model_news_review->getTotalReviewsAwaitingApproval();
+
+        if ($news_review != 0) {
+            $data['warning_news_review'] = "Warning: " . $news_review . " news review need approval. <a href=\"index.php?route=news/review&token=" . $this->session->data['token'] . "\"> Click here</a> to approval";
+        } else {
+            $data['warning_news_review'] = '';
+        }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/common/dashboard.tpl">
+        <operation>
+            <search position="before"><![CDATA[
+                <?php if ($error_install) { ?>
+            ]]></search>
+            <add><![CDATA[
+                <?php if ($warning_news_review) { ?>
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $warning_news_review; ?>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <?php } ?></div>
+            ]]></add>
+        </operation>
+    </file>
+    <!--<file name="catalog/controller/product/search.php">
+        <operation position="after">
+            <search><![CDATA[
+                $data['compare'] = $this->url->link('product/compare');
+            ]]></search>
+            <add><![CDATA[
+                $data['text_article_search'] = 'Search Article';
+                $data['text_product_search'] = 'Search Product';
+                $data['link_to_article_search'] = $this->url->link('news/search', $url);
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/default/template/product/search.tpl">
+        <operation>
+            <search position="replace"><![CDATA[
+                <h1><?php echo $heading_title; ?></h1>
+            ]]></search>
+            <add><![CDATA[
+                <h1><?php echo $text_product_search; ?> | <a href="<?php echo $link_to_article_search; ?>" class="welcome"><?php echo $text_article_search; ?></a></h1>
+            ]]></add>
+        </operation>
+    </file>-->
+    <!--<file name="catalog/controller/information/sitemap.php">
+                <operation>
+            <search position="before"><![CDATA[$data['text_special'] = $this->language->get('text_special');]]></search>
+            <add ><![CDATA[
+                $this->load->model('news/category');
+
+                $data['news_categories'] = array();
+
+        $categories_1 = $this->model_news_category->getCategories(0);
+
+        foreach ($categories_1 as $category_1) {
+            $level_2_data = array();
+
+            $categories_2 = $this->model_news_category->getCategories($category_1['category_id']);
+
+            foreach ($categories_2 as $category_2) {
+                $level_3_data = array();
+
+                $categories_3 = $this->model_news_category->getCategories($category_2['category_id']);
+
+                foreach ($categories_3 as $category_3) {
+                    $level_3_data[] = array(
+                        'name' => $category_3['name'],
+                        'href' => $this->url->link('news/category', 'news_path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+                    );
+                }
+
+                $level_2_data[] = array(
+                    'name'     => $category_2['name'],
+                    'children' => $level_3_data,
+                    'href'     => $this->url->link('news/category', 'news_path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
+                );
+            }
+
+            $data['news_categories'][] = array(
+                'name'     => $category_1['name'],
+                'children' => $level_2_data,
+                'href'     => $this->url->link('news/category', 'news_path=' . $category_1['category_id'])
+            );
+        }
+
+        ]]></add>
+        </operation>
+    </file>
+    <file name="catalog/view/theme/default/template/information/sitemap.tpl">
+        <operation>
+            <search position="replace" offset="4"><![CDATA[<li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>]]></search>
+            <add ><![CDATA[<li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+                                </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <?php foreach ($news_categories as $cat_1) { ?>
+                                <li><a href="<?php echo $cat_1['href']; ?>"><?php echo $cat_1['name']; ?></a>
+                                <?php if ($cat_1['children']) { ?>
+                                <ul>
+                                    <?php foreach ($cat_1['children'] as $cat_2) { ?>
+                                    <li><a href="<?php echo $cat_2['href']; ?>"><?php echo $cat_2['name']; ?></a>
+                                    <?php if ($cat_2['children']) { ?>
+                                    <ul>
+                                        <?php foreach ($cat_2['children'] as $cat_3) { ?>
+                                        <li><a href="<?php echo $cat_3['href']; ?>"><?php echo $cat_3['name']; ?></a></li>
+                                        <?php } ?>
+                                    </ul>
+                                    <?php } ?>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                                <?php } ?>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                            ]]>
+                        </add>
+        </operation>
+    </file>
+    <file name="catalog/controller/feed/google_sitemap.php">
+        <operation>
+            <search position="before"><![CDATA[$output .= '</urlset>';]]></search>
+            <add ><![CDATA[$this->load->model('news/article');
+                            $articles = $this->model_news_article->getArticles(array('access_level' => ($this->customer->isLogged()) ? 1 : 0));
+
+                            foreach ($articles as $article) {
+                                    $output .= '<url>';
+                                    $output .= '<loc>' . str_replace('&', '&amp;', $this->url->link('news/article', 'article_id=' . $article['article_id'])) . '</loc>';
+                                    $output .= '<changefreq>weekly</changefreq>';
+                                    $output .= '<priority>1.0</priority>';
+                                    $output .= '</url>';
+                            }
+                            $this->load->model('news/category');
+                            $output .= $this->getArticleCategories(0);]]>
+                        </add>
+        </operation>
+
+                <operation>
+            <search><![CDATA[protected function getCategories($parent_id, $current_path = '') {]]></search>
+            <add position="before"><![CDATA[protected function getArticleCategories($parent_id, $current_path = '') {
+                            $output = '';
+
+                            $results = $this->model_news_category->getCategories($parent_id);
+
+                            foreach ($results as $result) {
+                                    if (!$current_path) {
+                                            $new_path = $result['article_id'];
+                                    } else {
+                                            $new_path = $current_path . '_' . $result['article_id'];
+                                    }
+
+                                    $output .= '<url>';
+                                    $output .= '<loc>' . str_replace('&', '&amp;', $this->url->link('news/category', 'ac_path=' . $new_path)) . '</loc>';
+                                    $output .= '<changefreq>weekly</changefreq>';
+                                    $output .= '<priority>0.7</priority>';
+                                    $output .= '</url>';
+
+                                    $articles = $this->model_news_article->getArticles(array('category' => $result['article_id'], 'access_level' => ($this->customer->isLogged()) ? 1 : 0));
+
+                                    foreach ($articles as $article) {
+                                            $output .= '<url>';
+                                            $output .= '<loc>' . str_replace('&', '&amp;', $this->url->link('news/article', 'news_path=' . $new_path . '&article_id=' . $article['b_id'])) . '</loc>';
+                                            $output .= '<changefreq>weekly</changefreq>';
+                                            $output .= '<priority>1.0</priority>';
+                                            $output .= '</url>';
+                                    }
+
+                                    $output .= $this->getArticleCategories($result['article_id'], $new_path);
+                            }
+
+                            return $output;
+                            }]]>
+                        </add>
+        </operation>
+    </file>-->
+</modification>

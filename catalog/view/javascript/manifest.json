@@ -1,0 +1,43 @@
+{
+  "lang": "ru",
+  "name": "Кухни от производителя на заказ в Москве",
+  "short_name": "Кухни Алдас",
+  "start_url": "/?utm_sourse=homescreen",
+  "display": "standalone",
+  "description": "Кухни на заказ по индивидуальным размерам: Российское производство, итальянское качество!",
+  "background_color": "#ffffff",
+  "theme_color": "#c6a38a",
+  "icons": [
+    {
+      "src": "/images/logo/48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }, 
+    {
+      "src": "/images/logo/72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    }, 
+    {
+      "src": "/images/logo/96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    }, 
+    {
+      "src": "/images/logo/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo/192x192.png",
+      "type": "image/png",
+      "sizes": "191x192"
+    }, 
+    {
+      "src": "/images/logo/512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }       
+  ]
+}
+

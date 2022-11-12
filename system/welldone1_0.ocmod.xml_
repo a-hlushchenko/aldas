@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Welldone</name>
+    <code>default</code>
+    <version>1.0</version>
+    <author>Nick M. "webdev.nick@gmail.com"</author>
+  
+    
+    <file path="system/engine/action.php">
+       <operation>
+            <search><![CDATA[include_once($this->file);]]></search>
+            <add position="replace"><![CDATA[
+            /* Welldone Theme modification */
+                include_once(modification($this->file));
+            /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[include_once($file);]]></search>
+            <add position="replace"><![CDATA[
+            /* Welldone Theme modification */
+                include_once(modification($this->file));
+            /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="system/engine/front.php">
+       <operation>
+            <search><![CDATA[while ($action) {]]></search>
+            <add position="before"><![CDATA[
+            /* Welldone Theme modification */
+    require_once(DIR_SYSTEM . 'welldone/startup.php');
+    /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[while ($action instanceof Action) {]]></search>
+            <add position="before"><![CDATA[
+            /* Welldone Theme modification */
+    require_once(DIR_SYSTEM . 'welldone/startup.php');
+    /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+        
+    </file>
+    
+    <file path="system/engine/loader.php">
+       <operation>
+            <search><![CDATA[private $registry;]]></search>
+            <add position="after"><![CDATA[
+                /* Welldone Theme modification */
+  public function __get($key) {
+      return $this->registry->get($key);
+  }
+
+  public function __set($key, $value) {
+      $this->registry->set($key, $value);
+  }
+  /* End of Welldone Theme modification */
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[protected $registry;]]></search>
+            <add position="after"><![CDATA[
+                /* Welldone Theme modification */
+  public function __get($key) {
+      return $this->registry->get($key);
+  }
+
+  public function __set($key, $value) {
+      $this->registry->set($key, $value);
+  }
+  /* End of Welldone Theme modification */
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[include_once($file);]]></search>
+            <add position="replace"><![CDATA[
+            /* Welldone Theme modification */
+              include_once(modification($file));
+            /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[require($file);]]></search>
+            <add position="replace"><![CDATA[
+            /* Welldone Theme modification */
+              require(modification($file));
+            /* End of Welldone Theme modification */    
+            ]]></add>
+        </operation>
+        
+    </file>
+    
+    <file path="system/library/config.php">
+       <operation>
+            <search><![CDATA[require($file);]]></search>
+            <add position="replace"><![CDATA[
+                /* Welldone Theme modification */
+              require(modification($file));
+            /* End of Welldone Theme modification */
+            ]]></add>
+        </operation>
+    </file>
+    
+    <file path="system/library/language.php">
+       <operation>
+            <search><![CDATA[require($file);]]></search>
+            <add position="replace"><![CDATA[
+                /* Welldone Theme modification */
+              require(modification($file));
+            /* End of Welldone Theme modification */
+            ]]></add>
+        </operation>
+    </file>
+    
+    
+    
+</modification>

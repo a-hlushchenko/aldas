@@ -1,0 +1,7 @@
+<?
+if(mail("d-emon@inbox.ru", "My Subject", "Line 1\nLine 2\nLine 3")){
+	echo 'ok';
+} else {
+	echo 'error';
+}
+?>

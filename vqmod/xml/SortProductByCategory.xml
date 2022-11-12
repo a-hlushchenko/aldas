@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Sort Product By Category</name>
+    <version>1.1</version>
+    <author>gdemon</author>
+
+    <file name="admin/view/template/catalog/category_list.tpl">
+        <operation error="skip">
+            <search position="before"><![CDATA[
+                <td class="text-right"><?php echo $column_action; ?></td>
+            ]]></search>
+            <add><![CDATA[
+           <td class="text-right">Сортировка товаров</td>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                <td class="text-right"><?php echo $category['sort_order']; ?></td>
+            ]]></search>
+            <add><![CDATA[
+                <td class="text-right"><a href="<?php echo $category['edit_category_sort']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i> Изменить сортировку</a></td>
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/controller/catalog/category.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                'sort_order'  => $result['sort_order'],
+            ]]></search>
+            <add><![CDATA[
+                'edit_category_sort'        => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&filter_category=' . $result['category_id'] . $url, 'SSL'),
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/model/catalog/product.php">
+        <operation error="skip">
+            <search position="before"><![CDATA[
+                    public function getProductCategories($product_id) {
+            ]]></search>
+            <add><![CDATA[
+                    public function getProductByCategories($product_id) {
+                        $product_category_data = array();
+
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+
+                        return $query->rows;
+                    }
+
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" index="2"><![CDATA[if (isset($data['product_category'])) {]]></search>
+            <add><![CDATA[/*]]></add>
+        </operation>   
+        <operation error="skip">
+            <search position="after" index="2" offset="4"><![CDATA[if (isset($data['product_category'])) {]]></search>
+            <add><![CDATA[*/]]></add>
+        </operation>   
+
+        <operation error="skip">
+            <search position="replace" index="1"><![CDATA[$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+            ]]></search>
+            <add><![CDATA[
+        $sort_order = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+        
+        $this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+
+        if (isset($data['product_category'])) {
+            foreach ($data['product_category'] as $category_id) {
+                $sortt = 999;
+                foreach ($sort_order->rows as $sort) {
+                    if($category_id==$sort['category_id']){
+                        $sortt = $sort['sort_order'];
+                        break;
+                    }
+                }
+                    
+                $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "', sort_order = '" . (int)$sortt . "'");
+                
+            }
+        }
+
+            ]]></add>
+        </operation>           
+     
+
+    </file>
+    <file name="admin/controller/catalog/product.php">
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                    private $error = array();
+            ]]></search>
+            <add><![CDATA[
+                    public function updateSort() {
+                    
+                        if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+                        $this->db->query("UPDATE " . DB_PREFIX . "product_to_category SET sort_order = '" . (int)$this->request->post['sort'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "' AND category_id = '" . (int)$this->request->post['category_id'] . "'");
+                       
+                        //$this->cache->delete('product');
+                        }
+                    }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                    getProductCategories($result['product_id']);
+            ]]></search>
+            <add><![CDATA[
+                    $categories_sort =  $this->model_catalog_product->getProductByCategories($result['product_id']);
+
+                    $categories_s =array();
+                    foreach ($categories_sort as $category_sort) {
+                    
+                        $categories_s[$category_sort['category_id']] = $category_sort;
+                    }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                    'category'   => $category,
+            ]]></search>
+            <add><![CDATA[
+                    'categories_sort'   => $categories_s,
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[
+                    $url .= '&filter_category=' . $this->request->get['filter_category'];
+            ]]></search>
+            <add><![CDATA[
+                    if (isset($this->request->get['filter_in_cat'])) {
+                        $url .= '&filter_in_cat=' . $this->request->get['filter_in_cat'];
+                      }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before" offset="1"><![CDATA[
+                    $filter_category = $this->request->get['filter_category'];
+            ]]></search>
+            <add><![CDATA[
+                if (isset($this->request->get['filter_in_cat'])) {
+                    $filter_in_cat = $this->request->get['filter_in_cat'];
+                } else {
+                    $filter_in_cat = NULL;
+                }
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                    $data['filter_category'] = $filter_category;
+            ]]></search>
+            <add><![CDATA[
+                    $data['filter_in_cat'] = $filter_in_cat;
+            ]]></add>
+        </operation>
+    </file>
+    <file name="admin/view/template/catalog/product_list.tpl">
+        <operation error="skip">
+            <search position="replace"><![CDATA[
+                    <?php echo $category['name'];?><br>
+            ]]></search>
+            <add><![CDATA[
+
+                <?php if($filter_in_cat){ ?>
+                      <?php if($filter_category==$category['category_id']){ ?>
+                        <?php echo $category['name'];?><br>
+                        Сорт - <input style="width:50px;text-align: center;" type="text" catid="<?=$category['category_id'];?>" prid="<?=$product['product_id'];?>" value="<?=$product['categories_sort'][$category['category_id']]['sort_order'];?>">
+                        <a style="cursor:pointer;" onclick="updateSort(<?php echo $product['product_id']; ?>,<?php echo $category['category_id'];?>,$(this).prev().val());$(this).fadeTo(250, 0.2);$(this).fadeTo(150, 0.7);" class="save">Save</a>
+                        <hr style="margin:0 2px;">
+                      <?php } ?>
+                    <?php } else { ?>
+                        <?php echo $category['name'];?><br>
+                        Сорт - <input style="width:50px;text-align: center;" type="text" catid="<?=$category['category_id'];?>" prid="<?=$product['product_id'];?>" value="<?=$product['categories_sort'][$category['category_id']]['sort_order'];?>">
+                        <a style="cursor:pointer;" onclick="updateSort(<?php echo $product['product_id']; ?>,<?php echo $category['category_id'];?>,$(this).prev().val());$(this).fadeTo(250, 0.2);$(this).fadeTo(150, 0.7);" class="save">Save</a>
+                        <hr style="margin:0 2px;">
+                    <?php } ?>
+
+                   
+            ]]></add>
+        </operation>        
+        <operation error="skip">
+            <search position="after"><![CDATA[
+                    <label class="control-label" for="input-status"><?php echo $column_category; ?></label>
+            ]]></search>
+            <add><![CDATA[
+                  <br/><input name="filter_in_cat" value="1" type="checkbox" id="catt" <?if($filter_in_cat){?>checked<?}?>> <label for="catt">Не показывать сортировку в других категориях</label>
+            ]]></add>
+        </operation>        
+        <operation error="skip">
+            <search position="bafore"><![CDATA[
+                    <?php echo $footer; ?>
+            ]]></search>
+            <add><![CDATA[
+                <script type="text/javascript"><!--
+                    function updateSort(product_id,category_id,sort) {
+                        $.post('index.php?route=catalog/product/updateSort&token=<?php echo $token; ?>', 'product_id=' + product_id + '&category_id=' + category_id + '&sort=' + sort);
+                    }
+                //--></script>
+            ]]></add>
+        </operation>
+        <operation error="skip">
+            <search position="before"><![CDATA[
+                var filter_category = $('select[name=\'filter_category\']').val();
+            ]]></search>
+            <add><![CDATA[
+
+                var filter_in_cat = $('input[name=\'filter_in_cat\']:checked').attr('value');
+    
+                if (filter_in_cat) {
+                    url += '&filter_in_cat=true';
+                }
+
+            ]]></add>
+        </operation>
+        
+    </file>
+</modification>
