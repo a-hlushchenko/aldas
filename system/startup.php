@@ -89,9 +89,7 @@ function modification($filename)
 function library($class)
 {
 	$file = DIR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
-	echo "<pre>";
-	print_r($file);
-	echo "</pre>";
+
 	if (is_file($file)) {
 		include_once(modification($file));
 
