@@ -26,12 +26,28 @@ class ControllerModuleFeatured extends Controller {
 
 			foreach ($products as $product_id) {
 				$product_info = $this->model_catalog_product->getProduct($product_id);
-
+				
 				if ($product_info) {
 					if ($product_info['image']) {
-						$image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height'],'wh');
+						$image = $this->model_tool_image->resize($product_info['image'], 342, 239,'wh');
 					} else {
-						$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height'],'wh');
+						$image = $this->model_tool_image->resize('placeholder.png', 342, 239,'wh');
+					}
+					$images = array();
+					$images[] = array(
+						'popup' => MAIN_SERVER.'image/'.$product_info['image'],
+						'thumb' => $image,
+					);
+
+					$results = $this->model_catalog_product->getProductImages($product_id);
+
+					foreach ($results as $result) {
+						if($result['image']){
+							$images[] = array(
+								'popup' => MAIN_SERVER.'image/'.$result['image'],
+								'thumb' => $this->model_tool_image->resize($result['image'], 342, 239,'wh'),
+							);
+						}
 					}
 
 					if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -46,28 +62,17 @@ class ControllerModuleFeatured extends Controller {
 						$special = false;
 					}
 
-					if ($this->config->get('config_tax')) {
-						$tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price']);
-					} else {
-						$tax = false;
-					}
-
-					if ($this->config->get('config_review_status')) {
-						$rating = $product_info['rating'];
-					} else {
-						$rating = false;
-					}
-
 					$data['products'][] = array(
 						'product_id'  => $product_info['product_id'],
 						'thumb'       => $image,
+						'images'       => $images,
 						'fasad'       => $product_info['fasad'],
 						'name'        => $product_info['name'],
 						'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 						'price'       => $price,
 						'special'     => $special,
-						'tax'         => $tax,
-						'rating'      => $rating,
+						//'tax'         => $tax,
+						//'rating'      => $rating,
 						'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 					);
 				}

@@ -4,7 +4,7 @@ class ControllerProductCategory extends Controller {
 
 		// Варианты А-Б
 
-		if (isset($this->request->cookie['variat_abc'])) {
+		/*if (isset($this->request->cookie['variat_abc'])) {
 			$var = $this->request->cookie['variat_abc'];
 			$this->session->data['variat_abc'] = $var;
 			setcookie('variat_abc', $var, time() +  60 * 60 * 24 * 30, '/');
@@ -21,9 +21,7 @@ class ControllerProductCategory extends Controller {
 			$this->model_setting_setting->editSetting('variat_abc',array('variat_abc_count'=>$count));
 
 			$ost = $count%3;
-			/*if($ost==0){
-				$var='C';
-			} else*/
+
 			if($ost==2){
 				$var='A';
 				//$data['variat_abc'] ='два в ряд';
@@ -35,17 +33,17 @@ class ControllerProductCategory extends Controller {
 			$data['variat_abc'] = $var;
 
 			//$this->log->write(print_r($count . ' - ставим вариант '. $var,1));
-		}
+		}*/
 
 		// Ajax Product Page Loader by Wadamir
-		$this->document->addScript('catalog/view/javascript/ajax-product-page-loader.js?v1');
+		/*$this->document->addScript('catalog/view/javascript/ajax-product-page-loader.js?v1');
 
 		$this->load->model('setting/setting');
 		$current_language_id = $this->config->get('config_language_id');
 		$data['loadmore_button'] = $this->config->get('loadmore_button_name_'.$current_language_id);
 		$data['loadmore_status'] = $this->config->get('loadmore_status');
 		$data['loadmore_style'] = $this->config->get('loadmore_style');
-		$data['loadmore_arrow_status'] = $this->config->get('loadmore_arrow_status');
+		$data['loadmore_arrow_status'] = $this->config->get('loadmore_arrow_status');*/
 		// Ajax Product Page Loader by Wadamir
 
 
@@ -252,7 +250,7 @@ class ControllerProductCategory extends Controller {
 
 			$partts = explode('_', (string)$this->request->get['path']);
 
-			$data['placeholder'] = $this->model_tool_image->resize('placehold.png', 571, 325);
+			//$data['placeholder'] = $this->model_tool_image->resize('placehold.png', 571, 325);
 
 			foreach ($results as $result) {
 
@@ -261,16 +259,34 @@ class ControllerProductCategory extends Controller {
 
 					if(in_array('133', $partts)){
 						//$image = $this->model_tool_image->resize($result['image'], 537, 306);
-						$image = $this->model_tool_image->resize($result['image'], 571, 500); // 325
+						$image = $this->model_tool_image->resize($result['image'], 385, 269); // 325
 						//увеличиваем вручную для експериментов А-Б
 						//$image = $this->model_tool_image->resize($result['image'], 1100, 628);
 					} else {
-						$image = $this->model_tool_image->resize($result['image'], 571, 500,'wh'); //325
+						$image = $this->model_tool_image->resize($result['image'], 385, 269,'wh'); //325
 						//увеличиваем вручную для експериментов А-Б
 						//$image = $this->model_tool_image->resize($result['image'], 1102, 628,'w');
 					}
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					//$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					$image = $this->model_tool_image->resize('placeholder.png', 385, 269);
+				}
+
+				$images = array();
+				$images[] = array(
+					'popup' => MAIN_SERVER.'image/'.$result['image'],
+					'thumb' => $image,
+				);
+	
+				$res = $this->model_catalog_product->getProductImages($result['product_id']);
+	
+				foreach ($res as $res_) {
+					if($res_['image']){
+						$images[] = array(
+							'popup' => MAIN_SERVER.'image/'.$res_['image'],
+							'thumb' => $this->model_tool_image->resize($res_['image'], 385, 269,'wh'),
+						);
+					}
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -321,6 +337,7 @@ class ControllerProductCategory extends Controller {
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
+					'images'       => $images,
 					'name'        => $result['name'],
 					'template'        => $result['template'],
 					'new'        => $result['new'],
@@ -471,13 +488,14 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$pagination = new Pagination2();
+			$pagination = new Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
 			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
 
 			$data['pagination'] = $pagination->render();
+			$data['product_total'] = $product_total;
 
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 

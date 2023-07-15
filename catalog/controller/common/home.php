@@ -39,11 +39,11 @@ class ControllerCommonHome extends Controller {
 		
 		$categories = $this->getcat();
 
-		$this->document->addScript('catalog/view/javascript/owl.carousel.js');
+		//$this->document->addScript('catalog/view/javascript/owl.carousel.js');
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 		
-		foreach ($categories as $key => $category) {
+		/*foreach ($categories as $key => $category) {
 			$filter_data = array(
 				'filter_category_id' => $category['category_id'],
 				'limit'              => 4,
@@ -69,11 +69,11 @@ class ControllerCommonHome extends Controller {
 			//$categories[$key]['products'] = array_slice($products, 0, 4);
 	
 		}
-		$data['categories'] = $categories;
+		$data['categories'] = $categories;*/
 		
 		$data['column_left'] = $this->load->controller('common/column_left');
 		//$data['column_right'] = $this->load->controller('common/column_right');
-		$data['content_top'] = $this->load->controller('common/content_top');
+		//$data['content_top'] = $this->load->controller('common/content_top');
 		//$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		
 		$data['news'] = $this->load->controller('module/news_carousel');

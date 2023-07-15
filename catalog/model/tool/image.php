@@ -41,13 +41,13 @@ class ModelToolImage extends Model {
 			/*----оптимизация озибражений----*/
 			/*yum install optipng
 			  yum install jpegoptim*/
-			$info = pathinfo(DIR_IMAGE . $new_image);
+			/*$info = pathinfo(DIR_IMAGE . $new_image);
 			$extension = strtolower($info['extension']);
 			if ($extension == 'jpeg' || $extension == 'jpg') {
 				$res = shell_exec("jpegoptim --max=90 --strip-all --all-progressive ". (DIR_IMAGE . $new_image));
 			} elseif ($extension == 'png') {
 				$res = shell_exec("optipng ". (DIR_IMAGE . $new_image)) . "-strip all";
-			}
+			}*/
 			/*------*/
 		}
 

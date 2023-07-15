@@ -46,6 +46,8 @@ class ControllerCommonFooter extends Controller {
 		$data['contact'] = $this->url->link('information/contact');
 		$data['sitemap'] = $this->url->link('information/sitemap');
 
+		$data['categories'] = $this->load->controller('module/categoryfooter');
+
 		if(isset($this->request->get['admin'])){
 			$data['admin'] = true;
 		} else {

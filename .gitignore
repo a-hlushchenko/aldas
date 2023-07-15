@@ -21,6 +21,11 @@ system/logs/
 min/
 zohoverify/
 .well-known/
+css/
+font/
+js/
+new/
+product.html
 
 system/storage/
 storage/cache/

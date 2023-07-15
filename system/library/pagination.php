@@ -30,17 +30,21 @@ class Pagination {
 
 		$this->url = str_replace('%7Bpage%7D', '{page}', $this->url);
 
-		$output = '<ul class="pagination">';
+		$output = '<div class="catalog-width">
+			<div class="wrapper catalog-top-new">';
 
 		if ($page > 1) {
 			$tmp_url = str_replace('&amp;', '&', $this->url);
-			$output .= '<li><a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $this->text_first . '</a></li>';
+			//$output .= '<li><a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $this->text_first . '</a></li>';
 			if ($page == 2){
-				$output .= '<li><a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $this->text_prev . '</a></li>';
+				//$output .= '<li><a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $this->text_prev . '</a></li>';
+				$output .= '<a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '" class="catalog-prev"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.5 1L1.5 4L4.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg></a>';
 			}else{
-				$output .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
+				//$output .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
+				$output .= '<a href="' . str_replace('{page}', $page - 1, $this->url) . '" class="catalog-prev"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.5 1L1.5 4L4.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg></a>';
 			}
 		}
+		$output .= '<ul class="catalog-number">';
 
 		if ($num_pages > 1) {
 			if ($num_pages <= $num_links) {
@@ -67,19 +71,23 @@ class Pagination {
 				} else {
 					if ($i == 1){
 						$output .= '<li><a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $i . '</a></li>';
+						
 					}else{
 						$output .= '<li><a href="' . str_replace('{page}', $i, $this->url) . '">' . $i . '</a></li>';
 					}
 				}
 			}
 		}
+		$output .= '</ul>';
 
 		if ($page < $num_pages) {
-			$output .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a></li>';
-			$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a></li>';
+			//$output .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a></li>';
+			$output .= '<a href="' . str_replace('{page}', $page + 1, $this->url) . '" class="catalog-next"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1.5 1L4.5 4L1.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg></a>';
+			//$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a></li>';
 		}
 
-		$output .= '</ul>';
+		$output .= '</div>
+			</div>';
 
 		if ($num_pages > 1) {
 			return $output;

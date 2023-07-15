@@ -8,16 +8,15 @@ if($_SERVER['REQUEST_URI']!=$uri){
 	} else {
 		$url = 'https://www.aldas.ru'.$uri.'/';
 	}
-	//vdump($url);
 	if($url=='https://www.aldas.ru' && $_SERVER['REQUEST_URI']!='/'){
-		/*vdump('1');
-		vdump($url);*/
+
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: ".$url);
 		exit();
 	}
 
 }
+
 //rtrim($str, '/\\');
 
 // Version
@@ -313,9 +312,9 @@ if($user->isLogged()&& $user->getUserName()=='gdemon'){
 
 if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] != 'www.aldas.ru'){
 	//vdump($_SERVER);
-	$url = 'https://www.aldas.ru/';
+	/*$url = 'https://www.aldas.ru/';
 	header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, 301);
-	exit();
+	exit();*/
 }
 
 $controller->addPreAction(new Action('common/' . $seo_type));

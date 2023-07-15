@@ -1,5 +1,5 @@
 <?php
-class ControllerModuleCategoryHeader extends Controller {
+class ControllerModuleCategoryFooter extends Controller {
 
 	public function __construct($registry) 
    {
@@ -10,18 +10,18 @@ class ControllerModuleCategoryHeader extends Controller {
     //$layout_id = $this->welldone->get_current_layout_id($store_id);
     $layout_id = 1;
     
-    //$this->cache_key = "module-categoryheader-{$store_id}-{$layout_id}-{$lang_id}";
-    $this->cache_key = "module-categoryheader-{$layout_id}-{$lang_id}";
+    //$this->cache_key = "module-categoryfooter-{$store_id}-{$layout_id}-{$lang_id}";
+    $this->cache_key = "module-categoryfooter-{$layout_id}-{$lang_id}";
    } 
 
 	public function index() {
 
-		$cache = 1;
+		$cache = 0;
 		if ($cache){
 	       $content = $this->welldone->cache->get($this->cache_key);
 	       if ($content !== false) 
 	       { 
-	         $this->welldone->set_settings('categoryheader', $content);
+	         $this->welldone->set_settings('categoryfooter', $content);
 	         return $content;
 	       }
 	     }
@@ -105,11 +105,11 @@ class ControllerModuleCategoryHeader extends Controller {
 		//vdump(__DIR__  . '/data/menu.php');
 		//vdump($data['categories']);
 
-		$content = $this->load->view('default/template/module/category_header.tpl', $data);
+		$content = $this->load->view('default/template/module/category_footer.tpl', $data);
 		//echo $content;
 		// для поддоменов
 	    $content =str_replace(HTTP_SERVER, '', $content);
-		$this->welldone->set_settings('categoryheader', $content);
+		$this->welldone->set_settings('categoryfooter', $content);
        	$this->welldone->cache->set($this->cache_key,$content);
        	$content =str_replace(HTTP_SERVER, '', $content);	 
 		

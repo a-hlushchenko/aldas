@@ -1,8 +1,10 @@
 <?php
-class ControllerProductProduct extends Controller {
+class ControllerProductProduct extends Controller
+{
 	private $error = array();
 
-	public function index() {
+	public function index()
+	{
 		$this->load->language('product/product');
 
 		$data['breadcrumbs'] = array();
@@ -39,11 +41,11 @@ class ControllerProductProduct extends Controller {
 			}
 
 			//подменяем категорию ПРОДУКТ на КАТАЛОГ для СЕО
-				if($this->request->get['path']==131){
-					$category_id=20;
-				} else {
-					$category_id=$this->request->get['path'];
-				}
+			if ($this->request->get['path'] == 131) {
+				$category_id = 20;
+			} else {
+				$category_id = $this->request->get['path'];
+			}
 
 			// Set the last category breadcrumb
 			$category_info = $this->model_catalog_category->getCategory($category_id);
@@ -179,31 +181,28 @@ class ControllerProductProduct extends Controller {
 
 			foreach ($categoriess as $categorie_id) {
 				$category_infos = $this->model_catalog_category->getCategory($categorie_id);
-				if($category_infos){
+				if ($category_infos) {
 					$data['mas_cat_attribute'][$category_infos['name_attibute']][$category_infos['name']] = array(
-						'name' => (isset($category_infos['name']))?$category_infos['name']:'',
-						'category_id' => (isset($category_infos['category_id']))?$category_infos['category_id']:'',
-						'name_attibute' => (isset($category_infos['name_attibute']))?$category_infos['name_attibute']:'',
-						'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'].'_'.$categorie_id),
-						);
+						'name' => (isset($category_infos['name'])) ? $category_infos['name'] : '',
+						'category_id' => (isset($category_infos['category_id'])) ? $category_infos['category_id'] : '',
+						'name_attibute' => (isset($category_infos['name_attibute'])) ? $category_infos['name_attibute'] : '',
+						'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $categorie_id),
+					);
 				}
-
 			}
 
 			$data['products'] = array();
-			if(isset($data['mas_cat_attribute']['Стиль'])){
+			if (isset($data['mas_cat_attribute']['Стиль'])) {
 
-				foreach($data['mas_cat_attribute']['Стиль'] as $key => $stil){
+				foreach ($data['mas_cat_attribute']['Стиль'] as $key => $stil) {
 					$dat = array(
 						'filter_category_id' => $stil['category_id'],
 						'sort'               => 'p.sort_order',
 						'order'              => 'ASC'
 					);
 
-					$data['products'] = $this->get_prod($dat,$product_id,$url);
-
+					$data['products'] = $this->get_prod($dat, $product_id, $url);
 				}
-
 			} else {
 
 				$dat = array(
@@ -211,17 +210,17 @@ class ControllerProductProduct extends Controller {
 					'sort'               => 'p.sort_order',
 					'order'              => 'ASC'
 				);
-				$data['products'] = $this->get_prod($dat,$product_id,$url);
+				$data['products'] = $this->get_prod($dat, $product_id, $url);
 			}
 
 			//vdump($data['products']);
 
 			//////////////////////
 			// получаем столы и стулья
-			$data['products_stoly'] = $this->getstol(134,'RAND()',$url,$this->request->get['path']);
+			$data['products_stoly'] = $this->getstol(134, 'RAND()', $url, $this->request->get['path']);
 
 			// получаем Технику
-			$data['products_tehnika'] = $this->getstol(135,'p.sort_order',$url,$this->request->get['path']);
+			$data['products_tehnika'] = $this->getstol(135, 'p.sort_order', $url, $this->request->get['path']);
 
 			// получаем Аксессуары
 			//$data['products_accessuary'] = $this->getstol(136,$url);
@@ -230,22 +229,22 @@ class ControllerProductProduct extends Controller {
 			$dat = array(
 				'filter_category_id' => $category_id,
 				'sort'               => 'p.sort_order',
-				'order'              => 'ASC'//,
+				'order'              => 'ASC' //,
 				/*'start'              => 0,
 				'limit'              => 10*/
 			);
-			$results_quick = $this->model_catalog_product->getProducts($dat,true);
+			$results_quick = $this->model_catalog_product->getProducts($dat, true);
 
 			$data_quick = array();
 			foreach ($results_quick as $quick) {
 				$data_quick[] = $quick['product_id'];
 			}
 
-			$pr_id = array_search($product_id,$data_quick);
-			$pr_prev = (isset($data_quick[(int)$pr_id - 1]))?$data_quick[(int)$pr_id - 1]:0;
-			$pr_next = (isset($data_quick[(int)$pr_id + 1]))?$data_quick[(int)$pr_id + 1]:0;
+			$pr_id = array_search($product_id, $data_quick);
+			$pr_prev = (isset($data_quick[(int)$pr_id - 1])) ? $data_quick[(int)$pr_id - 1] : 0;
+			$pr_next = (isset($data_quick[(int)$pr_id + 1])) ? $data_quick[(int)$pr_id + 1] : 0;
 
-			if($pr_prev){
+			if ($pr_prev) {
 				$prod_prev = $this->model_catalog_product->getProduct($pr_prev);
 				$data['pr_prev_name'] = $prod_prev['name'];
 				$data['pr_prev'] = $this->url->link('product/product', 'product_id=' . $pr_prev);
@@ -253,12 +252,14 @@ class ControllerProductProduct extends Controller {
 				$data['pr_prev_name'] = '';
 				$data['pr_prev'] = '';
 			}
-			if($pr_next){
+			if ($pr_next) {
 				$prod_prev = $this->model_catalog_product->getProduct($pr_next);
 				$data['pr_next_name'] = $prod_prev['name'];
+				$data['pr_next_img'] = $this->model_tool_image->resize($prod_prev['image'], 96, 64);
 				$data['pr_next'] = $this->url->link('product/product', 'product_id=' . $pr_next);
 			} else {
 				$data['pr_next_name'] = '';
+				$data['pr_next_img'] = '';
 				$data['pr_next'] = '';
 			};
 			//////////////////////
@@ -322,18 +323,20 @@ class ControllerProductProduct extends Controller {
 			/*if ($product_info['meta_title']) {
 				$this->document->setTitle($product_info['meta_title']);
 			} else {*/
-				$this->document->setTitle($product_info['name']);
+			$this->document->setTitle($product_info['name']);
 			//}
 
 			$this->document->setDescription($product_info['meta_description']);
 			$this->document->setKeywords($product_info['meta_keyword']);
 			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
+
 			$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
 			$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/colors_ral.css?26');
+			//$this->document->addStyle('catalog/view/theme/default/stylesheet/colors_ral.css?26');
+			//$this->document->addScript('catalog/view/javascript/jquery.scrollTo-min.js', 'footer');
 
-			$this->document->addScript('catalog/view/javascript/owl.carousel.js');
-			$this->document->addScript('catalog/view/javascript/tabs.js');
+			//$this->document->addScript('catalog/view/javascript/owl.carousel.js');
+			//$this->document->addScript('catalog/view/javascript/tabs.js');
 
 			/*$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment.js');
 			$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/locale/'.$this->session->data['language'].'.js');
@@ -405,21 +408,19 @@ class ControllerProductProduct extends Controller {
 			if ($product_info['image']) {
 				if ($this->request->server['HTTPS']) {
 					//$data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
-					$data['popup'] = MAIN_HTTPS_SERVER.'image/'.$product_info['image'];
+					$data['popup'] = MAIN_HTTPS_SERVER . 'image/' . $product_info['image'];
 					//$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-					$data['thumb'] = MAIN_HTTPS_SERVER.'image/'.$product_info['image'];
+					$data['thumb'] = MAIN_HTTPS_SERVER . 'image/' . $product_info['image'];
 					$this->document->setOgImage($data['thumb']);
-
 				} else {
 					//$data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
-					$data['popup'] = MAIN_SERVER.'image/'.$product_info['image'];
-					//$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-					$data['thumb'] = MAIN_SERVER.'image/'.$product_info['image'];
+					$data['popup'] = MAIN_SERVER . 'image/' . $product_info['image'];
+					$data['thumb'] = $this->model_tool_image->resize($product_info['image'], 912, 518);
+					//$data['thumb'] = MAIN_SERVER.'image/'.$product_info['image'];
 
 				}
 
 				$this->document->setOgImage($data['thumb']);
-
 			} else {
 				$data['thumb'] = $this->model_tool_image->resize('no_image.png', $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 				$data['popup'] = $this->model_tool_image->resize('no_image.png', $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
@@ -430,14 +431,14 @@ class ControllerProductProduct extends Controller {
 			$results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
 
 			foreach ($results as $result) {
-				if($result['image']){
+				if ($result['image']) {
 					$data['images'][] = array(
 						//'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'),'wh'),
 						//'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
-						'popup' => MAIN_SERVER.'image/'.$result['image'],
+						'popup' => MAIN_SERVER . 'image/' . $result['image'],
 						//'popup2' => 'image/'.$result['image'],
 						//'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'wh'),
-						'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height')),
+						'thumb' => $this->model_tool_image->resize($result['image'], 912, 518),
 						//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'full')
 						//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'))
 					);
@@ -446,69 +447,69 @@ class ControllerProductProduct extends Controller {
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_plus_30proc'] = $this->currency->format($this->tax->calculate($product_info['price']*1.3, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_minus_10proc'] = $this->currency->format($this->tax->calculate($product_info['price']*0.9, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_plus_30proc'] = $this->currency->format($this->tax->calculate($product_info['price'] * 1.3, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_minus_10proc'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.9, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_got'] = $this->currency->format($this->tax->calculate($product_info['price']*3.6, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3.6, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_got_old'] = $this->currency->format($this->tax->calculate($product_info['price']*3.6*1.3, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_got_new'] = $this->currency->format($this->tax->calculate($product_info['price']*3.6*1.3*0.8, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got_old'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3.6 * 1.3, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got_new'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3.6 * 1.3 * 0.8, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_got2'] = $this->currency->format($this->tax->calculate($product_info['price']*2*1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_got3'] = $this->currency->format($this->tax->calculate($product_info['price']*3*1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_got3_5'] = $this->currency->format($this->tax->calculate($product_info['price']*3.5*1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_got4'] = $this->currency->format($this->tax->calculate($product_info['price']*4*1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_got5'] = $this->currency->format($this->tax->calculate($product_info['price']*5*1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got2'] = $this->currency->format($this->tax->calculate($product_info['price'] * 2 * 1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got3'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3 * 1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got3_5'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3.5 * 1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got4'] = $this->currency->format($this->tax->calculate($product_info['price'] * 4 * 1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_got5'] = $this->currency->format($this->tax->calculate($product_info['price'] * 5 * 1.25, $product_info['tax_class_id'], $this->config->get('config_tax')));
 				$data['price_int'] = (int)$product_info['price'];
-				$data['price_int_got'] = (int)$product_info['price']*3.6*1.25;
-				$data['price_int_got2'] = (int)$product_info['price']*2*1.25;
-				$data['price_int_got3'] = (int)$product_info['price']*3*1.25;
-				$data['price_int_got3_5'] = (int)$product_info['price']*3.5*1.25;
-				$data['price_int_got4'] = (int)$product_info['price']*4*1.25;
-				$data['price_int_got5'] = (int)$product_info['price']*5*1.25;
+				$data['price_int_got'] = (int)$product_info['price'] * 3.6 * 1.25;
+				$data['price_int_got2'] = (int)$product_info['price'] * 2 * 1.25;
+				$data['price_int_got3'] = (int)$product_info['price'] * 3 * 1.25;
+				$data['price_int_got3_5'] = (int)$product_info['price'] * 3.5 * 1.25;
+				$data['price_int_got4'] = (int)$product_info['price'] * 4 * 1.25;
+				$data['price_int_got5'] = (int)$product_info['price'] * 5 * 1.25;
 
-				$data['price_module_1_int'] = (int)$product_info['price']*0.42;
-				$data['price_module_1'] = $this->currency->format($this->tax->calculate($product_info['price']*0.42, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_2_int'] = (int)$product_info['price']*0.63;
-				$data['price_module_2'] = $this->currency->format($this->tax->calculate($product_info['price']*0.63, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_3_int'] = (int)$product_info['price']*0.55;
-				$data['price_module_3'] = $this->currency->format($this->tax->calculate($product_info['price']*0.5, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_4_int'] = (int)$product_info['price']*0.75;
-				$data['price_module_4'] = $this->currency->format($this->tax->calculate($product_info['price']*0.75, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_1_int'] = (int)$product_info['price'] * 0.42;
+				$data['price_module_1'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.42, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_2_int'] = (int)$product_info['price'] * 0.63;
+				$data['price_module_2'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.63, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_3_int'] = (int)$product_info['price'] * 0.55;
+				$data['price_module_3'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.5, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_4_int'] = (int)$product_info['price'] * 0.75;
+				$data['price_module_4'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.75, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_module_5_int'] = (int)$product_info['price']*0.43;
-				$data['price_module_5'] = $this->currency->format($this->tax->calculate($product_info['price']*0.43, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_6_int'] = (int)$product_info['price']*0.7;
-				$data['price_module_6'] = $this->currency->format($this->tax->calculate($product_info['price']*0.7, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_7_int'] = (int)$product_info['price']*0.44;
-				$data['price_module_7'] = $this->currency->format($this->tax->calculate($product_info['price']*0.44, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_8_int'] = (int)$product_info['price']*0.68;
-				$data['price_module_8'] = $this->currency->format($this->tax->calculate($product_info['price']*0.68, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_5_int'] = (int)$product_info['price'] * 0.43;
+				$data['price_module_5'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.43, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_6_int'] = (int)$product_info['price'] * 0.7;
+				$data['price_module_6'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.7, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_7_int'] = (int)$product_info['price'] * 0.44;
+				$data['price_module_7'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.44, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_8_int'] = (int)$product_info['price'] * 0.68;
+				$data['price_module_8'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.68, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_module_9_int'] = (int)$product_info['price']*0.48;
-				$data['price_module_9'] = $this->currency->format($this->tax->calculate($product_info['price']*0.48, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_10_int'] = (int)$product_info['price']*0.64;
-				$data['price_module_10'] = $this->currency->format($this->tax->calculate($product_info['price']*0.64, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_11_int'] = (int)$product_info['price']*0.44;
-				$data['price_module_11'] = $this->currency->format($this->tax->calculate($product_info['price']*0.44, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_12_int'] = (int)$product_info['price']*0.65;
-				$data['price_module_12'] = $this->currency->format($this->tax->calculate($product_info['price']*0.65, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_9_int'] = (int)$product_info['price'] * 0.48;
+				$data['price_module_9'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.48, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_10_int'] = (int)$product_info['price'] * 0.64;
+				$data['price_module_10'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.64, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_11_int'] = (int)$product_info['price'] * 0.44;
+				$data['price_module_11'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.44, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_12_int'] = (int)$product_info['price'] * 0.65;
+				$data['price_module_12'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.65, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_module_13_int'] = (int)$product_info['price']*0.86;
-				$data['price_module_13'] = $this->currency->format($this->tax->calculate($product_info['price']*0.86, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_14_int'] = (int)$product_info['price']*0.6;
-				$data['price_module_14'] = $this->currency->format($this->tax->calculate($product_info['price']*0.6, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_15_int'] = (int)$product_info['price']*0.51;
-				$data['price_module_15'] = $this->currency->format($this->tax->calculate($product_info['price']*0.51, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_16_int'] = (int)$product_info['price']*0.49;
-				$data['price_module_16'] = $this->currency->format($this->tax->calculate($product_info['price']*0.49, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_13_int'] = (int)$product_info['price'] * 0.86;
+				$data['price_module_13'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.86, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_14_int'] = (int)$product_info['price'] * 0.6;
+				$data['price_module_14'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.6, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_15_int'] = (int)$product_info['price'] * 0.51;
+				$data['price_module_15'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.51, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_16_int'] = (int)$product_info['price'] * 0.49;
+				$data['price_module_16'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.49, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
-				$data['price_module_17_int'] = (int)$product_info['price']*0.78;
-				$data['price_module_17'] = $this->currency->format($this->tax->calculate($product_info['price']*0.78, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_18_int'] = (int)$product_info['price']*0.48;
-				$data['price_module_18'] = $this->currency->format($this->tax->calculate($product_info['price']*0.48, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_module_19_int'] = (int)$product_info['price']*0.74;
-				$data['price_module_19'] = $this->currency->format($this->tax->calculate($product_info['price']*0.74, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_17_int'] = (int)$product_info['price'] * 0.78;
+				$data['price_module_17'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.78, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_18_int'] = (int)$product_info['price'] * 0.48;
+				$data['price_module_18'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.48, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['price_module_19_int'] = (int)$product_info['price'] * 0.74;
+				$data['price_module_19'] = $this->currency->format($this->tax->calculate($product_info['price'] * 0.74, $product_info['tax_class_id'], $this->config->get('config_tax')));
 
 				/*0,42  0,63  0,5  0,75
 				0,43  0,7  0,44  0,68
@@ -518,13 +519,12 @@ class ControllerProductProduct extends Controller {
 
 
 				//$data['tax_class_id'] = $product_info['tax_class_id'];
-				 //$data['config_tax'] = $this->config->get('config_tax');
+				//$data['config_tax'] = $this->config->get('config_tax');
 
-				$data['price_got_int'] = (int)$product_info['price']*3.5;
+				$data['price_got_int'] = (int)$product_info['price'] * 3.5;
 				//$data['price_ras'] = $this->currency->format($this->tax->calculate($product_info['price']*3.5*0.6/6, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['price_ras'] = $this->currency->format($this->tax->calculate($product_info['price']*3*1.5/2/6, $product_info['tax_class_id'], $this->config->get('config_tax')));
-				$data['predoplata'] = $this->currency->format($this->tax->calculate($product_info['price']*3.5/2, $product_info['tax_class_id'], $this->config->get('config_tax')));
-
+				$data['price_ras'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3 * 1.5 / 2 / 6, $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$data['predoplata'] = $this->currency->format($this->tax->calculate($product_info['price'] * 3.5 / 2, $product_info['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$data['price'] = false;
 				$data['price_got'] = false;
@@ -627,11 +627,11 @@ class ControllerProductProduct extends Controller {
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 
-			$ww= 154;
+			$ww = 154;
 			$hh = 207;
 
 
-			if ($product_info['template']=='0') {
+			if ($product_info['template'] == '0') {
 				// если шаблон по умолчанию (кухни)
 				$this->load->model('design/banner');
 
@@ -779,23 +779,26 @@ class ControllerProductProduct extends Controller {
 				foreach ($query->rows as $key => $value) {
 
 
-					if($value['id_ton'] != $id_ton) {
+					if ($value['id_ton'] != $id_ton) {
 						$id_ton = $value['id_ton'];
-						if( $value['name_ton_en']=='yellow'){
+						if ($value['name_ton_en'] == 'yellow') {
 							$bgrbg = '255-255-51';
-						} elseif( $value['name_ton_en']=='orange'){
+						} elseif ($value['name_ton_en'] == 'orange') {
 							$bgrbg = '255-117-20';
-						} elseif( $value['name_ton_en']=='red'){
+						} elseif ($value['name_ton_en'] == 'red') {
 							$bgrbg = '248-0-0';
-						} elseif( $value['name_ton_en']=='purple'){
+						} elseif ($value['name_ton_en'] == 'purple') {
 							$bgrbg = '204-51-204';
-						} elseif( $value['name_ton_en']=='blue'){
+						} elseif ($value['name_ton_en'] == 'blue') {
 							$bgrbg = '34-113-179';
-						} elseif( $value['name_ton_en']=='green'){$bgrbg = '34-166-57';
-						} elseif( $value['name_ton_en']=='gray'){$bgrbg = '192-192-192';
-						} elseif( $value['name_ton_en']=='brown'){$bgrbg = '166-94-46';
-						} elseif( $value['name_ton_en']=='black_and_white'){$bgrbg = '255-255-255';
-
+						} elseif ($value['name_ton_en'] == 'green') {
+							$bgrbg = '34-166-57';
+						} elseif ($value['name_ton_en'] == 'gray') {
+							$bgrbg = '192-192-192';
+						} elseif ($value['name_ton_en'] == 'brown') {
+							$bgrbg = '166-94-46';
+						} elseif ($value['name_ton_en'] == 'black_and_white') {
+							$bgrbg = '255-255-255';
 						}
 						$bgrbg = explode('-', $bgrbg);
 
@@ -806,7 +809,7 @@ class ControllerProductProduct extends Controller {
 
 							'name_ton_ru' => $value['name_ton_ru'],
 							'name_ton_en' => $value['name_ton_en']
-							);
+						);
 					}
 
 					$rgba = explode('-', $value['color_rgb']);
@@ -821,7 +824,7 @@ class ControllerProductProduct extends Controller {
 						//'name_en' => $value['name_en'],
 						'name_ru' => $value['name_ru'],
 						'comment_ru' => $value['comment_ru']
-						);
+					);
 				}
 
 				/*$colors_id = array(
@@ -841,46 +844,45 @@ class ControllerProductProduct extends Controller {
 					'0' => array(
 						'name' => 'Бергонца',
 						'bg' => 'images/fasady_png/0/bergonica.jpg'
-						),
+					),
 					'1' => array(
 						'name' => 'Берта',
 						'bg' => 'images/fasady_png/1/berta.jpg'
-						),
+					),
 					'2' => array(
 						'name' => 'Верона',
 						'bg' => 'images/fasady_png/2/verona.jpg'
-						),
+					),
 					'3' => array(
 						'name' => 'Диана',
 						'bg' => 'images/fasady_png/3/diana.jpg'
-						),
+					),
 					'4' => array(
 						'name' => 'Диона',
 						'bg' => 'images/fasady_png/4/diona.jpg'
-						),
+					),
 					'5' => array(
 						'name' => 'карина',
 						'bg' => 'images/fasady_png/5/karina.jpg'
-						),
+					),
 					'6' => array(
 						'name' => 'Луизиана',
 						'bg' => 'images/fasady_png/6/luiziana.jpg'
-						),
+					),
 					'7' => array(
 						'name' => 'Модерн',
 						'bg' => 'images/fasady_png/7/modern.jpg'
-						),
+					),
 					'8' => array(
 						'name' => 'Рузана',
 						'bg' => 'images/fasady_png/8/ruzana.jpg'
-						),
+					),
 					'9' => array(
 						'name' => 'Серена',
 						'bg' => 'images/fasady_png/9/serena.jpg'
-						)
-					);
-
-			} elseif ($product_info['template']=='1') {
+					)
+				);
+			} elseif ($product_info['template'] == '1') {
 				// если шаблон 1 (столы стулья, аксессуары)
 
 				$this->load->model('design/banner');
@@ -917,7 +919,6 @@ class ControllerProductProduct extends Controller {
 						);
 					}
 				}
-
 			}
 
 			$onclick = [
@@ -930,7 +931,7 @@ class ControllerProductProduct extends Controller {
 				199 => "Marquiz.showModal('61897170518fd0003f98a06d')", //Кабинеты
 			];
 
-			$data['onclick'] = $onclick[$category_id]??'';
+			$data['onclick'] = $onclick[$category_id] ?? '';
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
@@ -939,13 +940,13 @@ class ControllerProductProduct extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			if ($product_info['template']=='1') {
+			if ($product_info['template'] == '1') {
 				//шаблон для столов и стульев
 				$this->response->setOutput($this->load->view('default/template/product/product2.tpl', $data));
-			} elseif ($product_info['template']=='2') {
+			} elseif ($product_info['template'] == '2') {
 				//Шаблон для техники и аксессуаров
 				$this->response->setOutput($this->load->view('default/template/product/product3.tpl', $data));
-			}else{
+			} else {
 				$this->response->setOutput($this->load->view('default/template/product/product.tpl', $data));
 			}
 		} else {
@@ -1031,9 +1032,10 @@ class ControllerProductProduct extends Controller {
 		}
 	}
 
-	protected function get_prod($dat,$product_id,$url){
+	protected function get_prod($dat, $product_id, $url)
+	{
 		$products = [];
-		$results_quick = $this->model_catalog_product->getProducts($dat,true);
+		$results_quick = $this->model_catalog_product->getProducts($dat, true);
 
 		$data_quick = array();
 		foreach ($results_quick as $quick) {
@@ -1042,48 +1044,48 @@ class ControllerProductProduct extends Controller {
 
 		unset($results_quick);
 
-		$pr_id = array_search($product_id,$data_quick);
+		$pr_id = array_search($product_id, $data_quick);
 
 		$pr_prev = array();
-		if(isset($data_quick[(int)$pr_id - 1])) {
+		if (isset($data_quick[(int)$pr_id - 1])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 1];
-		} elseif(isset($data_quick[(int)$pr_id + 4])) {
+		} elseif (isset($data_quick[(int)$pr_id + 4])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 4];
 		}
-		if(isset($data_quick[(int)$pr_id - 2])) {
+		if (isset($data_quick[(int)$pr_id - 2])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 2];
-		} elseif(isset($data_quick[(int)$pr_id + 5])) {
+		} elseif (isset($data_quick[(int)$pr_id + 5])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 5];
 		}
-		if(isset($data_quick[(int)$pr_id - 3])) {
+		if (isset($data_quick[(int)$pr_id - 3])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 3];
-		} elseif(isset($data_quick[(int)$pr_id + 6])) {
+		} elseif (isset($data_quick[(int)$pr_id + 6])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 6];
 		}
-		if(isset($data_quick[(int)$pr_id + 1])) {
+		if (isset($data_quick[(int)$pr_id + 1])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 1];
-		} elseif(isset($data_quick[(int)$pr_id - 4])) {
+		} elseif (isset($data_quick[(int)$pr_id - 4])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 4];
 		}
-		if(isset($data_quick[(int)$pr_id + 2])) {
+		if (isset($data_quick[(int)$pr_id + 2])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 2];
-		} elseif(isset($data_quick[(int)$pr_id - 5])) {
+		} elseif (isset($data_quick[(int)$pr_id - 5])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 5];
 		}
-		if(isset($data_quick[(int)$pr_id + 3])) {
+		if (isset($data_quick[(int)$pr_id + 3])) {
 			$pr_prev[] = $data_quick[(int)$pr_id + 3];
-		} elseif(isset($data_quick[(int)$pr_id - 6])) {
+		} elseif (isset($data_quick[(int)$pr_id - 6])) {
 			$pr_prev[] = $data_quick[(int)$pr_id - 6];
 		}
 		$count = 0;
 
 		foreach ($pr_prev as $idprod) {
 
-			if(isset($products[$idprod])){
+			if (isset($products[$idprod])) {
 				continue;
 			}
 
-			if($count>5){
+			if ($count > 5) {
 				break;
 			}
 			$count++;
@@ -1092,17 +1094,17 @@ class ControllerProductProduct extends Controller {
 
 			if ($result['image']) {
 				//$image = $this->model_tool_image->resize($result['image'], 537, 346,'wh');
-				$image = $this->model_tool_image->resize($result['image'], 537, 345,'wh');
+				$image = $this->model_tool_image->resize($result['image'], 342, 239, 'wh');
 			} else {
 				$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_got = $this->currency->format($this->tax->calculate($result['price']*3.5, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_got_old = $this->currency->format($this->tax->calculate($result['price']*3.6*1.3, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_got_new = $this->currency->format($this->tax->calculate($result['price']*3.6*1.3*0.8, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_ras = $this->currency->format($this->tax->calculate($result['price']*3.5*0.6/6, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_got = $this->currency->format($this->tax->calculate($result['price'] * 3.5, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_got_old = $this->currency->format($this->tax->calculate($result['price'] * 3.6 * 1.3, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_got_new = $this->currency->format($this->tax->calculate($result['price'] * 3.6 * 1.3 * 0.8, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_ras = $this->currency->format($this->tax->calculate($result['price'] * 3.5 * 0.6 / 6, $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$price = false;
 			}
@@ -1113,9 +1115,28 @@ class ControllerProductProduct extends Controller {
 				$special = false;
 			}
 
+			$images = array();
+			$images[] = array(
+				'popup' => MAIN_SERVER . 'image/' . $result['image'],
+				'thumb' => $this->model_tool_image->resize($result['image'], 342, 239, 'wh'),
+			);
+
+			$imgs_ = $this->model_catalog_product->getProductImages($product_id);
+
+			foreach ($imgs_ as $img_) {
+				if ($img_['image']) {
+					$images[] = array(
+						'popup' => MAIN_SERVER . 'image/' . $img_['image'],
+						'thumb' => $this->model_tool_image->resize($img_['image'], 342, 239, 'wh'),
+					);
+				}
+			}
+
+
 			$products[$result['product_id']] = array(
 				'product_id'  => $result['product_id'],
 				'thumb'       => $image,
+				'images'       => $images,
 				'name'        => $result['name'],
 				'fasad'        => $result['fasad'],
 				'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -1130,12 +1151,12 @@ class ControllerProductProduct extends Controller {
 				//'rating'      => $result['rating'],
 				'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
 			);
-
 		}
 		return $products;
 	}
 
-	public function review() {
+	public function review()
+	{
 		$this->load->language('product/product');
 
 		$this->load->model('catalog/review');
@@ -1180,7 +1201,8 @@ class ControllerProductProduct extends Controller {
 		}
 	}
 
-	public function write() {
+	public function write()
+	{
 		$this->load->language('product/product');
 
 		$json = array();
@@ -1220,7 +1242,8 @@ class ControllerProductProduct extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function getRecurringDescription() {
+	public function getRecurringDescription()
+	{
 		$this->language->load('product/product');
 		$this->load->model('catalog/product');
 
@@ -1280,7 +1303,8 @@ class ControllerProductProduct extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function getstol($category_id=134,$sort='p.sort_order',$url='',$path='') {
+	public function getstol($category_id = 134, $sort = 'p.sort_order', $url = '', $path = '')
+	{
 		//134 - Столы и стулья
 		if (isset($this->request->post['page'])) {
 			$page = $this->request->post['page'];
@@ -1296,7 +1320,7 @@ class ControllerProductProduct extends Controller {
 			if (isset($this->request->post['category_id'])) {
 				$category_id = $this->request->post['category_id'];
 			} else {
-				$category_id=134;
+				$category_id = 134;
 			}
 		} else {
 			$json = false;
@@ -1317,21 +1341,19 @@ class ControllerProductProduct extends Controller {
 		$results = $this->model_catalog_product->getProducts($dat);
 
 		foreach ($results as $result) {
+
 			if (is_file(DIR_IMAGE . $result['image'])) {
-				//$image = $this->model_tool_image->resize($result['image'], 537, 346,'wh');
-				//$image = $this->model_tool_image->resize($result['image'], 537, 345,'w');
-				//$image = $this->model_tool_image->resize($result['image'], 537, 345);
-				$image = $this->model_tool_image->resize($result['image'], 254,163);
+				$image = $this->model_tool_image->resize($result['image'], 254, 163);
 			} else {
 				$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_plus_30proc = $this->currency->format($this->tax->calculate($result['price']*1.3, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_minus_10proc = $this->currency->format($this->tax->calculate($result['price']*0.9, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_got = $this->currency->format($this->tax->calculate($result['price']*3.5, $result['tax_class_id'], $this->config->get('config_tax')));
-				$price_ras = $this->currency->format($this->tax->calculate($result['price']*3.5*0.6/6, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_plus_30proc = $this->currency->format($this->tax->calculate($result['price'] * 1.3, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_minus_10proc = $this->currency->format($this->tax->calculate($result['price'] * 0.9, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_got = $this->currency->format($this->tax->calculate($result['price'] * 3.5, $result['tax_class_id'], $this->config->get('config_tax')));
+				$price_ras = $this->currency->format($this->tax->calculate($result['price'] * 3.5 * 0.6 / 6, $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$price = false;
 			}
@@ -1341,9 +1363,26 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$special = false;
 			}
+
+			$images = array();
+			$images[] = array(
+				'popup' => MAIN_SERVER . 'image/' . $result['image'],
+				'thumb' => $this->model_tool_image->resize($result['image'], 342, 239, 'wh'),
+			);
+			$imgs_ = $this->model_catalog_product->getProductImages($result['product_id']);
+
+			foreach ($imgs_ as $img_) {
+				if ($img_['image']) {
+					$images[] = array(
+						'popup' => MAIN_SERVER . 'image/' . $img_['image'],
+						'thumb' => $this->model_tool_image->resize($img_['image'], 342, 239, 'wh'),
+					);
+				}
+			}
 			$products[$result['product_id']] = array(
 				'product_id'  => $result['product_id'],
 				'thumb'       => $image,
+				'images'       => $images,
 				'name'        => $result['name'],
 				'template'        => $result['template'],
 				'new'        => $result['new'],
@@ -1358,11 +1397,10 @@ class ControllerProductProduct extends Controller {
 				'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 				'href'        => $this->url->link('product/product', $path . '&product_id=' . $result['product_id'] . $url)
 			);
-
 		}
-		if(!$json){
+		if (!$json) {
 			return $products;
-		}else{
+		} else {
 			$data['products'] = $products;
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/owl_template.tpl')) {
 				$json = $this->load->view($this->config->get('config_template') . '/template/product/owl_template.tpl', $data);
@@ -1377,7 +1415,8 @@ class ControllerProductProduct extends Controller {
 		}
 	}
 
-	public function getProductCalc() {
+	public function getProductCalc()
+	{
 		$this->language->load('product/product');
 		$this->load->model('catalog/product');
 
@@ -1391,7 +1430,7 @@ class ControllerProductProduct extends Controller {
 
 		$json = array();
 
-		if ($product_info ) {
+		if ($product_info) {
 
 			$this->load->model('tool/image');
 
@@ -1399,7 +1438,7 @@ class ControllerProductProduct extends Controller {
 			$data['model'] = $product_info['model'];
 
 			if ($product_info['image']) {
-				$data['image'] = $this->model_tool_image->resize($product_info['image'], 415, 260,'wh');
+				$data['image'] = $this->model_tool_image->resize($product_info['image'], 415, 260, 'wh');
 			} else {
 				$data['image'] = $this->model_tool_image->resize('placeholder.png', 415, 260);
 			}
@@ -1424,6 +1463,5 @@ class ControllerProductProduct extends Controller {
 				$this->response->setOutput($this->load->view('default/template/product/calc_catalog.tpl', $data));
 			}
 		}
-
 	}
 }

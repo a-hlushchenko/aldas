@@ -1,4 +1,6 @@
-<?php if ($categories) { ?>
+<?php 
+vdump($categories);
+if ($categories) { ?>
 
   <nav id="menu" class="navbar menu">
     <div class="navbar-header"><span id="category" class="visible-xs"></span>

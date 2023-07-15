@@ -1,3 +1,12 @@
+#modal-colors{
+  max-width: 1226px;
+  width: 100%;
+  
+  background: #F7F7F7;
+}
+#modal-colors .modal-content{
+  padding:48px;
+}
 /* Базовый контейнер табов */
 .tabss {
   /*min-width: 320px;
@@ -8,16 +17,15 @@
   float: right;
   
 }
+
 /* Стили секций с содержанием */
-section {
+#modal-colors section {
   display: none;
-  padding: 10px;
-  background: #fff;
-  border: 1px solid #ddd;
+  padding: 0 10px 10px;
   margin-right: 174px;
 }
 .tabss input {
-  display: none;
+  display: none!important;
 }
 /* Стили вкладок (табов) */
 .tabss label {
@@ -26,16 +34,11 @@ section {
   clear: right;
   float: right;
   margin: 0 0 -1px;
-  padding: 15px 25px;
+  padding: 12px 20px;
   font-weight: 600;
-  text-align: center;
   color: #aaa;
   border: 1px solid #ddd;
-  background: #f1f1f1;
-  border-radius: 0 3px 3px 0;
-  /*width:70px;*/
   width: 170px;
-  margin-right: 5px;
 }
 /* Шрифт-иконки от Font Awesome в формате Unicode */
 .tabss label:before {
@@ -70,6 +73,26 @@ section {
   /*width: 75px;*/
   width: 175px;
   margin-right: 0;
+
+}
+#tab_ral.tabss label{
+  width: 195px;
+  border-left: 1px solid #EFEFEF;
+  border-top:none;
+  border-bottom:none;
+  border-right:none;
+  box-sizing: border-box;
+  margin-left: 24px;
+}
+#tab_ral.tabss input:checked + label{
+  border-left: 1px solid #18C792;
+  border-top:none;
+  border-bottom:none;
+  border-right:none;
+}
+#modal-colors section[id^="content"]{
+  max-height: 580px;
+  overflow-y: auto;
 }
 /* активация секций с помощью переключателя :checked */
 /*#tab1:checked ~ #content1,
@@ -82,8 +105,17 @@ section {
   padding: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  align-items: center;
+  display: flex;
 }
-
+#tab_ral label{display: flex;}
+.color_h .dot, #tab_ral .dot{
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 50%;
+  min-width: 16px;
+}
 .tabss.tableft {
   float: left;
   width:380px;
@@ -91,18 +123,30 @@ section {
 .tabss.tableft label {
   clear: left;  
   float: left;  
-  width: 130px;
-  margin-left: 5px;
-  padding: 15px 0; 
-  border-radius: 3px 0 0 3px;
+  width: 115px;
+  border-top:none;
+  border-bottom:none;
+  border-left:none;
+  border-right: 1px solid #EFEFEF;
+  padding: 12px 20px; 
+  box-sizing: border-box;
+  font-family: 'Gotham Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  color: #878585;
+  
 }
 .tabss.tableft input:checked + label {
-  width: 135px;
-  margin-left: 0px;
-  border-left: 1px solid #009933;
-  border-right: 1px solid #FFFFFF;
+  width: 115px;
+  color: #222222;
+  border-right: 1px solid #18C792;
+  border-top:none;
+  border-bottom:none;
+  border-left:none;
 }
-.tabss.tableft section {
+#modal-colors .tabss.tableft section {
   margin-right: 0;
   margin-left: 132px;
   position: relative;
@@ -115,7 +159,7 @@ section {
 }
 .tabss.tableft .bg {
   /*width:266px;*/
-  margin:10px 0 10px 10px;
+  margin:0 0 10px 10px;
 }
 .tabss.tableft img {
   width:100%;
@@ -125,7 +169,7 @@ section {
 }
 .tabss.tableft .c_replace {
   position: absolute;
-  margin:10px 10px 0 0;
+  margin:0 10px 0 0;
   top:0;
   /*color: hsla(120,100%,50%,0.1);*/
   /*opacity: 0.1;*/
@@ -133,27 +177,33 @@ section {
 #tab_ral, #tab_fasad {
   width: 50%;
 }
-#modal-colors .modal-body {
-    padding: 0 10px;
+
+.name_color{
+  font-family: 'Gotham Pro';
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  color: #878585;
+  flex: 1;
 }
 /* медиа запросы для различных типов носителей */  
 @media (max-width: 1199px) {
-    section {
+  #modal-colors section {
       margin-right: 124px;
     }
-    .tabss input:checked + label {
-      width: 125px;
+    #tab_ral.tabss input:checked + label {
+      width: 120px;
     }
-    .tabss label {
+    #tab_ral.tabss label {
       width: 120px;
       padding: 15px 5px;
     }
 }
 @media (max-width: 992px) {
-  section {
-    padding: 5px;
+  #modal-colors section {
+    padding: 0 5px 5px;
   }
-  .tabss.tableft section {
+  #modal-colors .tabss.tableft section {
     padding: 0 5px 0 0;
   }
   /*.tabss.tableft .bg .bg1, .tabss.tableft .c_replace {
@@ -164,18 +214,21 @@ section {
   }
   #tab_ral .col {
     display: inline-block;
-    width: 48%;
+    /*width: 48%;*/
     text-align: center;
   }
   .tabss.tableft input:checked + label {
     width: 95px;
   }
-  .tabss.tableft label {
+  #tab_ral.tabss.tableft label {
     width: 90px; 
   }
-  .tabss.tableft section {
+  #modal-colors .tabss.tableft section {
     margin-left: 92px;
   }
+  #modal-colors .modal-content {
+    padding: 38px;
+}
 }
 @media (max-width: 767px) {
   #modal-colors .modal-dialog {
@@ -184,14 +237,32 @@ section {
   #tab_ral.tabss label {
     font-size: 0;
   }
+  #tab_ral .col{width: 48%;}
+  .color_h .dot, #tab_ral .dot {
+      min-width: 100%;
+      min-height: 100%;
+      width: 100%;
+      border-radius: 0;
+      height: 25px;
+  }
+  #tab_ral.tabss input:checked + label {
+    width: 60px;
+  }
+  .name_color{display: none;}
+  #tab_ral.tabss label {
+    width: 60px;
+  }
   .tabss input:checked + label {
     width: 55px;
   }
   .tabss label {
     width: 50px;
   }
-  section {
+  #modal-colors section {
     margin-right: 49px;
+  }
+  #modal-colors .modal-content {
+      padding: 38px 15px;
   }
 }
 @media screen and (max-width: 680px) {
@@ -203,27 +274,31 @@ section {
       padding: 0 5px;
   }
   .tabss.tableft label {
-      display: inline-block;
-      float: none;
+      /*display: inline-block;
+      float: none;*/
       margin:0;
       width: 32%!important;
       padding:7px 0;
       margin-bottom: 5px;
   }
-  .tabss.tableft section {
+  #modal-colors .tabss.tableft section {
     margin-left: 0;
+    max-width: 250px;
   }
-  section {
+  #modal-colors section {
     margin-right: 54px;
   }
-
-}
-@media screen and (max-width: 520px) {
+  #modal-colors section[id^="content"]{
+    max-height: 380px;
+  }
   #tab_ral, #tab_fasad {
     width: 100%;
   }
+}
+@media screen and (max-width: 520px) {
+  
   .tabss.tableft label {
-    width: 23.8%!important;
+    
   }
   #modal-colors .modal-dialog {
     width: 95%!important;

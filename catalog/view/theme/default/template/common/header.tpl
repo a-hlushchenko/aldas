@@ -36,12 +36,16 @@
 <meta property="og:locale" content="<?php echo $og_locale; ?>" />
 <?php } ?>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script async type="text/javascript" src="https://www.aldas.ru/catalog/view/javascript/current-device.min.js"></script>
+<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async type="text/javascript" src="https://www.aldas.ru/catalog/view/javascript/current-device.min.js"></script> -->
+<link rel="stylesheet" href="/catalog/view/theme/default/font/stylesheet.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="css/general.css"/>
+<link rel="stylesheet" href="js/mobile-menu/jquery.mobile-menu.css"/>
 
-<link rel="manifest" href="https://www.aldas.ru//catalog/view/javascript/manifest.json">
+<link rel="manifest" href="/catalog/view/javascript/manifest.json">
 <?php foreach ($links as $link) { ?>
-<link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
+<!-- <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />; -->
 <?php } ?>
 
 
@@ -50,392 +54,515 @@
 <?php } ?>
 </head>
 <body class="<?php echo $class; ?>">
-<div class="spn_hol">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
-</div>
-<style>
-html {overflow-y: scroll; }
-@media screen and (min-width: 960px) {
-  html {overflow-y: scroll; }
-}
-html, body {height: 100%; padding-right: 0!important; margin-left: 0!important; }
-@font-face {font-family: 'Helvetica Neue'; src: local('Helvetica Neue Medium'), local('Helvetica-Neue-Medium'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Medium.woff2') format('woff2'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Medium.woff') format('woff'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Medium.ttf') format('truetype'); font-weight: 500; font-style: medium; }
-@font-face {font-family: 'Helvetica Neue'; src: local('Helvetica Neue Roman'), local('Helvetica-Neue-Roman'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Roman.woff2') format('woff2'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Roman.woff') format('woff'), url('catalog/view/theme/default/stylesheet/fonts/HelveticaNeueCyr-Roman.ttf') format('truetype'); font-weight: 400; font-style: normal; }
-
-.roistat-promo-wrap{display:none!important;}
-.spn_hol {position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: #fff;z-index: 50000;opacity: 1;-webkit-transition: all 1s;-moz-transition: all 1s;-o-transition: all 1s;transition: all 1s;}
-.spinner {position: absolute;top: 50%;margin-top: -12px;left: 50%;margin-left: -35px;height: 24px;width: 70px;text-align: center;display: block;}
-.spinner > div {width: 18px;height: 18px;background-color: #333;border-radius: 100%;display: inline-block;-webkit-animation: bouncedelay 1.4s infinite ease-in-out;animation: bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode: both;animation-fill-mode: both;}
-.spinner .bounce1 {-webkit-animation-delay: -0.32s;animation-delay: -0.32s;}
-.spinner .bounce2 {-webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
-@-webkit-keyframes bouncedelay {
-0%, 80%, 100% {-webkit-transform: scale(0.0)}
-40% {-webkit-transform: scale(1.0)}
-}
-@keyframes bouncedelay {
-0%, 80%, 100% {transform: scale(0.0);-webkit-transform: scale(0.0);}
-40% {transform: scale(1.0);-webkit-transform: scale(1.0);}
-}
-</style>
-<style>
-*{
--webkit-transition-duration: 0.3s;
--o-transition-duration: 0.3s;
--moz-transition-duration: 0.3s;
-transition-duration: 0.3s;
-}
-.container{padding:0; }
-.linemenu2.pfixed{top:60px; }
-.linemenu2.pfixed .hid{display:none; }
-.linemenu2 .hid2{
-  display:none;
-}
-.linemenu2.pfixed .hid2{
-  display:block;
-}
-.search-form1.hid2{
-  margin-top:2px;
-
-}
-.search-form1.hid2 input[name=search]{
-  background: #FFF1F1;
-  width: 100px;
-  color: #9A9A9A;
-  font-weight: 400;
-}
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
-/*.pfixed{position:fixed;top:0;z-index:99;width:100%;}*/
-@media (min-width:992px){
-.pfixed{position:fixed;top:0;z-index:99;width:100%;}
-}
-#menu .nav .open>a, #menu .nav .open>a:focus,#menu .nav .open>a:hover {
- background-color: #cf2f1e!important;
- border-color: #f1948a!important;
-}
-</style>
-<style>
-.d-flex{display:flex;}
-.baseline{align-items: baseline;}
-.acenter{align-items: center;}
-.between{
-  justify-content: space-between;
-}
-.menu_topn{
-background: #EEEEEE;
-}
-.menu_topn a{
-padding:0 20px;
-position: relative;
-font: 400 13px/30px Helvetica Neue;
-color: #666666;
-}
-.menu_topn a+a:before{
-  content:'';
-  position: absolute;
-  height: 17px;
-  border-left:1px solid #707070;
-  top:7px;
-  left:0;
-  opacity: 0.2;
-}
-.search-form1{position: relative;}
-.search-form1 input[type=text],
-.search-form1 input[type=search]{
-  border:none;overflow:hidden;line-height:30px;
-  background: #E2E2E2;
-  padding: 0 5px 0 37px;
-  width:100%;
-  font: 400 13px/30px Helvetica Neue;
-  /*color: #9A9A9A;*/
-  color: #000;
-  width: 320px;
-  font-weight: 500;
-}
-.search1{
-background:url(/image/svg/icon_search.svg) 0 0 no-repeat;
-width:12px;height:12px;
-cursor:pointer;position:absolute;left:14px;top:9px;border:none;
-}
-.camera img{margin:8px 9px 0 0!important;}
-
-
-.header{display:flex;}
-.wrap{flex-wrap: wrap;}
-</style>
-<style>
-.logo{margin-top:10px;margin-bottom: 10px;margin-left: 20px;}
-.logo img{max-width: 80%}
-.address{
-  font: 400 13px/17px Helvetica Neue;
-  color: #777;
-  margin-right: 25px;
-}
-.line{border-left: 1px solid #ddd;height: 55px;}
-.address div{
-  position: relative;
-  padding-left: 21px;
-}
-.address div+div{
-  margin-top:7px;
-}
-.address img{
-  position: absolute;
-  left:0;
-  top: 1px;
-}
-.rasschet{
-  background: #EEEEEE;
-  border-radius: 4px;
- cursor:pointer;
- width: 185px;
-}
-.rasschet .ico{
-  background: #F05544;
-  border-radius: 4px;
-  width: 55px;
-  height: 55px;
-  text-align: center;
-}
-.rasschet img{
-  margin-top:13px!important;
-}
-.rasschet .txt{
-  padding: 9px 22px 0 15px;
-   font: 400 15px/17px Helvetica Neue;
-  color: #F05544;
-  width: 130px;
-}
-.vyzov{cursor:pointer;width: 190px;}
-.vyzov .ico{margin-right:8px;}
-.vyzov img{
-  margin-top: 8px!important;
-}
-.vyzov .txt{
-  padding: 9px 0 0 0;
-  font: 400 15px/17px Helvetica Neue;
-  color: #4DBEAF;
-  text-decoration: underline;
-}
-.vyzov .txt:hover{text-decoration: none;}
-.grafik .txt{
-  font: 400 13px/15px Helvetica Neue;
-  color: #444444;
-}
-.grafik .roistatphone{
-  font-family: Helvetica Neue;
-  font-size:21px;
-  line-height:  26px;
-  font-weight:500;
-  color: #444444;
-  padding:6px 0 1px;
-  cursor:pointer;
-  display:block;
-}
-.grafik{margin-top: 10px}
-.grafik .callback{
-  font: 400 13px/15px Helvetica Neue;
-  color: #4DBEAF;
-  cursor:pointer;
-  text-decoration: underline;
-}
-.grafik .callback:hover{
-	text-decoration: none;
-}
-.colorb{
-  width: 32.4%;
-}
-.linemenu2{
-/*background: transparent linear-gradient(180deg, #D03B2B 0%, #B43C2E 24%, #D03B2B 54%, #D03B2B 100%) 0% 0% no-repeat padding-box;*/
-border-top:1px solid #FF887B;
-background: #d03b2b;
-background: -moz-linear-gradient(top,  #d03b2b 0%, #c63f33 14%, #d03b2b 46%, #c63f33 84%, #d03b2b 100%);
-background: -webkit-linear-gradient(top,  #d03b2b 0%,#c63f33 14%,#d03b2b 46%,#c63f33 84%,#d03b2b 100%);
-background: linear-gradient(to bottom,  #d03b2b 0%,#c63f33 14%,#d03b2b 46%,#c63f33 84%,#d03b2b 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d03b2b', endColorstr='#d03b2b',GradientType=0 );
-}
-.linemenu2 a{
-  font: normal 13px/15px Helvetica Neue;
-color: #FFFFFF;
-padding:9px 20px 11px;
-
-}
-.linemenu2 a{
-  border-left:1px solid #C63222
-}
-.linemenu2 a:last-child{
- border-right:1px solid #C63222
-}
-.linemenu2 a:hover{
-  color:#fff;
-}
-@media (max-width:1200px){
-  .rasschet .ico{
-    width:32px;
-    height:32px;
-  }
-  .rasschet img{
-    width: 12px;
-    margin-top:8px!important;
-  }
-  .vyzov .ico{
-    width:32px;
-    height:32px;
-  }
-  .vyzov img{width: 25px;margin-left:4px!important;}
-  .vyzov, .rasschet{
-    width: auto;
-    white-space: nowrap;
-  }
-  .rasschet .txt{
-   font: 400 13px/17px Helvetica Neue;
-  }
-  .vyzov .txt{
-    font: 400 13px/17px Helvetica Neue;
-  }
-  .colorb{flex-direction: column;width:auto;}
-}
-@media (max-width:991px){
-  .header{flex-wrap: wrap;}
-  .menu_topn{flex-wrap: wrap;}
-}
-</style>
-<div id="containerr" style="display:none;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRD8BSP"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="site-overlay"></div>
-<div class="menu_topn h991">
-  <div class="container">
-    <div class="d-flex between wrap">
-      <div class="d-flex wrap">
-          <a href="about/">О нас</a>
-          <a href="partnery/">Сотрудничество</a>
-          <a href="contact/" onclick="yaCounter39342560.reachGoal('h_cont');return true;">Контакты</a>
-          <div class="search-form1">
-              <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Поиск" />
-              <input type="submit" value="" class="search1" />
-          </div>
-      </div>
-        <a class="camera" href="otzyvy/"><img src="https://www.aldas.ru/image/svg/icon_camera.svg">Отзывы, и фото готовых заказов</a>
-    </div>
+<div class="hidden" itemscope itemtype="https://schema.org/LocalBusiness" >
+  <span itemprop="name" class="hidden">Фабрика кухонь "Кухни Альдас"</span>
+  <img itemprop="logo"  class="hidden" src="<?php echo $logo; ?>" alt="<?php echo $name; ?>"/>
+  <a href="mailto:info@aldas.ru" itemprop="email" class="itememail">info@aldas.ru</a>
+  <img src="<?php echo $logo; ?>" itemprop="image" alt="mebel-bruno.ru" class="hidden"/>
+  <span itemprop="url" class="hidden"><?php echo $base; ?></span>
+  <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="hidden">
+    <span itemprop="streetAddress">улица Авиаконструктора Миля, 26</span>
+    <span itemprop="addressLocality">Москва</span>
   </div>
+  <div itemprop="telephone">8-499-347-12-27</div>
+  <time itemprop="openingHours" content="Mo-Su 9:00−20:00">Ежедневно с 9-00 до 21-00</time>
 </div>
 
-<div id="container" style="clear:both;">
-    <header>
-      <div class="container h991">
-        <div class="header d-flex acenter between">
-          <?php if ($logo) { ?>
+  <div id="overlay"></div>
+  <div class="overlay"></div>
+
+   <!-- <div class="search-form1 hide991">
+        <input type="search" name="search" value="<?php echo $search; ?>" placeholder="Поиск" />
+        <input type="submit" value="" class="search2" />
+    </div> -->
+
+  <div id="search" class="container_form">
+    <div class="search_wrapper">
+      <input type="search" name="search" value="<?php echo $search; ?>">
+      <div class="btn search2">Посик</div>
+      <div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg></div>
+    </div>
+  </div>
+
+  <div id="online_calc" class="container_form">
+    <div class="form_wrapper">
+      <div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg></div>
+      <div class="online_title">Онлайн расчёт</div>
+      <div class="online_pgrogress">
+        <div class="online_pgrogress_step">1/4</div>
+        <div class="online_pgrogress_line"><span></span></div>
+      </div>
+      <div class="steps">
+		<form class="form send_n">
+			<input type="hidden" name="form_name" value="Онлайн расчёт">
+				
+			<div class="step step1 active" data-progress="2">
+				<div class="step_title">Материал фасада</div>
+				<div class="step_items">
+					<div class="step_item">
+
+					<div class="step_img">
+						<img src="images/new/fasad1.jpg" alt="Массив дерева">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="fasad1" name="mater" data-kef="1.2" checked value="Массив дерева">
+							<label for="fasad1">Массив дерева</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Фасады из массива дуба или ясеня. Индивидуальность в сочетании с классическим стилем. Премиальное решение</div>
+					</div>
+					<div class="step_item">
+
+					<div class="step_img">
+						<img src="images/new/fasad2.jpg" alt="Эмаль (МДФ)">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="fasad2" name="mater" data-kef="1.1" value="Эмаль (МДФ)">
+							<label for="fasad2">Эмаль (МДФ)</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Фасады из МДФ с защитным покрытием из эмали. Классический стиль, оптимальная стоимость, экологичность</div>
+					</div>
+					<div class="step_item">
+					<div class="step_img">
+						<img src="images/new/fasad1.jpg" alt="Эко-пластик">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="fasad3" name="mater" data-kef="1" value="Эко-пластик">
+							<label for="fasad3">Эко-пластик</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Фасады из МДФ покрытые эко-пластиком. Современный стиль и яркая фактура.</div>
+					</div>
+				</div>
+				<div class="btn arrow" data-next="2">Далее</div>
+			</div>
+			<div class="step step2" data-progress="33">
+			<div class="step_title">Фурнитура</div>
+			<div class="step_items">
+				<div class="step_item">
+
+				<div class="step_img">
+					<img src="images/new/furnitura1.jpg" alt="Стандарт">
+					<div class="step_name radio_wrapper">
+					<div class="radio_el">
+						<input type="radio" id="furnitura1" data-price="0" name="furnit" checked value="Стандарт">
+						<label for="furnitura1">Стандарт</label>
+					</div>
+					</div>
+				</div>
+				<div class="step_text">Фурнитура со стандартной системой доводки. Используются шариковые подшибники в системе направляющих</div>
+				</div>
+				<div class="step_item">
+
+				<div class="step_img">
+					<img src="images/new/furnitura2.jpg" alt="BLUM премиум">
+					<div class="step_name radio_wrapper">
+					<div class="radio_el">
+						<input type="radio" id="furnitura2" data-price="4000" name="furnit" value="BLUM премиум">
+						<label for="furnitura2">BLUM премиум</label>
+					</div>
+					</div>
+				</div>
+				<div class="step_text">Современные технологии, максимальный комфорт (бесшумные системы доводки). Премиальные решение от компании BLUM / Австрия</div>
+				</div>
+			</div>
+			<div class="btn arrow" data-next="3">Далее</div>
+			</div>
+			<div class="step step3" data-progress="66">
+				<div class="step_title">Комплектация</div>
+				<div class="step_items">
+					<div class="step_item">
+					<div class="step_img">
+						<img src="images/new/fasad1.jpg" alt="Стандарт">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="compl1" name="kompl" data-price="0" checked value="Стандарт">
+							<label for="compl1">Стандарт</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Базовая комплектация - корпус ЛДСП и фурнитура РФ, элементы декора отсутствуют</div>
+					</div>
+					<div class="step_item">
+					<div class="step_img">
+						<img src="images/new/fasad2.jpg" alt="Комфорт">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="compl2" name="kompl" data-price="2500" value="Комфорт">
+							<label for="compl2">Комфорт</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Популярная комплектация из стандартных элементов. Карниз и цоколь входит в комплект, элементы декора отсутствуют</div>
+					</div>
+					<div class="step_item">
+					<div class="step_img">
+						<img src="images/new/fasad1.jpg" alt="Престиж">
+						<div class="step_name radio_wrapper">
+						<div class="radio_el">
+							<input type="radio" id="compl3" name="kompl" data-price="5000" value="Престиж">
+							<label for="compl3">Престиж</label>
+						</div>
+						</div>
+					</div>
+					<div class="step_text">Индивидуальные размеры и насыщенная комплектация. Все элементы декора присутствуют и определяются индивидуально</div>
+					</div>
+				</div>
+				<div class="btn arrow" data-next="4">Далее</div>
+			</div>
+			<div class="step step4" data-progress="100">
+				<div class="step_items_finish">
+					<div class="step_item finish">
+					<div class="finish_title">Общая длина кухни (см)</div>
+					<div class="finish_calc">
+						<div class="finish_length"><input type="text" name="dlina" value="2500"></div>
+						<div class="finish_calc_res">
+						<div class="finish_calc_name">Примерная стоимость:</div>
+						<div class="finish_calc_result"><span>0</span> ₽</div>
+						<input type="hidden" name="pricetotal" id="pricetotal" value="{price}"/>
+						</div>
+					</div>
+					</div>
+					<div class="button_footer">
+						<div><a href="#call_raschet" class="btn call_raschet active" onclick="return false" data-modal="call_raschet">Оставить заявку на детальный расчёт</a>
+						</div>
+						<!-- <input type="submit" value="Оставить заявку на детальный расчёт" class="btn send button" /> -->
+						<div class="btn hidden send_calc" data-next="finish">Оставить заявку на детальный расчёт</div>
+						<div class="text_help">Нажимая кнопку «Оставить заявку на расчёт», я принимаю условия Пользовательского соглашения и даю своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.</div>
+					</div>
+				</div>
+
+
+			</div>
+		</form>
+      </div>
+    </div>
+  </div>
+  <div id="call_raschet" class="container_form"> 
+	<div class="form_wrapper"> 
+		<div class="form_close btn"> 
+			<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg> 
+		</div> 
+		<div class="form_left"></div> 
+		<div class="form_right"> 
+			<form class="form send_n call_raschet">
+				
+				<h3>Рассчитать проект</h3>
+				<!--<div class="help">Бесплатный вызов специалиста для точного замера помещения, консультации и составления дизайн-проекта мебели.</div>-->
+				<div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
+				<div class="bl5_row radio_wrapper">
+					<div class="radio_el">
+						<input type="radio" id="rad121" name="callto" checked="checked" value="Перезвонить">
+						<label for="rad121" onclick="to_tel(this);">Перезвонить</label>
+					</div>
+					<div class="radio_el">
+						<input type="radio" id="rad221" name="callto" value="Написать на почту">
+						<label for="rad221" onclick="to_email(this);">Написать на почту</label>
+					</div>
+				</div>
+				<div class="bl5_row">
+					<input type="tel" name="tel" class="to_tel" required="" placeholder="Телефон" maxlength="16">
+					<input type="email" name="email" class="to_email" placeholder="E-mail" maxlength="16" style="display:none">
+				</div>
+				<div class="bl5_row">
+					<textarea name="comment" required="" placeholder="Комментарий или вопрос"></textarea>
+				</div>
+
+				<div class="file">
+					<input type="hidden" name="file" value="">
+					<input type="button" value="Выбрать файл" id="buttonfile" class="btn light" data-loading-text="Загружаем...">
+					<input type="text" readonly="" name="namefile" value="Файл не выбран">
+				</div>
+				<!-- <div class="help2">
+						Нажимая кнопку «Оставить заявку», я принимаю условия Пользовательского соглашения и даю
+						своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.
+					</div> -->
+				<div class="help2">Если у Вас имеются готовые бланки замера или дизайн проект, прикрепите их и мы подробно просчитаем Ваш проект</div>
+				<div class="bl5_row">
+					<input type="submit" value="Оставить заявку" class="btn send button">
+				</div>
+				<div class="help2">Нажимая кнопку «Оставить заявку», я принимаю условия Пользовательского соглашения и даю своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.</div>
+			</form>
+		</div> 
+	</div> 
+  </div>
+
+  <div id="success" class="container_form">
+    <div class="form_wrapper">
+      <div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg></div>
+      <div class="form_center">
+        <img src="images/new/success_light.svg" alt="Заявка отправлена!">
+        <div class="success_title">Заявка отправлена!</div>
+        <div class="success_text">Мы обработаем вашу заявку в ближайшее время, пожалуйста, ожидайте.</div>
+        <div class="btn form_close_btn">Закрыть</div>
+      </div>
+
+    </div>
+  </div>
+  <div id="call_design" class="container_form">
+    <div class="form_wrapper">
+      <div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg></div>
+      <div class="form_left"></div>
+      <div class="form_right">
+        <form class="form send_n">
+          <h3>Оставьте заявку на вызов замерщика</h3>
+          <div class="help">Бесплатный вызов специалиста для точного замера помещения, консультации и составления дизайн-проекта мебели.</div>
+          <div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
+          <div class="bl5_row radio_wrapper">
+				<div class="radio_el">
+					<input type="radio" id="rad121" name="callto" checked="checked" value="Перезвонить">
+					<label for="rad121" onclick="to_tel(this);">Перезвонить</label>
+				</div>
+				<div class="radio_el">
+					<input type="radio" id="rad221" name="callto" value="Написать на почту">
+					<label for="rad221" onclick="to_email(this);">Написать на почту</label>
+				</div>
+		  </div>
+			
+		  <div class="bl5_row">
+			<input type="tel" name="tel" class="to_tel" required="" placeholder="Телефон" maxlength="16">
+			<input type="email" name="email" class="to_email" placeholder="E-mail" maxlength="16" style="display:none">
+		  </div>
+          <div class="bl5_row"><textarea name="comment" required="" placeholder="Ваш адрес и комментарий"></textarea></div>
+          
+		  <div class="bl5_row">
+			<input type="submit" value="Отправить заявку" class="btn send button">
+		  </div>
+          <div class="help2">
+            Нажимая кнопку «Оставить заявку», я принимаю условия Пользовательского соглашения и даю своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="consultation" class="container_form">
+    <div class="form_wrapper">
+      <div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> <path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path> </svg></div>
+      <div class="form_left"></div>
+      <div class="form_right">
+        <form class="form">
+          <h3>Оставьте заявку на бесплатную консультацию</h3>
+          <div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
+          <div class="bl5_row radio_wrapper">
+            <div class="radio_el">
+              <input type="radio" id="cons1" name="call" checked>
+              <label for="cons1">Перезвонить</label>
+            </div>
+
+            <div class="radio_el">
+              <input type="radio" id="cons2" name="call">
+              <label for="cons2">Написать на почту</label>
+            </div>
+          </div>
+          <div class="bl5_row"><input type="tel" name="tel" required="" placeholder="Телефон" maxlength="16"></div>
+          <div class="bl5_row">
+            <input type="submit" value="Оставить заявку" class="btn send button" data-loading-text="<i class=\'fa fa-circle-o-notch fa-spin\'></i> Отправка...">
+          </div>
+          <div class="help2">
+            Нажимая кнопку «Оставить заявку», я принимаю условия Пользовательского соглашения и даю своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu">
+    <ul>
+      <li>
+        <div class="h_top">
+          <div class="logo">
+            <img src="images/new/svg/logo.svg" alt="Алдас">
+            <div>
+              Мебель на заказ<br>от производителя
+            </div>
+            <div class="search">
+              <a href="#search" data-modal="search">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="6.9375" cy="6.5" r="5" stroke="#18C792" stroke-width="2"/> <path d="M10.5625 11L13.0625 13.5" stroke="#18C792" stroke-width="2"/> </svg>
+              </a>
+            </div>
+          </div>
+          <a href="#call_design" data-modal="call_design" class="call_design btn light">
+            Вызвать дизайнера-замерщика
+          </a>
+          <a href="#consultation" data-modal="consultation" class="consultation btn light">Заказать консультацию</a>
+
+        </div>
+      </li>
+
+      <li>
+        <a href="#" class="kitchen" >Кухни </a>
+        <ul>
+          <li>
+            <a href="" class="btn light arrow">Все кухни</a>
+          </li>
+          <li class="menu_sub_item">
+            <b>Формат</b>
+            <ul class="menu_sub_item_block">
+              <li><a href="">Угловые</a></li>
+              <li><a href="">Угловые</a></li>
+              <li><a href="">П образные</a></li>
+              <li><a href="">С барной стойкой</a></li>
+              <li><a href="">С островом</a></li>
+            </ul>
+          </li>
+          <li class="menu_sub_item">
+            <b>Формат</b>
+            <ul class="menu_sub_item_block">
+              <li><a href="">Угловые</a></li>
+              <li><a href="">Угловые</a></li>
+              <li><a href="">П образные</a></li>
+              <li><a href="">С барной стойкой</a></li>
+              <li><a href="">С островом</a></li>
+            </ul>
+          </li>
+          <li class="menu_sub_item">
+            <b>Формат</b>
+            <ul class="menu_sub_item_block">
+              <li><a href="">Угловые</a></li>
+              <li><a href="">Угловые</a></li>
+              <li><a href="">П образные</a></li>
+              <li><a href="">С барной стойкой</a></li>
+              <li><a href="">С островом</a></li>
+            </ul>
+          </li>
+          <li class="menu_sub_item">
+            <b>Формат</b>
+            <ul class="menu_sub_item_block">
+              <li><a href="">Угловые</a></li>
+              <li><a href="">Угловые</a></li>
+              <li><a href="">П образные</a></li>
+              <li><a href="">С барной стойкой</a></li>
+              <li><a href="">С островом</a></li>
+            </ul>
+          </li>
+          <li class="menu_sub_item">
+            <b>Формат</b>
+            <ul class="menu_sub_item_block">
+              <li><a href="">Угловые</a></li>
+              <li><a href="">Угловые</a></li>
+              <li><a href="">П образные</a></li>
+              <li><a href="">С барной стойкой</a></li>
+              <li><a href="">С островом</a></li>
+            </ul>
+          </li>
+          <li class="color menu_sub_item">
+            <b>Цвет</b>
+            <ul class="colors">
+              <a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a>
+            </ul>
+          </li>
+          <li>
+            <a href="" class="btn btnk">Кухни на заказ</a>
+          </li>
+          <li>
+            <a class="menu_footer_r_image" href="">
+              <img src="images/new/svg/menu_footer_r_image.jpg" alt="Кухня по своему проекту">
+              <div class="shadow"></div>
+              <div class="img_text">Кухня по своему проекту</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#">Шкафы</a></li>
+      <li><a href="#">Прихожие</a></li>
+      <li><a href="#">Спальни</a></li>
+      <li><a href="#">Детские</a></li>
+      <li><a href="#">Гостиные</a></li>
+      <li><a href="#">Гардеробные</a></li>
+      <li><a href="#">Кабинеты</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="main_container">
+    <div class="container_m bbottom">
+      <div class="container">
+        <div class="top_menu">
+          <a href="/about/">О нас</a>
+          <a href="/otzyvy/">Отзывы c фото заказов</a>
+          <a href="">Материалы и фасады</a>
+          <a href="/dizain-mebel/">Бесплатный 3D проект</a>
+          <a href="/mebel-v-rassrochku/">Рассрочка</a>
+          <a href="/sborka_dostavka/">Сборка и доставка</a>
+          <a href="">Сотрудничество</a>
+          <a href="/contact/">Контакты</a>
+          <div class="search">
+            <a href="#search" data-modal="search">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="6.9375" cy="6.5" r="5" stroke="#18C792" stroke-width="2"/> <path d="M10.5625 11L13.0625 13.5" stroke="#18C792" stroke-width="2"/> </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container_m">
+      <div class="header">
+        <div class="container">
+          <div class="h_top">
+            <div class="logo">
+              <div class="mm-toggle-wrap">
+                <div class="mm-toggle">
+                  <div class="header__burger-btn"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <?php if ($logo) { ?>
                <div class="logo">
               <?php if ($home == $og_url) { ?>
-               <img src="<?php echo $logo; ?>?v1" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" />
+               <img src="images/new/svg/logo.svg" alt="Алдас">
               <?php } else { ?>
-                <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>?v1" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
+                <a href="<?php echo $home; ?>"><img src="images/new/svg/logo.svg" alt="Алдас"></a>
               <?php } ?>
               </div>
-            <?php } ?>
-            <div class="line"></div>
+              <?php } ?>
+
+              <span>
+                Мебель на заказ<br>от производителя
+              </span>
+            </div>
             <div class="address">
-              <? /*<div><img src="https://www.aldas.ru/image/svg/icon_location.svg">Улица Олеко Дундича, 19/15</div>*/ ?>
-              <div><img src="https://www.aldas.ru/image/svg/icon_location.svg">Новорязанское ш., 1а<br>(ТЦ«Колибри», 2-ой этаж)</div>
+              <img src="images/new/svg/location.svg" alt="Алдас">
+              <div>Новорязанское ш., 1а<br>(ТЦ«Колибри», 2-ой этаж)</div>
             </div>
-            <div class="d-flex between colorb">
-              <div class="rasschet d-flex colorbox1">
-                <div class="ico"><img src="https://www.aldas.ru/image/svg/img_kitchen.svg"></div>
-                <div class="txt">Заказать расчет&nbsp;мебели</div>
-              </div>
-              <div class="vyzov d-flex colorbox3">
-                <div class="ico"><img src="https://www.aldas.ru/image/svg/img_designer.svg"></div>
-                <div class="txt">Вызвать дизайнера-замерщика</div>
-              </div>
+            <a href="#call_design" data-modal="call_design" class="call_design btn light">
+              <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="7.5" cy="7" r="6" stroke="#18C792" stroke-width="2"/> <circle cx="7.5" cy="7" r="2" stroke="#18C792" stroke-width="2"/> <rect x="7.5" y="12" width="10" height="2" fill="#18C792"/> <rect x="16.5" y="10" width="2" height="4" fill="#18C792"/> </svg>
+              <span>Вызвать дизайнера-замерщика</span>
+            </a>
+            <a href="#consultation" data-modal="consultation" class="consultation btn light">Заказать консультацию</a>
+            <div class="tel_time">
+              <div class="time">Ежедневно с 09:00 до 20:00</div>
+              <a href="tel:+7 (499) 347-12-27" class="tel roistat">+7 (499) 347-12-27</a>
             </div>
-            <div class="grafik">
-              <div class="txt">Ежедневно с 09:00 до 20:00</div>
-              <a class="roistatphone" href="tel:84993471227">8 (499) 347-12-27</a>
-              <div class="callback colorbox2">Заказать обратный звонок</div>
-            </div>
-
-        </div>
-        <div class="row1">
-          <div class="wrapper">
-            <!-- <div class="menu-btn riight"><i class="fa fa-bars"></i> Инфо</div> -->
-
-            <div class="hidden" itemscope itemtype="https://schema.org/LocalBusiness" >
-              <span itemprop="name" class="hidden">Фабрика кухонь "Кухни Альдас"</span>
-              <img itemprop="logo"  class="hidden" src="<?php echo $logo; ?>" alt="<?php echo $name; ?>"/>
-              <a href="mailto:info@aldas.ru" itemprop="email" class="itememail">info@aldas.ru</a>
-              <img src="<?php echo $logo; ?>" itemprop="image" alt="mebel-bruno.ru" class="hidden"/>
-              <span itemprop="url" class="hidden"><?php echo $base; ?></span>
-              <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="hidden">
-                <span itemprop="streetAddress">улица Авиаконструктора Миля, 26</span>
-                <span itemprop="addressLocality">Москва</span>
-              </div>
-              <div itemprop="telephone">8-499-347-12-27</div>
-              <time itemprop="openingHours" content="Mo-Su 9:00−20:00">Ежедневно с 9-00 до 21-00</time>
-            </div>
-
           </div>
-
         </div>
-      </div>
-
-      <div class="wrapper linemenu">
-        <div class="container menurow">
-          <div class="logosm hide991">
-            <?php if ($home == $og_url) { ?>
-             <img style="width: 52%;" src="https://www.aldas.ru/image/logo-aldas-mob.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" >
-              <?php } else { ?>
-                <a href="<?php echo $home; ?>"><img style="width: 52%;" src="https://www.aldas.ru/image/logo-aldas-mob.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" ></a>
-              <?php } ?>
-          </div>
-          <div class="d-flex">
-            <div class="search-form1 hide991">
-                <input type="search" name="search" value="<?php echo $search; ?>" placeholder="Поиск" />
-                <input type="submit" value="" class="search2" />
-            </div>
+        <div class="h_menu container">
           <?php echo $categories; ?>
-          </div>
+          
         </div>
-      </div>
-      <div class="wrapper linemenu2 h991">
-        <div class="container">
-          <div class="d-flex">
-            <a class="hid" href="/">Материалы и фасады</a>
-            <a class="hid" href="dizain-mebel/">Бесплатный 3D проект</a>
-            <a class="hid" href="mebel-v-rassrochku/">Рассрочка</a>
-            <a class="hid" href="sborka_dostavka/">Сборка и доставка</a>
-            <a href="contact/" onclick="yaCounter39342560.reachGoal('h_cont');return true;">Контакты</a>
-            <a class="hid" href="otzyvy/">Отзывы, и фото готовых заказов</a>
-            <a class="hid2" href="otzyvy/">Отзывы</a>
-            <div class="search-form1 hid2">
-                <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Поиск" />
-                <input type="submit" value="" class="search1" />
-            </div>
+        <a href="#online_calc" class="online_calc" data-modal="online_calc">
+          <div>
+            <svg width="18" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect x="1" y="1.5" width="16" height="21" rx="1" stroke="white" stroke-width="2"/> <line x1="1" y1="7.5" x2="17" y2="7.5" stroke="white" stroke-width="2"/> <rect x="3" y="11.5" width="5" height="1" fill="white"/> <rect x="4.08582" y="15.8787" width="5" height="1" transform="rotate(45 4.08582 15.8787)" fill="white"/> <rect x="10" y="11.5" width="5" height="1" fill="white"/> <rect x="10" y="16.5" width="5" height="1" fill="white"/> <rect x="10" y="18.5" width="5" height="1" fill="white"/> <rect x="6" y="9.5" width="5" height="1" transform="rotate(90 6 9.5)" fill="white"/> <rect x="7.62134" y="16.5858" width="5" height="1" transform="rotate(135 7.62134 16.5858)" fill="white"/> </svg>
+            <span>Online калькулятор</span>
           </div>
-        </div>
+        </a>
       </div>
+    </div>
+
+    <div class="main_content">
 
 
 
 
-  </header>
-<script>
-  $('.search2').on('click',function(){
-    $('.search-form1.hide991 input[type=search]').css('width','170px');
-  })
-  /*$('.tel2 .roistatphone').on('click',function(){
-    alert('ok');
-    window.location = $(this).attr('href');
-  })*/
-  $('.search-form1.hid2').focusin(function(){
-    $('.search-form1.hid2 input[name="search"]').animate({width:"200"}, 200);
-  }).focusout(function(){
-    $('.search-form1.hid2 input[name="search"]').animate({width:"100"}, 200);
-  });
-</script>
+
+
+

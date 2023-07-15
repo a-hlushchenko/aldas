@@ -13,7 +13,7 @@ class ControllerModuleNewsCarousel extends Controller {
 
 		//$results = $this->model_news_article->getArticleCarousel($setting['category']);
 		$results = $this->model_news_article->getArticleCarousel(1,10);
-
+		//vdump($results);
 		foreach ($results as $result) {
 			
 
@@ -21,7 +21,7 @@ class ControllerModuleNewsCarousel extends Controller {
 			$images_ar = array();
 			foreach ($images as $key=> $image) {
 				if($key==0){
-					$imag = $this->model_tool_image->resize($image['image'], 251, 160,'wh');
+					$imag = $this->model_tool_image->resize($image['image'], 244, 198,'wh');
 				} else {
 					$images_ar[] = $this->model_tool_image->resize($image['image'], 77,60,'wh');
 				}
@@ -31,6 +31,7 @@ class ControllerModuleNewsCarousel extends Controller {
 			//if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['articles'][] = array(
 					'title' => $result['name'],
+					'autor' => $result['autor'],
 					'link'  => $this->url->link('news/article', 'article_id=' . $result['article_id']),
 					'description'  => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 130). '...',
 					//'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
