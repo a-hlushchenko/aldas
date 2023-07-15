@@ -110,9 +110,9 @@ class ControllerModuleCategoryFooter extends Controller
 		//echo $content;
 		// для поддоменов
 		$content = str_replace(HTTP_SERVER, '', $content);
-		/*$this->welldone->set_settings('categoryfooter', $content);
-       	$this->welldone->cache->set($this->cache_key,$content);
-       	$content =str_replace(HTTP_SERVER, '', $content);*/
+		$this->welldone->set_settings('categoryfooter', $content);
+		$this->welldone->cache->set($this->cache_key, $content);
+		$content = str_replace(HTTP_SERVER, '', $content);
 
 
 		return $content;

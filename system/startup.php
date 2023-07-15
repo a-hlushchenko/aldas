@@ -9,13 +9,14 @@ if (version_compare(phpversion(), '5.3.0', '<') == true) {
 
 // Magic Quotes Fix
 if (ini_get('magic_quotes_gpc')) {
-	function clean($data) {
-   		if (is_array($data)) {
-  			foreach ($data as $key => $value) {
-    			$data[clean($key)] = clean($value);
-  			}
+	function clean($data)
+	{
+		if (is_array($data)) {
+			foreach ($data as $key => $value) {
+				$data[clean($key)] = clean($value);
+			}
 		} else {
-  			$data = stripslashes($data);
+			$data = stripslashes($data);
 		}
 
 		return $data;
@@ -65,7 +66,8 @@ if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS
 }
 
 // Modification Override
-function modification($filename) {
+function modification($filename)
+{
 	if (!defined('DIR_CATALOG')) {
 		$file = DIR_MODIFICATION . 'catalog/' . substr($filename, strlen(DIR_APPLICATION));
 	} else {
@@ -84,9 +86,12 @@ function modification($filename) {
 }
 
 // Autoloader
-function library($class) {
+function library($class)
+{
 	$file = DIR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
-
+	echo "<pre>";
+	print_r($file);
+	echo "</pre>";
 	if (is_file($file)) {
 		include_once(modification($file));
 
@@ -96,7 +101,8 @@ function library($class) {
 	}
 }
 
-function vendor($class) {
+function vendor($class)
+{
 	$file = DIR_SYSTEM . 'vendor/' . str_replace('\\', '/', strtolower($class)) . '.php';
 
 	if (is_file($file)) {
