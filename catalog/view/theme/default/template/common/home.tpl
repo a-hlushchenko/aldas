@@ -927,8 +927,10 @@ echo $news;
 				<div class="file">
 
 					<input type="hidden" name="file" value="">
-					<input type="button" value="Выбрать файл" id="buttonfile" class="btn light" data-loading-text="Загружаем...">
-					<input type="text" readonly="" name="namefile" value="Файл не выбран">
+					<input type="button" value="Выбрать файл" class="buttonfile btn light" data-loading-text="Загружаем...">
+					<div class="result">
+						<input type="text" readonly="" name="namefile" value="Файл не выбран">
+					</div>
 				</div>
 				<div class="bl5_row">
 					<input type="submit" value="Оставить заявку" class="btn send button" data-loading-text="<i class=\'fa fa-circle-o-notch fa-spin\'></i> Отправка..." />

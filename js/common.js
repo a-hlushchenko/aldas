@@ -241,7 +241,7 @@ $(".send_n").on('submit', function (event) {
 		data = data + '&' + data1;
 	}
 
-	console.log(data);
+	//console.log(data);
 	$.ajax({
 		url: 'index.php?route=information/callback/send_n',
 		type: 'post',
@@ -257,10 +257,13 @@ $(".send_n").on('submit', function (event) {
 			console.log(json);
 			if (json['success']) {
 				console.log($(node).find('.send_calc'));
-				if (send_calc = $(node).find('.send_calc')) {
-					$(send_calc).click();
+				if (json['send_calc']) {
+					
+					$(node).find('.send_calc').click();
 					console.log(json);
 				} else {
+					console.log('2');
+					//console.log(node);
 					$(node).find('input[type="submit"]').after(json['success']);
 					$(node).find('input[type="submit"]').remove();
 				}
@@ -279,7 +282,7 @@ $(".send_n").on('submit', function (event) {
 
 
 // калькулятор
-console.log('1');
+//console.log('1');
 $('#online_calc input[name="dlina"], #online_calc input[name="mater"], #online_calc input[name="kompl"], #online_calc input[name="furnit"]').keyup(function (eventObject) {
 	calc();
 });
@@ -314,3 +317,61 @@ function calc() {
 	$('#pricetotal').attr('value', newSum.toFixed() + ' р.');
 }
 calc();
+
+$('.buttonfile').on('click', function () {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="position:absolute;margin-top:-2000px;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+		clearInterval(timer);
+	}
+
+	timer = setInterval(function () {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function () {
+					//$(node).button('loading');
+					$('.text-danger, .text-success').remove();
+				},
+				complete: function () {
+					//$(node).button('reset');
+				},
+				success: function (json) {
+					$('.text-danger').remove();
+					console.log(json);
+					if (json['error']) {
+						//$(node).parent().parent().find('#'+$(node).attr('id')).after('<div class="text-danger">' + json['error'] + '</div>');
+						// $(node).parent().parent().find('input[name="namefile"]').after('<div class="text-danger">' + json['error'] + '</div>');
+						$(node).after('<div class="text-danger">' + json['success'] + '</div>');
+					}
+
+					if (json['success']) {
+						//alert(json['success']);
+						//$(node).parent().parent().find('input[name="namefile"]').after('<div class="text-success">' + json['success'] + '</div>');
+						$(node).next().append('<div class="text-success">' + json['success'] + '</div>');
+
+						$(node).parent().parent().find('input[name="file"]').attr('value', json['code']);
+						$(node).parent().parent().find('input[name="namefile"]').attr('value', json['name']);
+					}
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});

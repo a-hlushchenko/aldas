@@ -1124,7 +1124,7 @@ class ControllerInformationCallback extends Controller
 		$this->log->write(print_r($res, 1));
 	}
 
-	private $test = true;
+	private $test = false;
 
 	public function send4_n()
 	{
@@ -1210,14 +1210,22 @@ class ControllerInformationCallback extends Controller
 		$json = array();
 		$this->language->load('information/callback');
 
-		if ($this->test) {
+		/*if ($this->test) {
+
+
+
 			$json['success'] = '<dov class="success_text">Ваша заявка успешно отправлена!</div>';
 			$this->response->setOutput(json_encode($json));
 			return;
-		}
+		}*/
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
 
+			if (isset($this->request->post['send_calc'])) {
+				$send_calc = $this->request->post['send_calc'];
+			} else {
+				$send_calc = 0;
+			}
 
 			//sprintf($this->language->get('email_subject_send1'), $this->request->post['name'])
 			if (isset($this->request->post['form_name'])) {
@@ -1275,7 +1283,8 @@ class ControllerInformationCallback extends Controller
 			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
 			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-			$mail->setTo($this->config->get('config_email'));
+			//$mail->setTo($this->config->get('config_email'));
+			$mail->setTo('gdemonm@gmail.com');
 			$mail->setFrom($this->config->get('config_email'));
 			//$mail->setFrom('www-data@faida-mebel.ru');
 			$mail->setSender($this->request->post['name']);
@@ -1310,6 +1319,10 @@ class ControllerInformationCallback extends Controller
 
 			//$json['success'] = '<div class="success">Ваша заявка успешно отправлена!</div>';
 			$json['success'] = '<dov class="success_text">Ваша заявка успешно отправлена!</div>';
+			$json['mail'] = $mail;
+			if ($send_calc) {
+				$json['send_calc'] = 1;
+			}
 		} else {
 			if ($this->error) {
 				$json['error'] = $this->error;
