@@ -7,7 +7,7 @@ admin/config.php
 /*.tar
 /*.rar
 admin/autorization/
-
+system/welldone/data/cache/
 !index.html
 /index.php
 
