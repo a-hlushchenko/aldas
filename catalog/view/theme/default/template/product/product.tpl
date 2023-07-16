@@ -299,6 +299,325 @@
 		max-width: 288px;
 		min-width: 256px
 	}
+	@media (max-width: 1280px) {
+		.product_info .swiper img{
+			height: auto;
+		}
+		.product_info {
+			align-items: flex-start;
+		}
+		/*.prod_right, .product_descm, .bl7{
+			margin-left: 20px;
+   		 margin-right: 20px;
+		}
+		.bl4, .headsets{
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.product_desc .tab-content {
+			padding-left: 20px;
+			padding-right: 20px;
+		}*/
+	}
+	
+	@media (max-width: 870px) {
+		.product_info{
+			flex-direction: column;
+			gap:0;
+		}
+		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+			bottom: 36px;
+		}
+		.prod_right{
+			width: 100%;
+			/*display: flex;
+			flex-wrap: wrap;*/
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			gap: 12px;
+		}
+		.main_product .breadcrumbs{
+			grid-column: 1 / 3;
+		}
+		.params.products{
+			grid-column: 1 / 3;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-auto-flow: dense;
+			gap: 16px;
+		}
+		.prod_right .products .param{
+			flex-direction: column;
+		}
+		.credit_text {
+			grid-column: 1 / 3;
+		}
+		.prod_right .products .param-big {
+			grid-row: 1 / 3;
+		}
+		.container {
+			padding: 0;
+		}
+		.tab_description {
+			flex-direction: column;
+		}
+		.tab_description .descr_right {
+			width: auto;
+		}
+		.headsets_wrapper .headset_item {
+			display: flex;
+			align-items: center;
+			padding: 8px 12px 0 0;
+		}
+		.headsets_wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		.headset_item img {
+			max-width: 155px;
+		}
+		.btn.light {
+			margin: 0;
+			padding: 11px 15px;
+		}
+		.mebel_best_wrapper {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+		.form .file input {
+			padding: 11px 18px;
+		}
+		.bl11 .bl11_items {
+			justify-content: space-around;
+		}
+		.bl11 .h_menu .menu_item_el ul {
+			flex-direction: column;
+		}
+		.bl11 .h_menu .menu_item_el ul.menu_sub_item_block {
+			flex-direction: row;
+			align-items: center;
+		}
+		.footer_menu .container {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.footer_menu .container a {
+			display: block;
+			width: 100%;
+		}
+		.footer_menu {
+			padding: 40px 12px 28px;
+		}
+		.mebel_best {
+			padding: 48px 28px;
+		}
+		.before_green {
+			max-width: 330px;
+		}
+		.btn.arrow {
+			align-self: center;
+		}
+		.dflex {
+			justify-content: space-between;
+		}
+		.bl4 {
+			padding: 64px 20px;
+			margin-bottom: 64px;
+		}
+		.product_desc, .mebel_best {
+			margin-bottom: 64px;
+		}
+		.descr_right{
+			padding: 15px 30px;
+		}
+		.tab_description .descr_left{
+			width: 100%;
+		}
+		.prod_right {
+			box-sizing: border-box;
+			padding: 0 20px;
+		}
+		.tab_description, .headsets, .sliders2 {
+			padding: 0 20px;
+		}
+	}
+
+	@media (max-width: 770px) {
+		.bl5_wrapper {
+			flex-direction: column;
+			padding: 24px 24px 0 24px;
+		}
+		.bl5_l {
+			max-width: none;
+		}
+	}
+
+	@media (max-width: 690px) {
+		/*.main_container {
+			padding: 0;
+		}*/
+		.main_product {
+			padding: 0;
+		}
+		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+			text-align: center;
+			padding: 0;
+		}
+		.before_green, .product_alert, .btn.big, .next_product {
+			grid-column: 1 / 3;
+		}
+		.prod_right .products .param-big {
+			grid-row: auto;
+		}
+		
+		.prod_right {
+			padding: 20px;/*
+			grid-template-areas: 'bread bread'
+			'name name'
+			'subname subname' 
+			'param param'
+			'param param'
+			'param describtion'
+			'button img';*/
+		}
+		.params.products {
+			grid-template-columns: repeat(2, 1fr);
+		}/*
+		.credit_text {
+			grid-column: 1 / 2;
+			grid-area: describtion;
+		}
+		.params.products {
+			grid-area: param;
+		}
+		.main_product .breadcrumbs {
+			grid-area: bread;
+		}
+		.before_green {
+			grid-area: name;
+		}
+		.product_alert {
+			grid-area: subname;
+		}
+		.btn.big {
+			grid-area: button;
+		}
+		.next_product {
+			grid-area: img;
+		}*/
+		.tab_description {
+			padding: 0 20px;
+		}
+		.headsets {
+			padding: 0 20px;
+		}
+		.headsets_wrapper .headset_item {
+			flex-direction: column;
+			padding: 8px;
+		}
+		.mebel_best {
+			padding: 32px 20px;
+		}
+		.form input[type="submit"] {
+			width: 100%;
+		}
+		.bl4 {
+			padding: 48px 20px;
+			margin-bottom: 48px;
+		}
+		.bl11 .bl11_item, .bl11 .h_menu .menu_sub_item_block a {
+			font-size: 11px;
+		}
+		.prod_right .params.products .param-big:nth-child(3) {
+			grid-column: 1 / 3;
+		}
+		.descr_right {
+			font-size: 13px;
+		}
+		.descr_right {
+			padding: 20px;
+		}
+		.product_desc, .mebel_best {
+			margin-bottom: 48px;
+		}
+		.headsets_wrapper .price {
+			display: flex;
+			flex-direction: column;
+		}
+		.products .button-next, .products .button-prev{
+			display: none;
+		}
+		.bl10_wrapper{
+			align-items: center;
+		}
+		
+	}
+
+	@media (max-width: 480px) {
+		.params.products {
+			max-width: 330px;
+		}
+		.bl4 {
+			padding: 40px 12px;
+		}
+		.main_product .products .param {
+			display: block;
+		}
+		.descr_right {
+			padding: 16px;
+		}
+		.product_desc, .mebel_best {
+			margin-bottom: 40px;
+		}
+		.tab_description, .headsets, .prod_right, .sliders2 {
+			padding: 0 12px;
+		}
+		.headsets_wrapper {
+			gap: 4px;
+		}
+		.headsets_wrapper .headset_item {
+			padding: 0;
+		}
+		.mebel_best_item .name {
+			padding: 0;
+		}
+		.mebel_best, .bl5_wrapper {
+			padding: 20px 12px;
+		}
+		.bl11 .bl11_items {
+			justify-content: start;
+		}
+		.footer_menu .container {
+			grid-template-columns: 1fr 1fr;
+		}
+		.footer .contact {
+			flex-direction: column;
+		}
+		.footer .tel_time {
+			text-align: left;
+		}
+		.headsets_wrapper .headset_item > div {
+			align-self: stretch;
+		}
+		.mebel_best_wrapper {
+			display: flex;
+			flex-direction: column;
+		}
+		.mebel_best_item {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+		}
+		.mebel_best_item > .image {
+			grid-row: 1 / 3;
+		}
+		/*.product_desc .tab-content{
+			padding-left: 12px;
+    		padding-right: 12px;
+		}*/
+	}
 </style>
 
 <div class="main_product">
@@ -348,14 +667,14 @@
 				<div class="product_alert">У представленной модели могут быть изменены размеры, расцветка и комплектация по желанию клиента</div>
 				<div class="params products">
 					<?php if ($fasad) { ?>
-						<div class="param"><span>Тип фасада:</span>
+						<div class="param param-big"><span>Тип фасада:</span>
 							<div><?php echo $fasad; ?></div>
 						</div>
 					<?php } ?>
-					<div class="param"><span>Фурнитура:</span>
+					<div class="param param-big"><span>Фурнитура:</span>
 						<div>Blum base* (Австрия)</div>
 					</div>
-					<div class="param"><span>Цвет фасада:</span>
+					<div class="param param-big"><span>Цвет фасада:</span>
 						<div>1000 вариантов по раскладке RAL <br><a href="#modal-colors" onclick="return false" data-modal="modal-colors">Смотреть цвета</a></div>
 					</div>
 					<div class="param"><span>Цена за м/п:</span> <span class="price"><?php echo $price; ?></span></div>
@@ -373,7 +692,7 @@
 						<< Предыдущая модель</a><?php } ?>
 						<?php if ($pr_next) { ?>
 							<a href="<?php echo $pr_next; ?>" class="next_product" title="<?php echo $pr_next_name; ?>">
-								<img src="i<?php echo $pr_next_img; ?>" alt="<?php echo $pr_next_name; ?>">
+								<img src="<?php echo $pr_next_img; ?>" alt="<?php echo $pr_next_name; ?>">
 								<div class="next_product_text">
 									<span>Следующая кухня</span><br>
 									<?php echo $pr_next_name; ?>
@@ -620,48 +939,66 @@
 					</div>
 
 					<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false) {  ?>
-						<div class="container headsets">
-							<h2 class="before_green">Стоимость гарнитура</h2>
-							<div class="headsets_wrapper">
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="<?php echo MAIN_HTTPS_SERVER ?>images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got2; ?>">2 метра: <span><?= $price_got2; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got3_5; ?>">3,5 метра: <span><?= $price_got3_5; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
-								</div>
-								<div class="headset_item">
-									<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
-									<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
-									<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+						<div class="container">
+							<div class="headsets">
+								<h2 class="before_green">Стоимость гарнитура</h2>
+								<div class="headsets_wrapper">
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="<?php echo MAIN_HTTPS_SERVER ?>images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got2; ?>">2 метра: <span><?= $price_got2; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got3_5; ?>">3,5 метра: <span><?= $price_got3_5; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
+									<div class="headset_item">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<div>
+											<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
+											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -672,7 +1009,9 @@
 							<h2 class="before_green">Чем наша мебель лучше</h2>
 							<div class="mebel_best_wrapper">
 								<div class="mebel_best_item">
-									<img src="images/new/mebel_best_1.svg" alt="Экологиность">
+									<div class="image">
+										<img src="images/new/mebel_best_1.svg" alt="Экологиность">
+									</div>
 									<div class="name">Экологиность</div>
 									<div class="text">Стандарт <a href="">Е1</a> европейское сырье</div>
 								</div>
@@ -788,7 +1127,7 @@
 					echo $news;
 					?>
 
-					<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false && $products_stoly) { ?>`
+					<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false && $products_stoly) { ?>
 					<div class="bl7">
 						<div class="sliders2 container">
 							<div class="h2">
@@ -1713,10 +2052,8 @@
 						},
 					});
 
-					var swiper = new Swiper(".bl4_wrapper", {
-						/*pagination: {
-						  el: ".swiper-pagination",
-						},*/
+					/*var swiper = new Swiper(".bl4_wrapper", {
+						
 						slidesPerView: 4,
 						spaceBetween: 24,
 						pagination: {
@@ -1727,7 +2064,7 @@
 							nextEl: ".button-next",
 							prevEl: ".button-prev",
 						},
-					});
+					});*/
 
 					var swiper = new Swiper(".product_images_slider", {
 						pagination: {
@@ -1757,8 +2094,16 @@
 
 					var swiper = new Swiper(".mebel1", {
 						paginationClickable: true,
-						slidesPerView: 3,
+						slidesPerView: 2,
 						spaceBetween: 24,
+						breakpoints: {  
+							/*'480': {
+							slidesPerView: 4,
+							spaceBetween: 40,},*/
+							'1000': {
+							slidesPerView: 3,
+							spaceBetween: 30, },
+						},
 						pagination: {
 							el: ".swiper-pagination",
 							clickable: true,
