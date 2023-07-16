@@ -318,6 +318,9 @@
 			padding-left: 20px;
 			padding-right: 20px;
 		}*/
+		.tab_description, .swiperFasad, .delivery_wrapper, .bl9 {
+			padding: 0 20px;
+		}
 	}
 	
 	@media (max-width: 870px) {
@@ -452,6 +455,12 @@
 		.bl5_l {
 			max-width: none;
 		}
+		.delivery_wrapper{
+			flex-direction: column;
+		}
+		.delivery_left > div {
+			min-width: auto;
+		}
 	}
 
 	@media (max-width: 690px) {
@@ -507,9 +516,7 @@
 		.next_product {
 			grid-area: img;
 		}*/
-		.tab_description {
-			padding: 0 20px;
-		}
+		
 		.headsets {
 			padding: 0 20px;
 		}
@@ -552,6 +559,9 @@
 		.bl10_wrapper{
 			align-items: center;
 		}
+		.tab_buttons a{
+			padding: 12px 10px;
+		}
 		
 	}
 
@@ -562,9 +572,9 @@
 		.bl4 {
 			padding: 40px 12px;
 		}
-		.main_product .products .param {
+		/*.main_product .products .param {
 			display: block;
-		}
+		}*/
 		.descr_right {
 			padding: 16px;
 		}
@@ -613,10 +623,13 @@
 		.mebel_best_item > .image {
 			grid-row: 1 / 3;
 		}
-		/*.product_desc .tab-content{
-			padding-left: 12px;
-    		padding-right: 12px;
-		}*/
+		
+		
+	}
+	.swiper_free .swiper-slide {
+		width: auto;
+		box-sizing: border-box;
+		display: block;
 	}
 </style>
 
@@ -759,12 +772,14 @@
 
 	<div class="product_desc">
 		<div class="tab_buttons" id="myTab" role="tablist">
-			<div class="container">
-				<a class="nav-link selected" data-toggle="tab" href="#tab1_" role="tab" aria-controls="tab5" aria-selected="true" onclick="return false">Описание</a>
-				<a class="nav-link" data-toggle="tab" href="#tab2_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Фасады</a>
-				<a class="nav-link" data-toggle="tab" href="#tab3_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Декор</a>
-				<a class="nav-link" data-toggle="tab" href="#tab4_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Доставка и сборка</a>
-				<a class="nav-link" data-toggle="tab" href="#tab5_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Купить в рассрочку</a>
+			<div class="swiper-container swiper_free">
+				<div class="container1 swiper-wrapper">
+					<a class="nav-link swiper-slide selected" data-toggle="tab" href="#tab1_" role="tab" aria-controls="tab5" aria-selected="true" onclick="return false">Описание</a>
+					<a class="nav-link swiper-slide" data-toggle="tab" href="#tab2_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Фасады</a>
+					<a class="nav-link swiper-slide" data-toggle="tab" href="#tab3_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Декор</a>
+					<a class="nav-link swiper-slide" data-toggle="tab" href="#tab4_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Доставка и сборка</a>
+					<a class="nav-link swiper-slide" data-toggle="tab" href="#tab5_" role="tab" aria-controls="tab5" aria-selected="false" onclick="return false">Купить в рассрочку</a>
+				</div>
 			</div>
 		</div>
 		<div class="container">
@@ -2035,91 +2050,94 @@
             lazy.update();
           });
         });*/
-			</script>
+	</script>
 
 
 
-			<script>
-				document.addEventListener('DOMContentLoaded', function() {
-					var swiper = new Swiper(".mainSwiper", {
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						navigation: {
-							nextEl: ".button-next",
-							prevEl: ".button-prev",
-						},
-					});
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var swiper = new Swiper(".mainSwiper", {
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				navigation: {
+					nextEl: ".button-next",
+					prevEl: ".button-prev",
+				},
+			});
 
-					/*var swiper = new Swiper(".bl4_wrapper", {
-						
-						slidesPerView: 4,
-						spaceBetween: 24,
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						navigation: {
-							nextEl: ".button-next",
-							prevEl: ".button-prev",
-						},
-					});*/
+			var swiper = new Swiper(".swiper_free", {
+				slidesPerView:"auto",
+				spaceBetween: 0,
+				pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+				},
+			});
+			var swiper = new Swiper(".mySwiper", {
+				slidesPerView: "auto",
+				spaceBetween: 30,
+				pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+				},
+			});
 
-					var swiper = new Swiper(".product_images_slider", {
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						paginationClickable: true,
-						nested: true,
-						spaceBetween: 24,
-					});
+			var swiper = new Swiper(".product_images_slider", {
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				paginationClickable: true,
+				nested: true,
+				spaceBetween: 24,
+			});
 
-					var swiper = new Swiper(".swiperFasad", {
-						slidesPerView: 8,
-						grid: {
-							rows: 2,
-						},
-						spaceBetween: 10,
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						navigation: {
-							nextEl: ".button-next",
-							prevEl: ".button-prev",
-						},
-					});
+			var swiper = new Swiper(".swiperFasad", {
+				slidesPerView: 8,
+				grid: {
+					rows: 2,
+				},
+				spaceBetween: 10,
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				navigation: {
+					nextEl: ".button-next",
+					prevEl: ".button-prev",
+				},
+			});
 
-					var swiper = new Swiper(".mebel1", {
-						paginationClickable: true,
-						slidesPerView: 2,
-						spaceBetween: 24,
-						breakpoints: {  
-							/*'480': {
-							slidesPerView: 4,
-							spaceBetween: 40,},*/
-							'1000': {
-							slidesPerView: 3,
-							spaceBetween: 30, },
-						},
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						navigation: {
-							nextEl: ".button-next",
-							prevEl: ".button-prev",
-						},
-					});
+			var swiper = new Swiper(".mebel1", {
+				paginationClickable: true,
+				slidesPerView: 2,
+				spaceBetween: 24,
+				breakpoints: {  
+					/*'480': {
+					slidesPerView: 4,
+					spaceBetween: 40,},*/
+					'1000': {
+					slidesPerView: 3,
+					spaceBetween: 30, },
+				},
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				navigation: {
+					nextEl: ".button-next",
+					prevEl: ".button-prev",
+				},
+			});
 
-					//$(function() {
-					$('.tab_buttons a').on('click', function() {
-						$(window).scrollTop($(window).scrollTop() + 1);
-						$(window).scrollTop($(window).scrollTop() - 1);
-					});
-					//});
-				});
-			</script>
-			<?php echo $footer; ?>
+			//$(function() {
+			$('.tab_buttons a').on('click', function() {
+				$(window).scrollTop($(window).scrollTop() + 1);
+				$(window).scrollTop($(window).scrollTop() - 1);
+			});
+			//});
+		});
+	</script>
+	<?php echo $footer; ?>
