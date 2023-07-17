@@ -81,6 +81,7 @@
 		gap: 48px;
 		margin-bottom: 40px;
 		align-items: center;
+		justify-content: center;
 	}
 	.design-left {
 		display: flex;
@@ -132,24 +133,40 @@
 		background-color: #13B081;
     	box-shadow: inset 0 2px 3px rgba(0,0,0,0.12);
 	}
+	
 
 	@media (max-width: 1100px) {
 		.information-new {
 			padding: 0;
 		}
 	}
-	@media (max-width: 840px) {
+	@media (max-width: 920px) {
 		.design-container {
 			flex-direction: column;
 		}
 		.design-left {
 			align-items: center;
+			max-width: 600px;
+		}
+		.design-left p {
+			max-width: none;
 		}
 	}
 	.design-right{
 		/*width: 600px;*/
-		width: 600px;
-		max-width: 100%;
+		max-width: 700px;
+		width: 100%;
+	}
+	@media (max-width: 1180px) {
+		.design-right{
+			max-width: 500px;
+		}
+	}
+	.bl9 .bl9_wrapper {
+		margin-bottom: 80px;
+	}
+	#tehnika img {
+		border-radius: 8px;
 	}
 </style>
   <div class="container information-new">

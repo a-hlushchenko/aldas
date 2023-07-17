@@ -498,7 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="/dizain-mebel/">Бесплатный 3D проект</a>
           <a href="/mebel-v-rassrochku/">Рассрочка</a>
           <a href="/sborka_dostavka/">Сборка и доставка</a>
-          <a href="">Сотрудничество</a>
+          <a href="/partnery/">Сотрудничество</a>
           <a href="/contact/">Контакты</a>
           <div class="search">
             <a href="#search" data-modal="search">

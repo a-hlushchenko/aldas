@@ -1,4 +1,4 @@
-<div class="bl5 container">
+<div class="bl5">
 	<div class="bl5_wrapper">
 		<div class="bl5_l">
 			<form class="form send_n">
