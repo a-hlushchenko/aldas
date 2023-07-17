@@ -2,7 +2,120 @@
 
         <?php echo $content_top; ?>
 <style>
-.thumbnails{display:flex;justify-content:space-between;align-items:center;}
+  .thumbnails{display:flex;justify-content:space-between;align-items:center;}
+
+  .otzyvy {
+    padding: 0 20px;
+    max-width: 1260px;
+  }
+
+  .all-reviews {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px 24px;
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+
+  h4 {
+    margin: 0;
+  }
+
+  .caption {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+  }
+
+  .caption img {
+    order: 0;
+    max-width: 100%;
+    max-height: 222px;
+    border-radius: 4px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .caption .img {
+    position: relative;
+  }
+
+  .caption .quotes {
+    width: 46px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 39px;
+    z-index: 10;
+  }
+
+  .caption h4 {
+    order: 1;
+  }
+
+  .caption .descrip {
+    order: 2;
+    overflow: hidden;
+    color: #878585;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    line-height: 22px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .caption a {
+    font-size: 20px;
+    color: #222;
+    font-weight: 400;
+    line-height: 26px;
+  }
+
+  .bl10_wrapper {
+    margin-top: 48px;
+  }
+
+  @media (max-width: 920px) {
+      .all-reviews {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .caption a {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .caption .descrip {
+      font-weight: 13px;
+    }
+  }
+
+  @media (max-width: 680px) {
+      .all-reviews {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .caption .descrip {
+      font-weight: 13px;
+    }
+  }
+
+  @media (max-width: 450px) {
+      .all-reviews {
+      grid-template-columns: 1fr;
+    }
+
+    .caption .descrip {
+      font-weight: 13px;
+    }
+  }
+
+
 </style>
 <div class="container">
   <ul class="breadcrumbs">
@@ -34,10 +147,8 @@
         <div class="col-sm-2"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
         <?php } ?>
         <?php if ($description) { ?>
-        <div class="col-sm-12"><?php echo $description; ?></div>
         <?php } ?>
       </div>
-      <hr>
       <?php } ?>
       <?php if ($categories) { ?>
       <h3><?php echo $text_refine; ?></h3>
@@ -102,29 +213,38 @@
           </select>
         </div>
       </div>
-      <div class="row">
+      <div class="row all-reviews">
         
-        <?php foreach ($articles as $article) { ?>
+        <?php foreach ($articles as $article) {
+          
+           ?>
        
         <div class="product-layout product-grid col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="product-thumb">
             <!--<div class="image"><a href="<?php //echo $article['href']; ?>"><img src="<?php //echo $article['thumb']; ?>" alt="<?php //echo $article['name']; ?>" title="<?php //echo $article['name']; ?>" class="img-responsive" /></a></div>-->
             <div>
               <div class="caption">
-                <?php if($article['short_description']){ ?>
+                <a href="<?php echo $article['href']; ?>" rel="nofollow" title="Смотреть все фото">
+                  <?php if($article['short_description']){ ?>
                   <div class="video"><?php echo $article['short_description']; ?></div>
-                <? } ?>
-                <h4><a href="<?php echo $article['href']; ?>"><?php echo $article['name']; ?></a></h4>
-                <?php if($article['description']){ ?>
+                  <? } ?>
+                  <h4><a href="<?php echo $article['href']; ?>"><?php echo $article['name']; ?></a></h4>
+                  <?php if($article['description']){ ?>
                   <div class="descrip lorait f15"><?php echo $article['description']; ?></div>
-                <? } ?>
-      				  <?php if ($article['images']) { ?>
-      					<ul class="thumbnails" style="overflow:visible;">
-      					  <?php foreach ($article['images'] as $key => $image) { if($key>0)continue;?>
-      					  <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="<?php echo $heading_title; ?>"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a></li>
+                  <? } ?>
+                  <?php if ($article['images']) { ?>
+                  <!-- <ul class="thumbnails" style="overflow:visible;"> -->
+                    <?php foreach ($article['images'] as $key => $image) { if($key>0)continue;?>
+                    <!-- <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="<?php echo $heading_title; ?>"> -->
+                  <div class="img">
+                    <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
+                    <img src="/catalog/view/theme/default/img/quotes.svg" alt="" class="quotes">
+                  </div>
+                </a>
+                  <!-- </a></li> -->
       					  <?php } ?>
-      					  <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="Смотреть все фото">Смотреть все фото</a></li>
-      					</ul>
+      					  <!-- <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="Смотреть все фото">Смотреть все фото</a></li> -->
+      					<!-- </ul> -->
       				  <?php } ?>
                 <?php if ($article['rating']) { ?>
                 <div class="rating">
@@ -158,4 +278,5 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+
 <?php echo $footer; ?>

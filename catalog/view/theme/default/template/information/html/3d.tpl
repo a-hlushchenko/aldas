@@ -1,23 +1,22 @@
 <?php echo $header; ?>
 <style>
 	img {
-		padding:0!important;
-	    border: none!important;
-	    margin:0!important;
-	    border-radius: 0!important;
+		padding:0;
+	    border: none;
+	    margin:0;
+	    border-radius: 0;
 	}
-	.information-information #content .row{margin:40px -15px!important;}
-	.information-information h1, .information-information h2{color:#ed4931!important;}
-	h2{margin-bottom:30px!important;margin-top:20px!important;}
+	.information-information #content .row{margin:40px -15px;}
+	h2{margin-bottom:30px;margin-top:20px;}
 	p{line-height:23px;}
 
-	#content{color:#000!important;}
+	#content{color:#000;}
 	.table{display:table;table-layout: fixed;}
 	.cell{display:table-cell;padding:5px;}
 	.cell img{width: 100%;height:auto;}
 	.cell .txt1{display: block;margin:15px 0 0;font-size:22px;font-weight:bold;}
 	.cell .txt2{color:#e84c3d;font-size: 16px;}
-	.information-information #content .row.form{background: url('images/n_aldas/3d-fon.jpg') center no-repeat;padding:50px 0;margin-bottom:0!important;
+	.information-information #content .row.form{background: url('images/n_aldas/3d-fon.jpg') center no-repeat;padding:50px 0;margin-bottom:0;
 		}
 	.form .forma{display:block;width:520px;max-width: 520px;
 		margin-left: -260px;
@@ -29,16 +28,15 @@
 		color:#747474;
 	}
 	.form .mleft{margin-left: 50%;}
-	.footer-top{padding-top:0px!important;}
+	.footer-top{padding-top:0px;}
 	.buttonfile1{
 		color: #e84c3d;
 		font-size: 16px;
-		font-weight: normal!important;
+		font-weight: normal;
 		text-decoration: underline;
 	}
 	.send.button{border-radius: 25px;font-size: 20px;font-weight:normal;}
 	.lab label{font-size: 14px;}
-	#tehnika .item{margin: 10px;}
 	#tehnika img{
 		/*width: 100%;
 		height: auto;*/
@@ -61,29 +59,120 @@
 		.cell{display: block;width: 50%;float: left;}
 	}
 	#tehnika .owl-prev,
-	#tehnika .owl-next {top:33%;height:30%!important;
-		background: #ed4931!important; opacity: 0.5;font-size: 17px!important; }
-	#tehnika .owl-prev{left:11px!important;
-		border-radius: 0 200px 200px 0 !important;}
-	#tehnika .owl-next {right:11px!important;border-radius: 200px 0 0 200px !important;}
+	#tehnika .owl-next {top:33%;height:30%;
+		background: #ed4931; opacity: 0.5;font-size: 17px; }
+	#tehnika .owl-prev{left:11px;
+		border-radius: 0 200px 200px 0 ;}
+	#tehnika .owl-next {right:11px;border-radius: 200px 0 0 200px ;}
 	#tehnika .fa{top: 50%;margin-top: -19px;position: absolute;left: 28%;}
 	#tehnika .owl-next .fa{left:auto;right: 28%;}
+
+	.information-new {
+		padding: 0 40px;
+	}
+
+	.information-information h1, .information-information h2 {
+		color: #222;
+	}
+
+	.design-container {
+		display: flex;
+		width: 100%;
+		gap: 48px;
+		margin-bottom: 40px;
+		align-items: center;
+	}
+	.design-left {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		max-width: 380px;
+	}
+	h1 {
+		margin-bottom: 40px;
+	}
+	.design-left p {
+		margin: 0;
+		font-size: 15px;
+		max-width: 360px;
+		line-height: 22px;
+	}
+	.design-left strong {
+		font-size: 20px;
+		display: block;
+		line-height: 26px;
+	}
+	h2 {
+		font-size: 32px;
+	}
+	.bl9_item_name {
+		font-size: 15px;
+		font-weight: 700;
+		line-height: 22px;
+	}
+	.bl5 .btn {
+		border-radius: 4px;
+	}
+
+	.design-left a {
+		font-size: 15px;
+		font-weight: 700;
+		background: #18C792;
+		border-radius: 4px;
+		color: #FFF;
+		padding: 15px 32px;
+		width: fit-content;
+		transition: background-color 0.3s, box-shadow 0.3s;
+	}
+	.design-left a:hover {
+		background-color: #13B081;
+    	box-shadow: 0 9px 16px rgba(47,66,60,0.2);
+	}
+	.design-left a:active {
+		background-color: #13B081;
+    	box-shadow: inset 0 2px 3px rgba(0,0,0,0.12);
+	}
+
+	@media (max-width: 1100px) {
+		.information-new {
+			padding: 0;
+		}
+	}
+	@media (max-width: 840px) {
+		.design-container {
+			flex-direction: column;
+		}
+		.design-left {
+			align-items: center;
+		}
+	}
+	.design-right{
+		/*width: 600px;*/
+		width: 600px;
+		max-width: 100%;
+	}
 </style>
   <div class="container information-new">
 
 	<?php echo $content_top; ?>
 
-      <ul class="catalog-list">
-        <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-         <li>
-        <?php if($breadcrumb['href']){ ?>
-          <a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-        <?php } else { ?>
-          <?php echo $breadcrumb['text']; ?>
-        <?php } ?>
-        </li>
-        <?php } ?>
-      </ul>
+	<ul class="breadcrumbs">
+		<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
+		  <?php if($breadcrumb['href']){ ?>
+			<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"
+				itemref="breadcrumb-1">
+			  <a href="http://aldas.ru/" itemprop="url">
+			  <span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+			  </a>
+			</li >
+		  <?php } else { ?>
+			<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"
+				id="breadcrumb-2">
+			  <span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+			</li>
+		  <?php } ?>
+		<?php } ?>
+	</ul>
 
 	<div id="content" class="info">
 
@@ -94,85 +183,115 @@
 
 
 		<div class="container text-center">
-			<div class="row">
-				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-					<p>Вы решили приобрести эксклюзивную мебель, изготовленную специально для вас, по индивидуальному проекту?</p>
-					<p>Определиться с окончательным выбором вам поможет бесплатный комплект услуг по фотореалистичной визуализации и дизайну, который наша компания предлагает всем своим клиентам. Вы увидите, как изготовленная нами мебель будет выглядеть в вашей квартире, а наш профессиональный дизайнер поможет выбрать оптимальный цвет и стиль, который наиболее выигрышно смотреться именно в вашем случае.</p>
+			<div class="design-container">
+				<div class="design-left">
+					<strong>Вы решили приобрести эксклюзивную мебель, изготовленную специально для вас, по индивидуальному проекту?</strong>
+					<p>Определиться с окончательным выбором вам поможет бесплатный комплект услуг по фотореалистичной визуализации и дизайну, который наша компания предлагает всем своим клиентам.</p>
+					<p>Вы увидите, как изготовленная нами мебель будет выглядеть в вашей квартире, а наш профессиональный дизайнер поможет выбрать оптимальный цвет и стиль, который наиболее выигрышно смотреться именно в вашем случае.</p>
+					<a href="#">Узнать подробнее</a>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-					<h2>Пример фотореалистичной визуализации</h2>
-				    <div id="tehnika" class="owl-carousel owl-theme">
-	                  <div class="item">
-	                  	<img src="images/onas/3d2.jpg">
-	                  </div>
-	                  <div class="item">
-	                  	<img src="images/onas/3d3.jpg">
-	                  </div>
-	                  <div class="item">
-	                  	<img src="images/onas/3d4.jpg">
-	                  </div>
-	                  <div class="item">
-	                  	<img src="images/onas/3d5.jpg">
-	                  </div>
-          			</div>
-				</div>
-			</div>
-			<script>
-			$(document).ready(function(){
-			$('#tehnika').owlCarousel({
-			    items: 2,
-			    margin: 10,
-			    navigation: true,
-			    navigationText: ['<i class="fa fa-angle-left fa-2x"></i>', '<i class="fa fa-angle-right fa-2x"></i>'],
-			    pagination: false,
-			    lazyLoad: true,
-			    transitionStyle: true,
-			    itemsDesktop : [1199,2],
-			      itemsDesktopSmall : [992,2],
-			      itemsTablet : [768, 2],
-			      itemsMobile : [320, 1]
-			});
-			});
-			</script>
-
-			<div class="row project">
-				<div class="col-xs-12">
-					<h2>Как получить 3D проект бесплатно?</h2>
-
-					<div class="table">
-						<div class="cell">
-							<img src="images/n_aldas/3d1.jpg">
-							<span class="txt1">Обращение в компанию</span>
-							<span class="txt2">интернет, телефон, салон</span>
-						</div>
-						<div class="cell">
-							<img src="images/n_aldas/3d2.jpg">
-							<span class="txt1">Составление и согласование эскиза проекта</span>
-							<span class="txt2">с менеджером-дизайнером</span>
-						</div>
-						<div class="cell">
-							<img src="images/n_aldas/3d3.jpg">
-							<span class="txt1">3D визуализация проекта</span>
-							<span class="txt2">в течении 2-х дней</span>
-						</div>
-						<div class="cell">
-							<img src="images/n_aldas/3d4.jpg">
-							<span class="txt1">Внесение правок в проект по согласованию</span>
-							<span class="txt2">как в 3D так и в эскизе</span>
-						</div>
-						<div class="cell">
-							<img src="images/n_aldas/3d5.jpg">
-							<span class="txt1">Покупка = рассрочка</span>
-							<span class="txt2">0% до 12 месяцев</span>
+				<div class="design-right">
+					<div class="swiper">
+						<div id="tehnika" class="">
+							<div class="swiper-wrapper">
+								<div class="item swiper-slide">
+									<img src="images/onas/3d2.jpg">
+								</div>
+								<div class="item swiper-slide">
+									<img src="images/onas/3d3.jpg">
+								</div>
+								<div class="item swiper-slide">
+									<img src="images/onas/3d4.jpg">
+								</div>
+								<div class="item swiper-slide">
+									<img src="images/onas/3d5.jpg">
+								</div>
+								
+							</div>
+							<div class="button-next"></div>
+							<div class="button-prev"></div>
+							<div class="swiper-pagination"></div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 
-			<div class="row form">
+<div class="bl9">
+	<div class="container">
+		<div class="h2 dflex">
+			<h2 class="before_green">Как заказать мебель</h2>
+			<a href="" class="btn arrow">Вызвать замерщика</a>
+		</div>
+		<div class="bl9_wrapper">
+			<div class="bl9_item">
+				<div class="bl9_l">
+					<div class="bl9_item_image"><img src="images/new/bl9_6.png" alt=""></div>
+					<div class="bl9_item_number">1</div>
+				</div>
+				<div class="bl9_r">
+					<div class="bl9_item_name">Обращение в компанию</div>
+					<div class="bl9_item_line"></div>
+					<div class="bl9_item_text">интернет, телефон, салон</div>
+				</div>
+			</div>
+			<div class="bl9_item">
+				<div class="bl9_l">
+					<div class="bl9_item_image"><img src="images/new/bl9_2.jpg" alt=""></div>
+					<div class="bl9_item_number">2</div>
+				</div>
+				<div class="bl9_r">
+					<div class="bl9_item_name">Составление эскиза проекта и согласование</div>
+					<div class="bl9_item_line"></div>
+					<div class="bl9_item_text">с менеджером-дизайнером</div>
+				</div>
+			</div>
+			<div class="bl9_item">
+				<div class="bl9_l">
+					<div class="bl9_item_image"><img src="images/new/bl9_1.jpg" alt=""></div>
+					<div class="bl9_item_number">3</div>
+				</div>
+				<div class="bl9_r">
+					<div class="bl9_item_name">3D визуализация проекта</div>
+					<div class="bl9_item_line"></div>
+					<div class="bl9_item_text">в течении 2-х дней</div>
+				</div>
+			</div>
+			<div class="bl9_item">
+				<div class="bl9_l">
+					<div class="bl9_item_image"><img src="images/new/bl9_7.png" alt=""></div>
+					<div class="bl9_item_number">4</div>
+				</div>
+				<div class="bl9_r">
+					<div class="bl9_item_name">Внесение правок в проект по согласованию</div>
+					<div class="bl9_item_line"></div>
+					<div class="bl9_item_text">как в 3D так и в эскизе</div>
+				</div>
+			</div>
+			<div class="bl9_item">
+				<div class="bl9_l">
+					<div class="bl9_item_image"><img src="images/new/bl9_3.jpg" alt=""></div>
+					<div class="bl9_item_number">5</div>
+				</div>
+				<div class="bl9_r">
+					<div class="bl9_item_name">Покупка = рассрочка</div>
+					<div class="bl9_item_line"></div>
+					<div class="bl9_item_text">0% до 12 месяцев</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+			
+
+<?php 
+	include( DIR_TEMPLATE . 'default/template/parts/bl5_form.tpl');
+?>
+
+ 
+<!--			<div class="row form">
 				<div class="mleft">
 				<div id="3d" class="sotr forma tovar-white sotr2">
 
@@ -188,7 +307,7 @@
                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 "><input type="text" name="tel" value="" /></div>
                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 text com">Сообщение:<br/><span class="help">(Или любой ваш вопрос)</span></div>
                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"><textarea name="comment"></textarea></div>
-                       <!--<div class="left com">Прикрепить эскиз:<br/><span class="help">(Если имеется)</span></div>-->
+                       <div class="left com">Прикрепить эскиз:<br/><span class="help">(Если имеется)</span></div>
                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 text com"><a class="buttonfile1" data-loading-text="Загружаем...">Прикрепить</a></div>
                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                           <input type="text" readonly name="namefile" value="Прикрепите эскиз (если есть)" />
@@ -209,10 +328,27 @@
                   </div>
                  </div>
                  </div>
-			</div>
+			</div> -->
 
 		</div>
 	</div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	var swiper = new Swiper("#tehnika", {
+				paginationClickable: true,
+				slidesPerView: 1,
+				
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				navigation: {
+					nextEl: ".button-next",
+					prevEl: ".button-prev",
+				},
+			});
+});
+</script>
 
 <?php echo $footer; ?>

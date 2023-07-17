@@ -202,7 +202,7 @@ class ControllerNewsCategory extends Controller {
 					$images[] = array(
 						'popup' => $this->model_tool_image->resize($im['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
 						//'popup2' => 'image/'.$result['image'],
-						'thumb' => $this->model_tool_image->resize($im['image'], 100, 150,'wh')
+						'thumb' => $this->model_tool_image->resize($im['image'], 288, 222,'wh')
 						//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'full')
 					);
 				}

@@ -14,6 +14,7 @@
 		width: 912px;
 		height: 100%;
 		margin: 0;
+		max-width: 100%;
 	}
 
 	.mainSwiper .swiper-slide {
@@ -737,6 +738,10 @@
 			margin-bottom: 40px;
 			padding: 20px 0 20px;
 		}
+	}
+
+	.swiper-backface-hidden .swiper-slide img {
+		width: auto;
 	}
 </style>
 

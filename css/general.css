@@ -473,7 +473,7 @@ ul.catalog-number{list-style:none;display:flex;justify-content:center;gap:8px;pa
 .bl9{margin-bottom:30px}
 .bl9_wrapper{flex-direction:column}
 .bl9_item{display:flex}
-.bl9 .bl9_r{padding-left:25px}
+.bl9 .bl9_r{padding-left:25px;position: initial;}
 .bl9 .bl9_item_image{width:168px;padding-top:0;padding-left:17px;margin-right:25px}
 .bl9 .bl9_item_image img{height:108px}
 .bl9 .bl9_item_number{position:absolute;top:20px}
@@ -544,6 +544,13 @@ h1{font-size:28px}
 .mm-toggle{display:block}
 .container_sl{padding:0}
 .sl_right{padding-left:20px;padding-right:20px}
+.footer_menu .container {display: grid;grid-template-columns: repeat(4, 1fr);}
+.footer_menu .container a {display: block;width: 100%;}
+.footer_menu {padding: 40px 12px 28px;}
+.bl5_wrapper {flex-direction: column;padding: 24px 24px 0 24px;}
+.bl5_l {max-width: none;}
+.delivery_wrapper{flex-direction: column;}
+.delivery_left > div {min-width: auto;}
 }
 @media (max-width: 760px) {
 .sliders .name{font-size:48px;line-height:46px}
@@ -552,6 +559,7 @@ h1{font-size:28px}
 .mainSwiper2 .swiper-slide{padding:0}
 .mainSwiper2 .swiper-pagination{display:block}
 .mainSwiper2 .swiper-wrapper{padding-bottom:20px}
+
 }
 @media (max-width: 660px) {
 .h_top .address{display:none}
@@ -564,6 +572,9 @@ h1{font-size:28px}
 .logo > span{display:none}
 .mainSwiper2 .swiper-slide .image img{width:120px}
 .mainSwiper2 .swiper-slide{gap:16px}
+.footer_menu .container {grid-template-columns: 1fr 1fr;}
+.footer .contact {flex-direction: column;}
+.footer .tel_time {text-align: left;}
 }
 
 #pred_zakaz .form_wrapper{

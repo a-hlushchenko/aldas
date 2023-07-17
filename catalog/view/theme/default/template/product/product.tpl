@@ -401,18 +401,7 @@
 			flex-direction: row;
 			align-items: center;
 		}
-		.footer_menu .container {
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-		}
-
-		.footer_menu .container a {
-			display: block;
-			width: 100%;
-		}
-		.footer_menu {
-			padding: 40px 12px 28px;
-		}
+		
 		.mebel_best {
 			padding: 48px 28px;
 		}
@@ -482,40 +471,11 @@
 		}
 		
 		.prod_right {
-			padding: 20px;/*
-			grid-template-areas: 'bread bread'
-			'name name'
-			'subname subname' 
-			'param param'
-			'param param'
-			'param describtion'
-			'button img';*/
+			padding: 20px;
 		}
 		.params.products {
 			grid-template-columns: repeat(2, 1fr);
-		}/*
-		.credit_text {
-			grid-column: 1 / 2;
-			grid-area: describtion;
 		}
-		.params.products {
-			grid-area: param;
-		}
-		.main_product .breadcrumbs {
-			grid-area: bread;
-		}
-		.before_green {
-			grid-area: name;
-		}
-		.product_alert {
-			grid-area: subname;
-		}
-		.btn.big {
-			grid-area: button;
-		}
-		.next_product {
-			grid-area: img;
-		}*/
 		
 		.headsets {
 			padding: 0 20px;
@@ -598,15 +558,6 @@
 		}
 		.bl11 .bl11_items {
 			justify-content: start;
-		}
-		.footer_menu .container {
-			grid-template-columns: 1fr 1fr;
-		}
-		.footer .contact {
-			flex-direction: column;
-		}
-		.footer .tel_time {
-			text-align: left;
 		}
 		.headsets_wrapper .headset_item > div {
 			align-self: stretch;

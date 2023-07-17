@@ -37,9 +37,9 @@ class Pagination2 {
 			$tmp_url = str_replace('&amp;', '&', $this->url);
 			//$output .= '<a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '">' . $this->text_first . '</a>';
 			if ($page == 2){
-				$output .= '<a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '" class="catalog-prev">Предыдущая</a>';
+				$output .= '<a href="' . str_replace('&', '&amp;', rtrim( str_replace('page={page}', '', $tmp_url), '?&')) . '" class="catalog-prev"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.5 1L1.5 4L4.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></a>';
 			}else{
-				$output .= '<a href="' . str_replace('{page}', $page - 1, $this->url) . '" class="catalog-prev">Предыдущая</a>';
+				$output .= '<a href="' . str_replace('{page}', $page - 1, $this->url) . '" class="catalog-prev"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.5 1L1.5 4L4.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></a>';
 			}
 		}
 
@@ -77,7 +77,7 @@ class Pagination2 {
 		}
 
 		if ($page < $num_pages) {
-			$output .= '<a href="' . str_replace('{page}', $page + 1, $this->url) . '" class="catalog-next">Следующая</a></li>';
+			$output .= '<a href="' . str_replace('{page}', $page + 1, $this->url) . '" class="catalog-next"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1.5 1L4.5 4L1.5 7" stroke="#18C792" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></a></li>';
 			//$output .= '<a href="' . str_replace('{page}', $num_pages, $this->url) . '" class="catalog-next">' . $this->text_last . '</a></li>';
 		}
 

@@ -2,7 +2,7 @@
 <div class="container">
 <?php echo $content_top; ?>
         
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <ul class="catalog-list">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <li>
@@ -14,7 +14,7 @@
         </li>
         <?php } ?>
       </ul>
-    </div>
+    </div> -->
   <div class="row"><?php echo $column_left; ?>
 
     <div id="content" class="col-sm-12">
