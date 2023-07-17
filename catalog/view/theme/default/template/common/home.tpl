@@ -907,42 +907,10 @@
 echo $news;
 ?>
 
-<div class="bl5 container">
-	<div class="bl5_wrapper">
-		<div class="bl5_l">
-			<form class="form send_n">
-				<h3>Закажите расчет проекта или вызовите дизайнера-замерщика</h3>
-				<input type="hidden" name="form_name" value="Закажите расчет проекта или вызовите дизайнера-замерщика">
-				<div class="help">Что вы хотите получить?</div>
-				<div class="bl5_row">
-					<select name="type" class="nice-select">
-						<option value="Заказать расчёт" selected>Заказать расчёт</option>
-						<option value="Вызвать дизайнера-замерщика">Вызвать дизайнера-замерщика</option>
-					</select>
-				</div>
-				<div class="bl5_row"><input type="text" name="name" required placeholder="Ваше имя"></div>
-				<div class="bl5_row"><input type="tel" name="tel" required placeholder="Телефон"></div>
-				<div class="bl5_row"><input type="email" name="email" required placeholder="E-mail"></div>
-				<div class="help hlp2">Прикрепите проект если есть</div>
-				<div class="file">
-
-					<input type="hidden" name="file" value="">
-					<input type="button" value="Выбрать файл" class="buttonfile btn light" data-loading-text="Загружаем...">
-					<div class="result">
-						<input type="text" readonly="" name="namefile" value="Файл не выбран">
-					</div>
-				</div>
-				<div class="bl5_row">
-					<input type="submit" value="Оставить заявку" class="btn send button" data-loading-text="<i class=\'fa fa-circle-o-notch fa-spin\'></i> Отправка..." />
-				</div>
-				<div class="help2">
-					Нажимая кнопку «Оставить заявку», я принимаю условия Пользовательского соглашения и даю своё согласие на обработку своей персональной информации на условиях, определенных Политикой в отношении обработки персональных данных.
-				</div>
-			</form>
-		</div>
-		<div class="bl5_r"><img src="images/new/svg/bl5.png" alt="bl5_r"></div>
-	</div>
-</div>
+<?php 
+//форма - Закажите расчет проекта или вызовите дизайнера-замерщика
+	include( DIR_TEMPLATE . 'default/template/parts/bl5_form.tpl');
+?>
 
 <div class="bl6">
 	<div class="container">
@@ -1034,71 +1002,12 @@ echo $news;
 	</div>
 </div>
 
-<div class="bl9">
-	<div class="container">
-		<div class="h2 dflex">
-			<h2 class="before_green">Как заказать мебель</h2>
-			<a href="" class="btn arrow">Вызвать замерщика</a>
-		</div>
-		<div class="bl9_wrapper">
-			<div class="bl9_item">
-				<div class="bl9_l">
-					<div class="bl9_item_image"><img src="images/new/bl9_1.jpg" alt=""></div>
-					<div class="bl9_item_number">1</div>
-				</div>
-				<div class="bl9_r">
-					<div class="bl9_item_name">Определиться с моделью гарнитура и отправить запрос на расчёт стоимости</div>
-					<div class="bl9_item_line"></div>
-					<div class="bl9_item_text">Вы можете отправить нам свой проект или эскиз или выбрать готовый вариант из каталога, а так же обратиться за помощью к нашему мунеджеру</div>
-				</div>
-			</div>
-			<div class="bl9_item">
-				<div class="bl9_l">
-					<div class="bl9_item_image"><img src="images/new/bl9_2.jpg" alt=""></div>
-					<div class="bl9_item_number">2</div>
-				</div>
-				<div class="bl9_r">
-					<div class="bl9_item_name">Вызвать замерщика-дизайнера</div>
-					<div class="bl9_item_line"></div>
-					<div class="bl9_item_text">Он проверит возможность размещения всех элементов кухни, а также покажет вам ассортимент фасадов и комплектующих. У него же можно заказать 3D дизайн-проект.</div>
-				</div>
-			</div>
-			<div class="bl9_item">
-				<div class="bl9_l">
-					<div class="bl9_item_image"><img src="images/new/bl9_3.jpg" alt=""></div>
-					<div class="bl9_item_number">3</div>
-				</div>
-				<div class="bl9_r">
-					<div class="bl9_item_name">Оплатить заказ</div>
-					<div class="bl9_item_line"></div>
-					<div class="bl9_item_text">Замерщику или в офисе. Возможна рассрочка (предоплата 50%).</div>
-				</div>
-			</div>
-			<div class="bl9_item">
-				<div class="bl9_l">
-					<div class="bl9_item_image"><img src="images/new/bl9_4.jpg" alt=""></div>
-					<div class="bl9_item_number">4</div>
-				</div>
-				<div class="bl9_r">
-					<div class="bl9_item_name">Немного подождать</div>
-					<div class="bl9_item_line"></div>
-					<div class="bl9_item_text">Сроки изготовления кухни от 2-3 недель, в зависимости от материала и сложности.</div>
-				</div>
-			</div>
-			<div class="bl9_item">
-				<div class="bl9_l">
-					<div class="bl9_item_image"><img src="images/new/bl9_5.jpg" alt=""></div>
-					<div class="bl9_item_number">5</div>
-				</div>
-				<div class="bl9_r">
-					<div class="bl9_item_name">Согласовать время доставки и сборки</div>
-					<div class="bl9_item_line"></div>
-					<div class="bl9_item_text">И уже скоро вы сможете наслаждаться временем проведённым на новой кухне</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<?php 
+//Как заказать мебель
+	include( DIR_TEMPLATE . 'default/template/parts/bl9.tpl');
+?>
+
+
 <?php //echo $content_bottom; 
 ?>
 <?php echo $footer; ?>

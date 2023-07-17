@@ -1,22 +1,29 @@
 <?php echo $header; ?>
-<div class="container otzyvy">
+
         <?php echo $content_top; ?>
 <style>
 .thumbnails{display:flex;justify-content:space-between;align-items:center;}
 </style>
-<div class="wrapper">
-      <ul class="catalog-list">
-        <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-        <li>
-        <?php if($breadcrumb['href']){ ?>
-          <a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-        <?php } else { ?>
-          <?php echo $breadcrumb['text']; ?>
-        <?php } ?>
-        </li>
-        <?php } ?>
-      </ul>
-    </div>
+<div class="container">
+  <ul class="breadcrumbs">
+  <?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
+    <?php if($breadcrumb['href']){ ?>
+      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"
+          itemref="breadcrumb-1">
+        <a href="http://aldas.ru/" itemprop="url">
+        <span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+        </a>
+      </li >
+    <?php } else { ?>
+      <li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"
+          id="breadcrumb-2">
+        <span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+      </li>
+    <?php } ?>
+  <?php } ?>
+  </ul>
+</div>
+<div class="container otzyvy">
   <div class="row"><?php echo $column_left; ?>
     <?php $class = 'col-sm-12'; ?>
     <div id="content" class="<?php echo $class; ?>">
@@ -96,9 +103,9 @@
         </div>
       </div>
       <div class="row">
-        <?php $line = 0;?>
+        
         <?php foreach ($articles as $article) { ?>
-        <?php $line++; ?>  
+       
         <div class="product-layout product-grid col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="product-thumb">
             <!--<div class="image"><a href="<?php //echo $article['href']; ?>"><img src="<?php //echo $article['thumb']; ?>" alt="<?php //echo $article['name']; ?>" title="<?php //echo $article['name']; ?>" class="img-responsive" /></a></div>-->
@@ -113,7 +120,7 @@
                 <? } ?>
       				  <?php if ($article['images']) { ?>
       					<ul class="thumbnails" style="overflow:visible;">
-      					  <?php foreach ($article['images'] as $image) { ?>
+      					  <?php foreach ($article['images'] as $key => $image) { if($key>0)continue;?>
       					  <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="<?php echo $heading_title; ?>"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a></li>
       					  <?php } ?>
       					  <li><a href="<?php echo $article['href']; ?>" rel="nofollow" title="Смотреть все фото">Смотреть все фото</a></li>
@@ -134,7 +141,7 @@
             </div>
           </div>
         </div>
-        <?php if ($line % 2 == 0) { ?></div><div class="row"><?php } ?>
+        
         <?php } ?>
       </div>
       <div class="row">
