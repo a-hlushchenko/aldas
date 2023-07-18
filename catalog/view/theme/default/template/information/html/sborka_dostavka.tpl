@@ -86,11 +86,6 @@
 		}
 	}
 	@media (max-width: 1000px) {
-		.first img, .second img {
-			max-width: 440px;
-		}
-	}
-	@media (max-width: 920px) {
 		.delivery {
 			grid-template-columns: 1fr 1fr;
 		}
@@ -98,7 +93,7 @@
 			grid-column: 1 / 3;
 		}
 		.first img, .second img {
-			max-width: 580px;
+			max-width: none;
 		}
 		.first, .second {
 			flex-direction: column;

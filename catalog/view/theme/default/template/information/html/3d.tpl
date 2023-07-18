@@ -238,8 +238,7 @@
 <div class="bl9">
 	<div class="container">
 		<div class="h2 dflex">
-			<h2 class="before_green">Как заказать мебель</h2>
-			<a href="" class="btn arrow">Вызвать замерщика</a>
+			<h2 class="before_green">Как получить 3D проект бесплатно?</h2>
 		</div>
 		<div class="bl9_wrapper">
 			<div class="bl9_item">
