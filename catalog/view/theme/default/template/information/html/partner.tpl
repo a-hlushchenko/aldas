@@ -369,20 +369,21 @@
 					<form class="form send_n">
 						<h3>Заявка на сотрудничество</h3>
 						<div class="bl5_row"><input type="text" name="name" required placeholder="Ваше имя"></div>
-						<div class="radio-container">
-							<div class='radio-item'>
-								<input type="radio" id="radio-1" name="radio" checked>
-								<div class="radio_button"><img src="/image/svg/radio.svg" alt=""></div>
-								<label for="radio-1">Перезвонить</label>
+						<input type="hidden" name="form_name" value="Заявка на сотрудничество">
+						<div class="bl5_row radio_wrapper">
+							<div class="radio_el">
+							  <input type="radio" id="rad121_4" name="callto" checked="checked" value="Перезвонить">
+							  <label for="rad121_4" onclick="to_tel(this);">Перезвонить</label>
 							</div>
-							<div class='radio-item'>
-								<input type="radio" id="radio-2" name="radio">
-								<div class="radio_button"><img src="/image/svg/radio.svg" alt=""></div>
-								<label for="radio-2">Написать на почту</label>
+							<div class="radio_el">
+							  <input type="radio" id="rad221_4" name="callto" value="Написать на почту">
+							  <label for="rad221_4" onclick="to_email(this);">Написать на почту</label>
 							</div>
 						</div>
-						<div class="bl5_row"><input type="tel" name="tel" required placeholder="Телефон"></div>
-						<div class="bl5_row"><input type="email" name="email" required placeholder="E-mail"></div>
+						  <div class="bl5_row">
+							<input type="tel" name="tel" class="to_tel" required="" placeholder="Телефон" maxlength="16">
+							<input type="email" name="email" class="to_email" placeholder="E-mail" maxlength="16" style="display:none">
+						  </div>
 						<div class="bl5_row"><textarea name="comment" placeholder="Сообщение"></textarea></div>
 						<div class="help hlp2">Прикрепите проект если есть</div>
 						<div class="file">

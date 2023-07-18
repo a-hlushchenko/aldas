@@ -262,12 +262,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
 				<div class="bl5_row radio_wrapper">
 					<div class="radio_el">
-						<input type="radio" id="rad121" name="callto" checked="checked" value="Перезвонить">
-						<label for="rad121" onclick="to_tel(this);">Перезвонить</label>
+						<input type="radio" id="rad121_1" name="callto" checked="checked" value="Перезвонить">
+						<label for="rad121_1" onclick="to_tel(this);">Перезвонить</label>
 					</div>
 					<div class="radio_el">
-						<input type="radio" id="rad221" name="callto" value="Написать на почту">
-						<label for="rad221" onclick="to_email(this);">Написать на почту</label>
+						<input type="radio" id="rad221_1" name="callto" value="Написать на почту">
+						<label for="rad221_1" onclick="to_email(this);">Написать на почту</label>
 					</div>
 				</div>
 				<div class="bl5_row">
@@ -320,12 +320,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
           <div class="bl5_row radio_wrapper">
 				<div class="radio_el">
-					<input type="radio" id="rad121" name="callto" checked="checked" value="Перезвонить">
-					<label for="rad121" onclick="to_tel(this);">Перезвонить</label>
+					<input type="radio" id="rad121_2" name="callto" checked="checked" value="Перезвонить">
+					<label for="rad121_2" onclick="to_tel(this);">Перезвонить</label>
 				</div>
 				<div class="radio_el">
-					<input type="radio" id="rad221" name="callto" value="Написать на почту">
-					<label for="rad221" onclick="to_email(this);">Написать на почту</label>
+					<input type="radio" id="rad221_2" name="callto" value="Написать на почту">
+					<label for="rad221_2" onclick="to_email(this);">Написать на почту</label>
 				</div>
 		  </div>
 			
@@ -355,19 +355,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Оставьте заявку на бесплатную консультацию</h3>
           <div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
           <div class="bl5_row radio_wrapper">
-			<div class="radio_el">
-				<input type="radio" id="rad121" name="callto" checked="checked" value="Перезвонить">
-				<label for="rad121" onclick="to_tel(this);">Перезвонить</label>
-			</div>
-			<div class="radio_el">
-				<input type="radio" id="rad221" name="callto" value="Написать на почту">
-				<label for="rad221" onclick="to_email(this);">Написать на почту</label>
-			</div>
-		</div>
-		  <div class="bl5_row">
-			<input type="tel" name="tel" class="to_tel" required="" placeholder="Телефон" maxlength="16">
-			<input type="email" name="email" class="to_email" placeholder="E-mail" maxlength="16" style="display:none">
-		  </div>
+            <div class="radio_el">
+              <input type="radio" id="rad121_3" name="callto" checked="checked" value="Перезвонить">
+              <label for="rad121_3" onclick="to_tel(this);">Перезвонить</label>
+            </div>
+            <div class="radio_el">
+              <input type="radio" id="rad221_3" name="callto" value="Написать на почту">
+              <label for="rad221_3" onclick="to_email(this);">Написать на почту</label>
+            </div>
+          </div>
+          <div class="bl5_row">
+            <input type="tel" name="tel" class="to_tel" required="" placeholder="Телефон" maxlength="16">
+            <input type="email" name="email" class="to_email" placeholder="E-mail" maxlength="16" style="display:none">
+          </div>
           <div class="bl5_row">
             <input type="submit" value="Оставить заявку" class="btn send button" data-loading-text="<i class=\'fa fa-circle-o-notch fa-spin\'></i> Отправка...">
           </div>
