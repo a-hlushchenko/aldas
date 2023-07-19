@@ -912,9 +912,9 @@
 echo $news;
 ?>
 
-<?php 
+<?php
 //форма - Закажите расчет проекта или вызовите дизайнера-замерщика
-	include( DIR_TEMPLATE . 'default/template/parts/bl5_form.tpl');
+include(DIR_TEMPLATE . 'default/template/parts/bl5_form.tpl');
 ?>
 
 <div class="bl6">
@@ -1007,9 +1007,9 @@ echo $news;
 	</div>
 </div>
 
-<?php 
+<?php
 //Как заказать мебель
-	include( DIR_TEMPLATE . 'default/template/parts/bl9.tpl');
+include(DIR_TEMPLATE . 'default/template/parts/bl9.tpl');
 ?>
 
 

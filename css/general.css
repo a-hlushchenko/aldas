@@ -60,7 +60,7 @@ a:active{color:#0A946B}
 .btn.light:active{box-shadow:inset 0 2px 3px rgba(0,0,0,0.12)}
 .btn:active{background:#13B081;box-shadow:inset 0 2px 3px rgba(0,0,0,0.12)}
 .btn.big{font-size:15px;line-height:22px;padding:15px 22px;border-radius:4px}
-.btn.arrow{padding-right:49px}
+.btn.arrow{padding-right:49px; height: 100%;}
 .btn.arrow svg{margin-left:9px}
 .btn.arrow:after{content:'';position:absolute;background:url(../images/new/svg/arrow_button.svg) right center no-repeat;width:29px;height:20px}
 .btn.light.arrow:after{background:url(../images/new/svg/arrow_button_light.svg) right center no-repeat}
@@ -224,14 +224,7 @@ input:required:focus:invalid, textarea:required:focus:invalid{
 .footer .tel_time{text-align:right}
 .footer .tel{font-weight:700;font-size:15px;line-height:22px;color:#222!important}
 .footer .tel:hover{color:#13B081}
-@media (max-width: 1280px) {
-    /*.main_container{
-        padding: 0 20px;
-    }*/
-    .footer {
-        padding: 0 20px;
-    }
-}
+.footer {padding: 0 20px;}
 @media (max-width: 1100px) {
 .container{padding:0 20px;}
 .footer_menu .container{gap:16px;flex-wrap:wrap}
@@ -578,6 +571,7 @@ h1{font-size:28px}
 h1 {font-size: 28px;}
 h2 {font-size: 24px;}
 h3 {font-size: 21px;}
+.bl4 .h2, .bl7 .h2 {display: flex;flex-direction: column;gap: 12px;}
 }
 
 #pred_zakaz .form_wrapper{
@@ -624,3 +618,5 @@ h3 {font-size: 21px;}
 .bl9_item_name {
     margin-bottom: 0;
 }
+.year {max-width: 370px;}
+@media (max-width:1100px){.year{max-width: none;}}
