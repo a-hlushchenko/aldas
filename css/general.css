@@ -74,7 +74,7 @@ a:active{color:#0A946B}
 .top_menu .search a{height:36px;display:flex;align-items:center;width:36px;justify-content:center;background:rgba(24,199,146,0.1);border-radius:2px}
 .top_menu .search a:hover{background:rgba(24,199,146,0.15);box-shadow:0 9px 16px rgba(47,66,60,0.12)}
 .top_menu .search a:active{background:rgba(24,199,146,0.15);box-shadow:inset 0 2px 3px rgba(0,0,0,0.12);border-radius:4px}
-.h_top{padding:20px 20px 10px;display:flex;align-items:center;justify-content:space-between;font-size:11px;line-height:16px;color:#878585}
+.h_top{padding:20px 0 10px;display:flex;align-items:center;justify-content:space-between;font-size:11px;line-height:16px;color:#878585}
 .h_top .logo{display:flex;align-items:center}
 .h_top .logo img{margin-right:16px}
 .h_top .address{display:flex}
@@ -575,6 +575,9 @@ h1{font-size:28px}
 .footer_menu .container {grid-template-columns: 1fr 1fr;}
 .footer .contact {flex-direction: column;}
 .footer .tel_time {text-align: left;}
+h1 {font-size: 28px;}
+h2 {font-size: 24px;}
+h3 {font-size: 21px;}
 }
 
 #pred_zakaz .form_wrapper{

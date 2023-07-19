@@ -2,7 +2,7 @@
 
 <div class="footer">
 
-	<div class="bl10 container">
+	<div class="bl10">
 		<div class="bl10_wrapper">
 			<a class="menu_footer_r_image" href="">
 				<img src="images/new/bl10_1.jpg" alt="Кухня на заказ">
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<div class="bl11 container">
+	<div class="bl11">
 		<div class="row_title">
 			<h3>Мебель</h3>
 		</div>
