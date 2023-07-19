@@ -620,3 +620,11 @@ h3 {font-size: 21px;}
 }
 .year {max-width: 370px;}
 @media (max-width:1100px){.year{max-width: none;}}
+@media (max-width: 760px){.main_content .sliders .name {font-size: 48px;line-height: 48px;}}
+@media (max-width: 520px){.main_content .sliders .name {max-width: 200px;}}
+.container_m {
+	position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 6;
+}
