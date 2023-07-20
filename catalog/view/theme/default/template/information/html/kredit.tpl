@@ -450,7 +450,7 @@
 					<div class="bl9_wrapper">
 						<div class="bl9_item">
 							<div class="bl9_l">
-								<div class="bl9_item_image"><img src="images/new/bl9_6.png" alt=""></div>
+								<div class="bl9_item_image"><img src="img/bl9_6.jpg" alt=""></div>
 								<div class="bl9_item_number">1</div>
 							</div>
 							<div class="bl9_r">
@@ -472,7 +472,7 @@
 						</div>
 						<div class="bl9_item">
 							<div class="bl9_l">
-								<div class="bl9_item_image"><img src="images/new/bl9_1.jpg" alt=""></div>
+								<div class="bl9_item_image"><img src="img/bl9_8.jpg" alt=""></div>
 								<div class="bl9_item_number">3</div>
 							</div>
 							<div class="bl9_r">
@@ -483,7 +483,7 @@
 						</div>
 						<div class="bl9_item">
 							<div class="bl9_l">
-								<div class="bl9_item_image"><img src="images/new/bl9_7.png" alt=""></div>
+								<div class="bl9_item_image"><img src="images/new/bl9_3.jpg" alt=""></div>
 								<div class="bl9_item_number">4</div>
 							</div>
 							<div class="bl9_r">
@@ -502,19 +502,19 @@
 				<h2 class="black">Способы оплаты за изготовленную нами мебель:</h2>
 				<div class="payment">
 					<div class="payment-item">
-						<img src="images/new/svg/payment1.svg">
+						<img src="img/svg/payment1.svg">
 						<div class="text">
 							<span>Наличными в офисе</span>
 						</div>
 					</div>
 					<div class="payment-item">
-						<img src="images/new/svg/payment2.svg">
+						<img src="img/svg/payment2.svg">
 						<div class="text">
 							<span>перечислением денег на наш банковский счет</span>
 						</div>
 					</div>
 					<div class="payment-item">
-						<img src="images/new/svg/payment3.svg">
+						<img src="img/svg/payment3.svg">
 						<div class="text">
 							<span>Кредитной картой через переносной автомат</span>
 						</div>

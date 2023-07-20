@@ -394,7 +394,7 @@
 					<div class="bl9_wrapper">
 						<div class="bl9_item">
 							<div class="bl9_l">
-								<div class="bl9_item_image"><img src="images/new/bl9_6.png" alt=""></div>
+								<div class="bl9_item_image"><img src="img/bl9_6.jpg" alt=""></div>
 								<div class="bl9_item_number">1</div>
 							</div>
 							<div class="bl9_r">
@@ -427,7 +427,7 @@
 						</div>
 						<div class="bl9_item">
 							<div class="bl9_l">
-								<div class="bl9_item_image"><img src="images/new/bl9_7.png" alt=""></div>
+								<div class="bl9_item_image"><img src="img/bl9_7.jpg" alt=""></div>
 								<div class="bl9_item_number">4</div>
 							</div>
 							<div class="bl9_r">

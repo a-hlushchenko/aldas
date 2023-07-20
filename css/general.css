@@ -628,3 +628,8 @@ h3 {font-size: 21px;}
     background-color: white;
     z-index: 6;
 }
+@media all and (width < 420px) {
+	.form .file input {
+		padding: 11px 14px;
+	}
+}

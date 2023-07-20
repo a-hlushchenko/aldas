@@ -469,32 +469,32 @@
 					<p>Мы не стремимся открывать множество салонов, так как это в значительной степени сказывается на себестоимости мебели.</p>
 					<p>Использование современных технологий вкупе с жесткой оптимизацией всех этапов работы и высокий профессионализм наших сотрудников позволяют нам избегать излишних затрат, как финансовых, так и временных, поэтому мы предлагаем наши гарнитуры по весьма и весьма приятным ценам.</p>
 				</div>
-				<img src="/image/price.png" alt="img">
+				<img src="/img/about-price.jpg" alt="img">
 			</div>
 			<div class="price-blocks">
 				<div class="price-block-container">
 					<div class="price-block">
-						<img src="/image/svg/price1.svg" alt="img">
+						<img src="/img/svg/price-1.svg" alt="img">
 						<div>Меньше салонов</div>
 					</div>
-					<img src="/image/svg/price-plus.svg" alt="+">
+					<img src="/img/svg/plus.svg" alt="+">
 				</div>
 				<div class="price-block-container">
 					<div class="price-block">
-						<img src="/image/svg/price2.svg" alt="img">
+						<img src="/img/svg/price-2.svg" alt="img">
 						<div>Меньше персонала<br> в салонах</div>
 					</div>
-					<img src="/image/svg/price-plus.svg" alt="+">
+					<img src="/img/svg/plus.svg" alt="+">
 				</div>
 				<div class="price-block-container">
 					<div class="price-block">
-						<img src="/image/svg/price3.svg" alt="img">
+						<img src="/img/svg/price-3.svg" alt="img">
 						<div>Интернет технологии</div>
 					</div>
-					<img src="/image/svg/price-arrow.svg" alt="=">
+					<img src="/img/svg/arrow.svg" alt="=">
 				</div>
 				<div class="price-block">
-					<img src="/image/svg/price4.svg" alt="img">
+					<img src="/img/svg/price-4.svg" alt="img">
 					<div>Минимальная цена!</div>
 				</div>
 			</div>
@@ -503,12 +503,12 @@
 		<div class="advant">
 
 			<div class="advant-item">
-				<img src="/image/svg/advant1.svg">
+				<img src="/img/svg/advant1.svg">
 				<span>Гарантия 5 лет</span>
 			</div>
 
 			<div class="advant-item">
-				<img src="/image/svg/advant2.svg">
+				<img src="/img/svg/advant2.svg">
 				<div class="advant-content">
 					<span>Индивидуальный 3D дизайн</span>
 					<a href="dizain-kyhni/" title="Индивидуальный 3D дизайн">Подробнее</a>
@@ -516,7 +516,7 @@
 			</div>
 
 			<div class="advant-item">
-				<img src="/image/svg/advant3.svg">
+				<img src="/img/svg/advant3.svg">
 				<div class="advant-content">
 					<span>Рассрочка 0% до 12 месяцев</span>
 					<a href="kuhni-v-rassrochku/" title="Рассрочка 0% до 12 месяцев">Подробнее</a>
