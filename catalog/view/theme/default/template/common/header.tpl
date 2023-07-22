@@ -40,7 +40,7 @@
 <script async type="text/javascript" src="https://www.aldas.ru/catalog/view/javascript/current-device.min.js"></script> -->
 <link rel="stylesheet" href="/catalog/view/theme/default/font/stylesheet.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
-<link rel="stylesheet" href="css/general.css"/>
+<link rel="stylesheet" href="css/general.css?v1"/>
 <link rel="stylesheet" href="js/mobile-menu/jquery.mobile-menu.css"/>
 
 <link rel="manifest" href="/catalog/view/javascript/manifest.json">
