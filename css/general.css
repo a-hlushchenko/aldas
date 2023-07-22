@@ -157,7 +157,7 @@ input:required:focus:invalid, textarea:required:focus:invalid{
 .form .file{display:flex;background:#fff;padding:16px;margin-bottom:20px}
 .form .file input{margin:0;padding:11px 20px;line-height:18px}
 .form input[type="submit"]{font-size:15px;line-height:22px;padding:15px 32px}
-.container_form{display:none;max-width:867px;min-height:422px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999;background:#F7F7F7;overflow:auto;border-radius:8px;height: 85vh;}
+.container_form{display:none;max-width:867px;min-height:422px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999;background:#F7F7F7;overflow:auto;border-radius:8px;max-height: 85vh;}
 .container_form.active{display:block;}
 .form_close{position:absolute;right:0;top:0;width:36px;height:36px;padding:0;cursor:pointer}
 .form_close svg{position:absolute;top:50%;left:50%;transform:translateX(-50%) translateY(-50%)}
@@ -635,13 +635,21 @@ h3 {font-size: 21px;}
 	}
 }
 
+.form_wrapper {
+    min-height: auto;
+}
+#call_design, #consultation {
+    min-height: auto;
+}
+
 @media all and (width < 960px) {
     .form_left {
         display: none;
     }
     #call_design, #consultation {
-        width: 85%;
+        max-width: 85%;
     }
+    
     .form_right {
         padding: 24px;
         max-width: none;

@@ -796,7 +796,7 @@
 						<div class="s_right">
 							<div class="s_title">Посмотри на свою мебель в реальном времени</div>
 							<div class="s_help">Мы сделаем для вас бесплатный 3D фотореалистичный дизайн</div>
-							<a href="" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
+							<a href="dizain-mebel/" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
 						</div>
 					</div>
 					<div class="swiper-slide">
@@ -804,7 +804,7 @@
 						<div class="s_right">
 							<div class="s_title">Посмотри на свою мебель в реальном времени</div>
 							<div class="s_help">Мы сделаем для вас бесплатный 3D фотореалистичный дизайн</div>
-							<a href="" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
+							<a href="dizain-mebel/" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
 						</div>
 					</div>
 					<div class="swiper-slide">
@@ -812,7 +812,7 @@
 						<div class="s_right">
 							<div class="s_title">Посмотри на свою мебель в реальном времени</div>
 							<div class="s_help">Мы сделаем для вас бесплатный 3D фотореалистичный дизайн</div>
-							<a href="" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
+							<a href="dizain-mebel/" class="s_more">Подробнее <img src="images/new/svg/arrow_button_light.svg" alt=""></a>
 						</div>
 					</div>
 

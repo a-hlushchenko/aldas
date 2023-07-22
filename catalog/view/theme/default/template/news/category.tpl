@@ -17,7 +17,9 @@
   }
 
   h1 {
+    font-size: 32px;
     margin-bottom: 24px;
+    color: #222;
   }
 
   h4 {
@@ -81,6 +83,146 @@
     margin-top: 48px;
   }
 
+  .review {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 48px;
+    background-color: #F7F7F7;
+    border-radius: 8px;
+    gap: 48px;
+    width: 85%;
+    margin: 0 auto;
+    max-width: 1220px;
+    box-sizing: border-box;
+    align-items: center;
+    max-height: 85vh;
+    overflow: auto;
+    
+  }
+
+  .review-content {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .review-author strong {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .review-date {
+    color: #878585;
+    font-size: 15px;
+  }
+
+  .review-content-bottom {
+    font-size: 15px;
+    color: #222;
+    line-height: 150%;
+  }
+
+  .review-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .review-right .swiper {
+    max-width: 540px;
+  }
+
+  .review-right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .review-right-content strong {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .review-right-content p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #878585;
+    line-height: 150%;
+  }
+
+  @media all and (width < 1300px) {
+    .review .swiper {
+      max-width: 480px;
+    }
+  }
+
+  @media all and (width < 1220px) {
+    .review .swiper {
+      max-width: 440px;
+    }
+  }
+
+  @media all and (width < 1160px) {
+    .review .swiper {
+      max-width: 420px;
+    }
+    .review-content p {
+      font-size: 14px;
+      line-height: 130%;
+    }
+  }
+
+  @media all and (width < 1160px) {
+    .review {
+      display: flex;
+      flex-direction: column;
+    }
+    .review .swiper {
+      max-width: 100%;
+    }
+    .review-content p {
+      font-size: 15px;
+      line-height: 150%;
+    }
+  }
+
+  @media all and (width < 800px) {
+    .review {
+      padding: 24px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+  }
+  @media all and (width < 500px) {
+    .review {
+      padding: 16px;
+    }
+    h1 {
+      font-size: 21px;
+    }
+    .review-content p {
+      font-size: 14px;
+      line-height: 150%;
+    }
+  }
+
   @media (max-width: 920px) {
       .all-reviews {
       grid-template-columns: repeat(3, 1fr);
@@ -113,6 +255,8 @@
     .caption .descrip {
       font-weight: 13px;
     }
+
+    
   }
 
 
@@ -278,5 +422,79 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+
+<div class="review">
+
+  <div class="review-left">
+    <h1>Книжный шкаф в спальню | Отзыв 131/20</h1>
+    <div class="review-content">
+
+      <div class="review-top">
+
+        <div class="review-author">
+          <img src="/img/svg/review-icon.svg" alt="">
+          <strong>Юлия М.</strong>
+        </div>
+
+        <div class="review-date">19.08.2020</div>
+
+      </div>
+
+      <p class="review-content-bottom">Наконец, дошли руки написать отзыв. Сказать, что я довольна, ни сказать ничего. Просто кухня мечты. Долго искали компанию, которая будет заниматься обустройством нашей кухни и совершенно случайно наткнулись на вашу компанию. Решили поговорить, посмотреть, что смогут предложить нам под нашу не стандартную кухню. Ребята разработали нам проект, увидев его, я ахнула. Он так сильно запал мне в душу, решили незамедлительно заказывать. Честно, ожидание мне казалось вечностью, но все было изготовлено в срок. Привезли, установили, подключили подсветку. Как же это красиво, удобно, функционально. Безмерно вас благодарим.</p>
+    
+    </div>
+  </div>
+
+  <div class="review-right">
+
+    <div class="swiper">
+      <div id="tehnika" class="">
+        <div class="swiper-wrapper">
+          <div class="item swiper-slide first-img-container">
+            <img src="images/onas/3d2.jpg">
+          </div>
+          <div class="item swiper-slide">
+            <img src="images/onas/3d3.jpg">
+          </div>
+          <div class="item swiper-slide">
+            <img src="images/onas/3d4.jpg">
+          </div>
+          <div class="item swiper-slide">
+            <img src="images/onas/3d5.jpg">
+          </div>
+
+        </div>
+        <div class="button-next"></div>
+        <div class="button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <div class="review-right-content">
+      <strong>В проекте:</strong>
+      <p>фотографии готового проекта большой кухни из МДФ с патиной золото, лак высокий глянец. Покрытие 12 слоев ЛКМ</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var swiper = new Swiper("#tehnika", {
+			paginationClickable: true,
+			slidesPerView: 1,
+
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".button-next",
+				prevEl: ".button-prev",
+			},
+		});
+	});
+</script>
 
 <?php echo $footer; ?>
