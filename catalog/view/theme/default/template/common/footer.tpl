@@ -4,17 +4,17 @@
 
 	<div class="bl10">
 		<div class="bl10_wrapper">
-			<a class="menu_footer_r_image" href="">
+			<a class="menu_footer_r_image" href="katalog/">
 				<img src="images/new/bl10_1.jpg" alt="Кухня на заказ">
 				<span class="shadow"></span>
 				<div class="img_text">Кухня на заказ</div>
 			</a>
-			<a class="menu_footer_r_image" href="">
+			<a class="menu_footer_r_image" href="#consultation" data-modal="consultation">
 				<img src="images/new/bl10_2.jpg" alt="Кухня по своему проекту">
 				<span class="shadow"></span>
-				<div class="img_text">Кухня по своему проекту</div>
+				<div class="img_text">Мебель по своему проекту</div>
 			</a>
-			<a class="menu_footer_r_image" href="">
+			<a class="menu_footer_r_image" href="#call_design" data-modal="call_design">
 				<img src="images/new/bl10_3.jpg" alt="Вызвать дизайнера-замерщика">
 				<span class="shadow"></span>
 				<div class="img_text">Вызвать дизайнера-замерщика</div>
@@ -60,13 +60,13 @@
 		<a class="politic" href="privacypolicy/">Политика <wbr>конфиденциальности</a>
 		<div class="address">
 			<img src="images/new/svg/location.svg" alt="Алдас">
-			<div>Новорязанское ш., 1а <wbr>(ТЦ«Колибри», 2-ой этаж)</div>
+			<div>2-й Грайвороновский проезд, 44 к2 <wbr>(Посещение по записи)</div>
 		</div>
 		<div class="tel_time">
 			<div class="time">Ежедневно с 09:00 до 20:00</div>
 			<a href="tel:+7 (499) 347-12-27" class="tel roistat">+7 (499) 347-12-27</a>
 		</div>
-		<a href="" class="btn light">Заказать консультацию</a>
+		<a href="#consultation" data-modal="consultation" class="btn light">Заказать консультацию</a>
 	</div>
 </div>
 </div>

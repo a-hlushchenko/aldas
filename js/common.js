@@ -50,15 +50,17 @@ document.addEventListener('DOMContentLoaded', function () {
 				$('body').removeClass('active_menu');
 			}
 		}
-
+		console.log('mouseup');
 		if ($('[data-modal]').hasClass('active')) {
-			$(this).removeClass('active');
-			$('#' + $(this).attr('href')).removeClass('active');
+			var container = $(".container_form.active");
+			if (container.has(e.target).length === 0) {
+				$(container).find('.form_close').click();
+			}
 		}
 	});
 
 	$('[data-modal]').on('click', function (event) {
-		console.log('ok');
+		//console.log('ok');
 		event.preventDefault();
 		$('body').addClass('active_form');
 		$(this).addClass('active');

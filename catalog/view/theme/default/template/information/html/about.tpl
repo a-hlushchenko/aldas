@@ -511,7 +511,7 @@
 				<img src="/img/svg/advant2.svg">
 				<div class="advant-content">
 					<span>Индивидуальный 3D дизайн</span>
-					<a href="dizain-kyhni/" title="Индивидуальный 3D дизайн">Подробнее</a>
+					<a href="dizain-mebel/" title="Индивидуальный 3D дизайн">Подробнее</a>
 				</div>
 			</div>
 
@@ -519,7 +519,7 @@
 				<img src="/img/svg/advant3.svg">
 				<div class="advant-content">
 					<span>Рассрочка 0% до 12 месяцев</span>
-					<a href="kuhni-v-rassrochku/" title="Рассрочка 0% до 12 месяцев">Подробнее</a>
+					<a href="mebel-v-rassrochku/" title="Рассрочка 0% до 12 месяцев">Подробнее</a>
 				</div>
 			</div>
 		</div>

@@ -416,6 +416,10 @@
 		line-height: 22px
 	}
 
+	.bl4 .swiper .button-next,.bl4 .swiper .button-prev {
+		top: 35%;
+	}
+
 	@media (max-width: 1090px) {
 		.bl2_wrapper {
 			gap: 72px;
@@ -823,7 +827,7 @@
 <div class="container bl1">
 	<div class="h1 dflex">
 		<h1 class="before_green">Мебель на заказ от производителя</h1>
-		<a href="" class="btn arrow">О нас</a>
+		<a href="about/" class="btn arrow">О нас</a>
 	</div>
 	<div class="steps dflex">
 		<div class="step st1">

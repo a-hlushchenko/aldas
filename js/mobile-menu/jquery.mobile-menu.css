@@ -35,6 +35,8 @@ overflow: hidden;
 }
 
 #mobile-menu {
+  height: 100%!important;
+  overflow: auto!important;
   position: fixed;
   top: 0;
   background: #f9f9f9;
@@ -112,6 +114,12 @@ overflow: hidden;
   cursor: pointer;
   display: none;
   float: left;
+}
+
+@media all and (width < 880px) {
+  .mm-toggle {
+    display: block;
+  }
 }
 
 @media (max-width: 767px) {

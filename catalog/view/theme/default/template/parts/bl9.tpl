@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="h2 dflex">
 			<h2 class="before_green">Как заказать мебель</h2>
-			<a href="" class="btn arrow">Вызвать замерщика</a>
+			<a href="#call_design" data-modal="call_design" class="btn arrow">Вызвать замерщика</a>
 		</div>
 		<div class="bl9_wrapper">
 			<div class="bl9_item">

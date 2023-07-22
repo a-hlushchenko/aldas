@@ -170,7 +170,7 @@
 							<a class="phone" href="tel:84999554090">8-499-955-40-90</a>
 							<a class="mail" href="mailto:info@aldas.ru" target="_blank"> info@aldas.ru</a>
 							<div class="city">Москва, 2-й Грайвороновский проезд, 44 к2</div>
-							<div class="description">На территории ТЦ бесплатная парковка</div>
+							<div class="description">ПОСЕЩЕНИЕ СТРОГО ПО ЗАПИСИ</div>
 							<img class="photo" src="/img/salon1.jpg" />
 						</div>
 						<img src="/img/map.jpg" alt="map" class="map">

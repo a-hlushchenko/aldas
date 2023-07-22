@@ -402,7 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </li>
 
-      <li>
+      <li class="links">
         <a href="#" class="kitchen" >Кухни </a>
         <ul>
           <li>
@@ -465,24 +465,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </ul>
           </li>
           <li>
-            <a href="" class="btn btnk">Кухни на заказ</a>
+            <a href="/katalog/" class="btn btnk">Кухни на заказ</a>
           </li>
           <li>
-            <a class="menu_footer_r_image" href="">
+            <a class="menu_footer_r_image" href="#consultation" data-modal="consultation">
               <img src="images/new/svg/menu_footer_r_image.jpg" alt="Кухня по своему проекту">
               <div class="shadow"></div>
-              <div class="img_text">Кухня по своему проекту</div>
+              <div class="img_text">Мебель по своему проекту</div>
             </a>
           </li>
         </ul>
       </li>
-      <li><a href="#">Шкафы</a></li>
-      <li><a href="#">Прихожие</a></li>
-      <li><a href="#">Спальни</a></li>
-      <li><a href="#">Детские</a></li>
-      <li><a href="#">Гостиные</a></li>
-      <li><a href="#">Гардеробные</a></li>
-      <li><a href="#">Кабинеты</a></li>
+      <li><a href="/shkafy/">Шкафы</a></li>
+      <li><a href="/prihozhie/">Прихожие</a></li>
+      <li><a href="/mebel-dlya-spalni/">Спальни</a></li>
+      <li><a href="/gostinyie/">Детские</a></li>
+      <li><a href="/gostinyie/">Гостиные</a></li>
+      <li><a href="/garderobnyie/">Гардеробные</a></li>
+      <li><a href="/kabinety/">Кабинеты</a></li>
 
 
     </ul>
@@ -535,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="address">
               <img src="images/new/svg/location.svg" alt="Алдас">
-              <div>Новорязанское ш., 1а<br>(ТЦ«Колибри», 2-ой этаж)</div>
+              <div>2-й Грайвороновский проезд, 44 к2<br>(Посещение по записи)</div>
             </div>
             <a href="#call_design" data-modal="call_design" class="call_design btn light">
               <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="7.5" cy="7" r="6" stroke="#18C792" stroke-width="2"/> <circle cx="7.5" cy="7" r="2" stroke="#18C792" stroke-width="2"/> <rect x="7.5" y="12" width="10" height="2" fill="#18C792"/> <rect x="16.5" y="10" width="2" height="4" fill="#18C792"/> </svg>

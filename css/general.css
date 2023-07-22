@@ -1,3 +1,8 @@
+:root {
+    scroll-behavior: smooth;
+}
+
+
 @font-face{font-family:'Gotham Pro';src:url(GothamPro-BoldItalic.eot);src:local('Gotham Pro Bold Italic'),local(GothamPro-BoldItalic),url(../font/GothamPro-BoldItalic.eot?#iefix) format("embedded-opentype"),url(../font/GothamPro-BoldItalic.woff) format("woff"),url(../font/GothamPro-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}
 @font-face{font-family:'Gotham Pro';src:url(GothamPro-Italic.eot);src:local('Gotham Pro Italic'),local(GothamPro-Italic),url(../font/GothamPro-Italic.eot?#iefix) format("embedded-opentype"),url(../font/GothamPro-Italic.woff) format("woff"),url(../font/GothamPro-Italic.ttf) format("truetype");font-weight:400;font-style:italic}
 @font-face{font-family:'Gotham Pro';src:url(GothamPro-Medium.eot);src:local('Gotham Pro Medium'),local(GothamPro-Medium),url(../font/GothamPro-Medium.eot?#iefix) format("embedded-opentype"),url(../font/GothamPro-Medium.woff) format("woff"),url(../font/GothamPro-Medium.ttf) format("truetype");font-weight:500;font-style:normal}
@@ -152,7 +157,7 @@ input:required:focus:invalid, textarea:required:focus:invalid{
 .form .file{display:flex;background:#fff;padding:16px;margin-bottom:20px}
 .form .file input{margin:0;padding:11px 20px;line-height:18px}
 .form input[type="submit"]{font-size:15px;line-height:22px;padding:15px 32px}
-.container_form{display:none;max-width:867px;min-height:422px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999;background:#F7F7F7;overflow:hidden;border-radius:8px}
+.container_form{display:none;max-width:867px;min-height:422px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:999;background:#F7F7F7;overflow:auto;border-radius:8px;height: 85vh;}
 .container_form.active{display:block;}
 .form_close{position:absolute;right:0;top:0;width:36px;height:36px;padding:0;cursor:pointer}
 .form_close svg{position:absolute;top:50%;left:50%;transform:translateX(-50%) translateY(-50%)}
@@ -519,8 +524,10 @@ h1{font-size:28px}
 .mobile-menu .menu_footer_r_image{padding-left:0;padding-bottom:0}
 .mobile-menu .btnk{color:#FFF;padding-left:10px}
 .mm-toggle-wrap{position:absolute}
+@media all and (width < 1140px) {
+    .consultation{display:none}
+}
 @media (max-width: 1100px) {
-.consultation{display:none}
 .sliders{flex-direction:column}
 .mainSwiper{width:100%}
 .mainSwiper .swiper-slide,.mainSwiper img{border-radius:0}
@@ -618,18 +625,32 @@ h3 {font-size: 21px;}
 .bl9_item_name {
     margin-bottom: 0;
 }
-.year {max-width: 370px;}
+.year {max-width: 310px;}
 @media (max-width:1100px){.year{max-width: none;}}
 @media (max-width: 760px){.main_content .sliders .name {font-size: 48px;line-height: 48px;}}
 @media (max-width: 520px){.main_content .sliders .name {max-width: 200px;}}
-.container_m {
-	position: sticky;
-    top: 0px;
-    background-color: white;
-    z-index: 6;
-}
 @media all and (width < 420px) {
 	.form .file input {
 		padding: 11px 14px;
 	}
+}
+
+@media all and (width < 960px) {
+    .form_left {
+        display: none;
+    }
+    #call_design, #consultation {
+        width: 85%;
+    }
+    .form_right {
+        padding: 24px;
+        max-width: none;
+        width: 100%;
+    }
+}
+@media all and (width < 420px) {
+    .radio_wrapper label {
+        font-size: 11px;
+        padding: 12px 0px 12px 34px;
+    }
 }
