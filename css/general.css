@@ -228,7 +228,7 @@ input:required:focus:invalid, textarea:required:focus:invalid{
 .footer .contact a{color:#878585}
 .footer .contact .btn.light{color:#18C792}
 .footer a:hover{color:#13B081}
-.footer .address{display:flex;white-space:nowrap}
+.footer .address{display:flex;}
 .footer .address img{margin-right:8px}
 .footer .tel_time{text-align:right}
 .footer .tel{font-weight:700;font-size:15px;line-height:22px;color:#222!important}
