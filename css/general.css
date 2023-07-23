@@ -336,6 +336,8 @@ input:required:focus:invalid, textarea:required:focus:invalid{
 }
 @media (max-width: 480px) {
 .bl3{padding:24px 0;margin-bottom:40px}
+.footer .contact .year{width:100%;}
+.footer .contact .politic{width:100%;}
 }
 
 .bl5{margin-bottom: 80px;}
