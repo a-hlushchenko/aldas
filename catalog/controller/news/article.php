@@ -579,16 +579,16 @@ class ControllerNewsArticle extends Controller
 
 		$this->load->model('news/category');
 
-		if (isset($this->request->get['news_path'])) {
+		/*if (isset($this->request->get['news_path'])) {
 			$path = '';
 
 			$parts = explode('_', (string)$this->request->get['news_path']);
 
-			$category_id = (int)array_pop($parts);
+			//$category_id = (int)array_pop($parts);
 
 			// Set the last category breadcrumb
-			$category_info = $this->model_news_category->getCategory($category_id);
-		}
+			//$category_info = $this->model_news_category->getCategory($category_id);
+		}*/
 
 
 		if (isset($this->request->post['article_id'])) {
@@ -603,12 +603,12 @@ class ControllerNewsArticle extends Controller
 
 		if ($article_info) {
 
-			$this->document->setTitle($article_info['name']);
+			/*$this->document->setTitle($article_info['name']);
 			$this->document->setDescription($article_info['meta_description']);
 			$this->document->setKeywords($article_info['meta_keyword']);
 			$this->document->addLink($this->url->link('news/article', 'article_id=' . $this->request->post['article_id']), 'canonical');
 			$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
-			$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+			$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');*/
 			//$this->document->addStyle('catalog/controller/news/news_stylesheet.css');
 
 			$data['heading_title'] = $article_info['name'];
@@ -647,7 +647,7 @@ class ControllerNewsArticle extends Controller
 			$this->load->model('tool/image');
 
 			if ($article_info['image']) {
-				$data['thumb'] = $this->model_tool_image->resize($article_info['image'], $this->config->get('news_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+				$data['thumb'] = $this->model_tool_image->resize($article_info['image'], 648, 500, 'wh');
 			} else {
 				$data['thumb'] = '';
 			}
@@ -701,7 +701,7 @@ class ControllerNewsArticle extends Controller
 				$data['images'][] = array(
 					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
 					//'popup2' => 'image/'.$result['image'],
-					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'), 'wh'),
+					'thumb' => $this->model_tool_image->resize($result['image'], 648, 500, 'wh'),
 					//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'full')
 				);
 			}

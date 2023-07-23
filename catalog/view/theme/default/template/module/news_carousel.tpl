@@ -8,7 +8,7 @@
         <div class="swiper bl4_wrapper">
           <div class="swiper-wrapper">
             <?php foreach ($articles as $article) { ?>
-              <a class="swiper-slide" href="<?php echo $article['link']; ?>" alt="<?php echo $article['title']; ?>" >
+              <div class="swiper-slide caption" data-id="<?php echo $article['article_id']; ?>">
                 <img class="quote" src="images/new/quote.svg" alt="quote">
                 <img class="image" src="<?php echo $article['image']; ?>" alt="<?php echo $article['title']; ?>"/>
                 <div class="info">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="name"><?php echo $article['title']; ?></div>
                 <div class="text"><?php echo $article['description']; ?></div>
-            </a>
+              </div>
             <?php } ?>
             
           </div>

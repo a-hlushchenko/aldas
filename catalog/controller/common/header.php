@@ -3,6 +3,8 @@ class ControllerCommonHeader extends Controller
 {
 	public function index()
 	{
+		$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+		$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
 		/*echo "<pre>";
 		print_r($_SERVER);
 		echo "</pre>";*/

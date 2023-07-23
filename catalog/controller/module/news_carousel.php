@@ -30,6 +30,7 @@ class ControllerModuleNewsCarousel extends Controller {
 				
 			//if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['articles'][] = array(
+					'article_id' => $result['article_id'],
 					'title' => $result['name'],
 					'autor' => $result['autor'],
 					'link'  => $this->url->link('news/article', 'article_id=' . $result['article_id']),

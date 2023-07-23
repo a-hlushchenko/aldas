@@ -83,6 +83,45 @@
 	</div>
 </div>
 <a href="#otzyv" data-modal="otzyv"></a>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		$('.caption').on('click', function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url: 'index.php?route=news/article/get_article',
+				type: 'POST',
+				data: {
+					article_id: $(this).data('id'),
+				},
+				success: function(json) {
+					console.log(json);
+					if (json['html']) {
+						$('#otzyv .otzyv_content').html(json['html']);
+						$('[data-modal="otzyv"]').click();
+						var swiper = new Swiper("#otzyv_swiper", {
+						paginationClickable: true,
+						slidesPerView: 1,
+
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+						navigation: {
+							nextEl: ".button-next",
+							prevEl: ".button-prev",
+						},
+						});
+
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		});
+	});
+</script>
 
 <link href="/catalog/view/javascript/nice-select2/css/nice-select2.css" rel="stylesheet" />
 <link href="/catalog/view/javascript/datatables/datatables.min.css" rel="stylesheet" />
