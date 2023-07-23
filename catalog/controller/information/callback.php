@@ -1306,7 +1306,8 @@ class ControllerInformationCallback extends Controller
 			$mail->send();
 			$mail->setTo('gdemonm@gmail.com');
 			$mail->send();
-			//$this->createLeadAmocrm($this->request->post, $subject, $text);
+			$this->log->write(print_r($mail, 1));
+			$this->createLeadAmocrm($this->request->post, $subject, $text);
 
 			$emails = explode(',', $this->config->get('config_mail_alert'));
 
