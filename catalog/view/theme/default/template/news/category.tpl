@@ -88,7 +88,42 @@
 		margin-top: 48px;
 	}
 
-	
+	@media (max-width: 920px) {
+		.all-reviews {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.caption a {
+			font-size: 16px;
+			font-weight: 500;
+		}
+
+		.caption .descrip {
+			font-weight: 13px;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.all-reviews {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.caption .descrip {
+			font-weight: 13px;
+		}
+	}
+
+	@media (max-width: 450px) {
+		.all-reviews {
+			grid-template-columns: 1fr;
+		}
+
+		.caption .descrip {
+			font-weight: 13px;
+		}
+
+
+	}
 </style>
 <ul class="breadcrumbs container">
 	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
