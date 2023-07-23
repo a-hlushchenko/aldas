@@ -712,6 +712,7 @@ h3 {font-size: 21px;}
     font-size: 15px;
     color: #222;
     line-height: 150%;
+    position: relative;
 }
 
 .review-top {
@@ -888,4 +889,21 @@ h3 {font-size: 21px;}
 
 .review-content p {
     margin: 12px 0 0;
+}
+
+.active_form {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.review-content .img1 {
+    position: absolute;
+    top: -13px;
+    left: 20px;
+}
+
+.review-content .img2 {
+    position: absolute;
+    bottom: -28px;
+    right: 12px;
 }

@@ -3,6 +3,8 @@
 	<div class="review-left">
 		<h1><?php echo $heading_title; ?></h1>
 		<div class="review-content">
+			<img src="/img/svg/q.svg" alt="" class="img1">
+			<img src="/img/svg/q-2.svg" alt="" class="img2">
 
 			<div class="review-top">
 
