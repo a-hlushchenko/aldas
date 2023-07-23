@@ -275,7 +275,7 @@
 			<div class="form_left"></div>
 			<div class="form_right">
 				<form class="form send_n call_raschet">
-
+					<input type="hidden" name="form_name" value="Рассчитать проект">
 					<h3>Рассчитать проект</h3>
 					<!--<div class="help">Бесплатный вызов специалиста для точного замера помещения, консультации и составления дизайн-проекта мебели.</div>-->
 					<div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
@@ -340,6 +340,7 @@
 			<div class="form_left"></div>
 			<div class="form_right">
 				<form class="form send_n">
+					<input type="hidden" name="form_name" value="Заявка на вызов замерщика">
 					<h3>Оставьте заявку на вызов замерщика</h3>
 					<div class="help">Бесплатный вызов специалиста для точного замера помещения, консультации и составления дизайн-проекта мебели.</div>
 					<div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
@@ -379,7 +380,8 @@
 				</svg></div>
 			<div class="form_left"></div>
 			<div class="form_right">
-				<form class="form">
+				<form class="form send_n">
+					<input type="hidden" name="form_name" value="Заявка на бесплатную консультацию">
 					<h3>Оставьте заявку на бесплатную консультацию</h3>
 					<div class="bl5_row"><input type="text" name="name" required="" placeholder="Ваше имя"></div>
 					<div class="bl5_row radio_wrapper">
