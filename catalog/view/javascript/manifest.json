@@ -6,7 +6,7 @@
   "display": "standalone",
   "description": "Кухни на заказ по индивидуальным размерам: Российское производство, итальянское качество!",
   "background_color": "#ffffff",
-  "theme_color": "#c6a38a",
+  "theme_color": "#18c7921a",
   "icons": [
     {
       "src": "/images/logo/48x48.png",
