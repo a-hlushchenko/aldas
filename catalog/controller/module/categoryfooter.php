@@ -85,11 +85,6 @@ class ControllerModuleCategoryFooter extends Controller
 		);
 
 
-
-
-
-
-
 		$data['categories'] = array();
 
 		//if($route=='common/home'){
@@ -100,8 +95,9 @@ class ControllerModuleCategoryFooter extends Controller
 
 		$data['image'] = 'image/catalog/categories/catalog.jpg';
 
-		$categories = include_once(__DIR__  . '/data/menu.php');
-		$data['categories'] = $categories;
+		include_once(__DIR__  . '/data/menu.php');
+
+		$data['categories'] = getCategories();
 		$data['categories_push'] = $data['categories'];
 		//vdump(__DIR__  . '/data/menu.php');
 		//vdump($data['categories']);

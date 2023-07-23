@@ -203,16 +203,6 @@
 		flex-basis: calc(25% - (12px * 2)/5);
 	}
 
-	.information-new {
-		padding: 0 20px;
-	}
-
-	@media (max-width: 1100px) {
-		.information-new {
-			padding: 0;
-		}
-	}
-
 	.installment {
 		display: flex;
 		gap: 48px;
@@ -382,25 +372,26 @@
 		}
 	}
 </style>
+<ul class="breadcrumbs container">
+	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
+		<?php if ($breadcrumb['href']) { ?>
+			<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-1">
+				<a href="http://aldas.ru/" itemprop="url">
+					<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+				</a>
+			</li>
+		<?php } else { ?>
+			<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" id="breadcrumb-2">
+				<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+			</li>
+		<?php } ?>
+	<?php } ?>
+</ul>
 <div class="container information-new">
 
 	<?php echo $content_top; ?>
 
-	<ul class="breadcrumbs">
-		<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
-			<?php if ($breadcrumb['href']) { ?>
-				<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-1">
-					<a href="http://aldas.ru/" itemprop="url">
-						<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
-					</a>
-				</li>
-			<?php } else { ?>
-				<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" id="breadcrumb-2">
-					<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
-				</li>
-			<?php } ?>
-		<?php } ?>
-	</ul>
+
 
 	<div id="content" class="info">
 
@@ -408,7 +399,7 @@
 		<div class="container">
 			<h1>КУХНИ В РАССРОЧКУ БЕЗ ПРОЦЕНТОВ</h1>
 		</div>
-		<div class="container text-center">
+		<div class=" text-center">
 			<div class="">
 				<div class="installment">
 					<div class="installment-left">
@@ -443,7 +434,7 @@
 
 
 			<div class="bl9">
-				<div class="container">
+				<div class="">
 					<div class="h2">
 						<h2>Как это происходит</h2>
 					</div>

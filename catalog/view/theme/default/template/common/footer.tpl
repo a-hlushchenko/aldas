@@ -71,6 +71,19 @@
 </div>
 </div>
 
+<div id="otzyv" class="container_form">
+	<div class="form_wrapper">
+		<div class="form_close btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L9 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path>
+				<path d="M9 1L1 9" stroke="#18C792" stroke-width="2" stroke-linecap="round"></path>
+			</svg></div>
+		<div class="form_center otzyv_content">
+
+		</div>
+	</div>
+</div>
+<a href="#otzyv" data-modal="otzyv"></a>
+
 <link href="/catalog/view/javascript/nice-select2/css/nice-select2.css" rel="stylesheet" />
 <link href="/catalog/view/javascript/datatables/datatables.min.css" rel="stylesheet" />
 

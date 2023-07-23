@@ -1,8 +1,10 @@
 <?php
-class ControllerNewsArticle extends Controller {
+class ControllerNewsArticle extends Controller
+{
 	private $error = array();
 
-	public function index() {
+	public function index()
+	{
 		$this->load->language('news/article');
 
 		$data['breadcrumbs'] = array();
@@ -64,11 +66,11 @@ class ControllerNewsArticle extends Controller {
 
 				$data['breadcrumbs'][] = array(
 					'text'      => $category_info['name'],
-					'href'      => $this->url->link('news/category', 'news_path=' . $this->request->get['news_path'].$url),
+					'href'      => $this->url->link('news/category', 'news_path=' . $this->request->get['news_path'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
-		}		
+		}
 
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$url = '';
@@ -224,7 +226,7 @@ class ControllerNewsArticle extends Controller {
 			$data['tab_related'] = $this->language->get('tab_related');
 
 			$data['article_id'] = $this->request->get['article_id'];
-			
+
 			$this->load->model('tool/image');
 
 			if ($article_info['image']) {
@@ -260,17 +262,17 @@ class ControllerNewsArticle extends Controller {
 			$data['short_description'] = $article_info['short_description'];
 			$data['date_added'] = date($this->language->get('date_format_short'), strtotime($article_info['date_added']));
 			$data['date_modified'] = date($this->language->get('date_format_short'), strtotime($article_info['date_modified']));
-			$data['viewed'] = $article_info['viewed'];			
+			$data['viewed'] = $article_info['viewed'];
 
 			$data['news_show_viewed'] = $this->config->get('news_show_viewed');
 			$data['news_show_date_added'] = $this->config->get('news_show_date_added');
 			$data['news_show_date_modified'] = $this->config->get('news_show_date_modified');
 			$data['news_show_author'] = $this->config->get('news_show_author');
 
-			
-			if($article_info['author_id']){
+
+			if ($article_info['author_id']) {
 				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE user_id = '" . (int)$article_info['author_id'] . "'");
-			
+
 				$data['author'] = $query->row['username'];
 			}
 
@@ -282,17 +284,17 @@ class ControllerNewsArticle extends Controller {
 				$data['images'][] = array(
 					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
 					//'popup2' => 'image/'.$result['image'],
-					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'wh'),
+					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'), 'wh'),
 					//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'full')
 				);
 			}
 
-			
+
 
 			$data['articles'] = array();
 
 			$results = $this->model_news_article->getArticleRelated($this->request->get['article_id']);
-			
+
 			foreach ($results as $result) {
 				if ($this->config->get('config_review_status')) {
 					$rating = (int)$result['rating'];
@@ -358,14 +360,14 @@ class ControllerNewsArticle extends Controller {
 			$data['prev'] = false;
 			$data['next'] = false;
 			$results = $this->model_news_article->getArticles($filter_data);
-			
+
 			foreach ($results as $key => $result) {
-				if($result['article_id']==$article_id){
-					if(array_key_exists($key-1, $results)){
-						$data['prev'] = $this->url->link('news/article', 'article_id=' . $results[$key-1]['article_id']);
+				if ($result['article_id'] == $article_id) {
+					if (array_key_exists($key - 1, $results)) {
+						$data['prev'] = $this->url->link('news/article', 'article_id=' . $results[$key - 1]['article_id']);
 					}
-					if(array_key_exists($key+1, $results)){
-						$data['next'] = $this->url->link('news/article', 'article_id=' . $results[$key+1]['article_id']);
+					if (array_key_exists($key + 1, $results)) {
+						$data['next'] = $this->url->link('news/article', 'article_id=' . $results[$key + 1]['article_id']);
 					}
 				}
 			}
@@ -469,7 +471,8 @@ class ControllerNewsArticle extends Controller {
 		}
 	}
 
-	public function review() {
+	public function review()
+	{
 		$this->load->language('news/article');
 
 		$this->load->model('news/review');
@@ -514,7 +517,8 @@ class ControllerNewsArticle extends Controller {
 		}
 	}
 
-	public function write() {
+	public function write()
+	{
 		$this->load->language('news/article');
 
 		$json = array();
@@ -558,5 +562,167 @@ class ControllerNewsArticle extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+	public function get_article()
+	{
+		$json = array();
+
+
+		$this->load->language('news/article');
+
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
+			'separator' => false
+		);
+
+		$this->load->model('news/category');
+
+		if (isset($this->request->get['news_path'])) {
+			$path = '';
+
+			$parts = explode('_', (string)$this->request->get['news_path']);
+
+			$category_id = (int)array_pop($parts);
+
+			// Set the last category breadcrumb
+			$category_info = $this->model_news_category->getCategory($category_id);
+		}
+
+
+		if (isset($this->request->post['article_id'])) {
+			$article_id = (int)$this->request->post['article_id'];
+		} else {
+			$article_id = 0;
+		}
+
+		$this->load->model('news/article');
+
+		$article_info = $this->model_news_article->getArticle($article_id);
+
+		if ($article_info) {
+
+			$this->document->setTitle($article_info['name']);
+			$this->document->setDescription($article_info['meta_description']);
+			$this->document->setKeywords($article_info['meta_keyword']);
+			$this->document->addLink($this->url->link('news/article', 'article_id=' . $this->request->post['article_id']), 'canonical');
+			$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+			$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+			//$this->document->addStyle('catalog/controller/news/news_stylesheet.css');
+
+			$data['heading_title'] = $article_info['name'];
+
+			$data['text_related'] = $this->language->get('text_related');
+			$data['text_on'] = $this->language->get('text_on');
+			$data['text_write'] = $this->language->get('text_write');
+			$data['text_note'] = $this->language->get('text_note');
+			$data['text_wait'] = $this->language->get('text_wait');
+			$data['text_share'] = $this->language->get('text_share');
+			$data['text_tags'] = $this->language->get('text_tags');
+			$data['text_date_added'] = $this->language->get('text_date_added');
+			$data['text_date_modified'] = $this->language->get('text_date_modified');
+			$data['text_viewed'] = $this->language->get('text_viewed');
+			$data['text_author'] = $this->language->get('text_author');
+			$data['text_loading'] = $this->language->get('text_loading');
+			$data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+
+			$data['entry_name'] = $this->language->get('entry_name');
+			$data['entry_review'] = $this->language->get('entry_review');
+			$data['entry_rating'] = $this->language->get('entry_rating');
+			$data['entry_good'] = $this->language->get('entry_good');
+			$data['entry_bad'] = $this->language->get('entry_bad');
+			$data['entry_captcha'] = $this->language->get('entry_captcha');
+
+			$data['button_continue'] = $this->language->get('button_continue');
+
+			$this->load->model('catalog/review');
+
+			$data['tab_description'] = $this->language->get('tab_description');
+			$data['tab_review'] = sprintf($this->language->get('tab_review'), $article_info['reviews']);
+			$data['tab_related'] = $this->language->get('tab_related');
+
+			$data['article_id'] = $this->request->post['article_id'];
+
+			$this->load->model('tool/image');
+
+			if ($article_info['image']) {
+				$data['thumb'] = $this->model_tool_image->resize($article_info['image'], $this->config->get('news_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+			} else {
+				$data['thumb'] = '';
+			}
+
+			if ($article_info['image']) {
+				$data['popup'] = $this->model_tool_image->resize($article_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+			} else {
+				$data['popup'] = '';
+			}
+
+			if ($this->config->get('config_review_guest') || $this->customer->isLogged()) {
+				$data['review_guest'] = true;
+			} else {
+				$data['review_guest'] = false;
+			}
+
+			if ($this->config->get('config_google_captcha_status')) {
+				$this->document->addScript('https://www.google.com/recaptcha/api.js');
+
+				$data['site_key'] = $this->config->get('config_google_captcha_public');
+			} else {
+				$data['site_key'] = '';
+			}
+
+			$data['review_status'] = $this->config->get('news_review_status');
+			$data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$article_info['reviews']);
+			$data['rating'] = (int)$article_info['rating'];
+			$data['description'] = html_entity_decode($article_info['description'], ENT_QUOTES, 'UTF-8');
+			$data['short_description'] = $article_info['short_description'];
+			$data['date_added'] = date($this->language->get('date_format_short'), strtotime($article_info['date_added']));
+			$data['date_modified'] = date($this->language->get('date_format_short'), strtotime($article_info['date_modified']));
+			$data['viewed'] = $article_info['viewed'];
+
+			$data['news_show_viewed'] = $this->config->get('news_show_viewed');
+			$data['news_show_date_added'] = $this->config->get('news_show_date_added');
+			$data['news_show_date_modified'] = $this->config->get('news_show_date_modified');
+			$data['news_show_author'] = $this->config->get('news_show_author');
+
+
+			if ($article_info['author_id']) {
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE user_id = '" . (int)$article_info['author_id'] . "'");
+
+				$data['author'] = $query->row['username'];
+			}
+
+			$data['images'] = array();
+
+			$results = $this->model_news_article->getArticleImages($this->request->post['article_id']);
+
+			foreach ($results as $result) {
+				$data['images'][] = array(
+					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
+					//'popup2' => 'image/'.$result['image'],
+					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'), 'wh'),
+					//'full' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'),'full')
+				);
+			}
+
+
+
+			//////////////////////////////////////////
+
+			$this->model_news_article->updateViewed($this->request->post['article_id']);
+
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/news/article_modal.tpl')) {
+				$json['html'] = $this->load->view($this->config->get('config_template') . '/template/news/article_modal.tpl', $data);
+			} else {
+				$json['html'] = $this->load->view('default/template/news/article_modal.tpl', $data);
+			}
+		} else {
+		}
+
+
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-class ControllerModuleCategoryHeader extends Controller
+class ControllerModuleCategoryHeaderMobile extends Controller
 {
 
 	public function __construct($registry)
@@ -12,7 +12,7 @@ class ControllerModuleCategoryHeader extends Controller
 		$layout_id = 1;
 
 		//$this->cache_key = "module-categoryheader-{$store_id}-{$layout_id}-{$lang_id}";
-		$this->cache_key = "module-categoryheader-{$layout_id}-{$lang_id}";
+		$this->cache_key = "module-categoryheader_mobile-{$layout_id}-{$lang_id}";
 	}
 
 	public function index()
@@ -22,7 +22,7 @@ class ControllerModuleCategoryHeader extends Controller
 		if ($cache) {
 			$content = $this->welldone->cache->get($this->cache_key);
 			if ($content !== false) {
-				$this->welldone->set_settings('categoryheader', $content);
+				$this->welldone->set_settings('categoryheader_mobile', $content);
 				return $content;
 			}
 		}
@@ -100,11 +100,11 @@ class ControllerModuleCategoryHeader extends Controller
 		$data['categories'] = getCategories();
 		$data['categories_push'] = $data['categories'];
 
-		$content = $this->load->view('default/template/module/category_header.tpl', $data);
+		$content = $this->load->view('default/template/module/category_header_mobile.tpl', $data);
 		//echo $content;
 		// для поддоменов
 		$content = str_replace(HTTP_SERVER, '', $content);
-		$this->welldone->set_settings('categoryheader', $content);
+		$this->welldone->set_settings('categoryheader_mobile', $content);
 		$this->welldone->cache->set($this->cache_key, $content);
 		$content = str_replace(HTTP_SERVER, '', $content);
 

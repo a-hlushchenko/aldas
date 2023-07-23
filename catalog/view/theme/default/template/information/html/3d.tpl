@@ -169,10 +169,6 @@
 		right: 28%;
 	}
 
-	.information-new {
-		padding: 0 40px;
-	}
-
 	.information-information h1,
 	.information-information h2 {
 		color: #222;
@@ -321,25 +317,26 @@
 		}
 	}
 </style>
+<ul class="breadcrumbs container">
+	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
+		<?php if ($breadcrumb['href']) { ?>
+			<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-1">
+				<a href="http://aldas.ru/" itemprop="url">
+					<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+				</a>
+			</li>
+		<?php } else { ?>
+			<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" id="breadcrumb-2">
+				<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
+			</li>
+		<?php } ?>
+	<?php } ?>
+</ul>
 <div class="container information-new">
 
 	<?php echo $content_top; ?>
 
-	<ul class="breadcrumbs">
-		<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
-			<?php if ($breadcrumb['href']) { ?>
-				<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-1">
-					<a href="http://aldas.ru/" itemprop="url">
-						<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
-					</a>
-				</li>
-			<?php } else { ?>
-				<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" id="breadcrumb-2">
-					<span itemprop="title"><?php echo $breadcrumb['text']; ?></span>
-				</li>
-			<?php } ?>
-		<?php } ?>
-	</ul>
+
 
 	<div id="content" class="info">
 

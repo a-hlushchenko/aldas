@@ -299,13 +299,21 @@
 		max-width: 288px;
 		min-width: 256px
 	}
+
+	.bl4 .swiper .button-next,
+	.bl4 .swiper .button-prev {
+		top: 35%
+	}
+
 	@media (max-width: 1280px) {
-		.product_info .swiper img{
+		.product_info .swiper img {
 			height: auto;
 		}
+
 		.product_info {
 			align-items: flex-start;
 		}
+
 		/*.prod_right, .product_descm, .bl7{
 			margin-left: 20px;
    		 margin-right: 20px;
@@ -318,20 +326,28 @@
 			padding-left: 20px;
 			padding-right: 20px;
 		}*/
-		.tab_description, .swiperFasad, .delivery_wrapper, .bl9 {
+		.tab_description,
+		.swiperFasad,
+		.delivery_wrapper,
+		.bl9 {
 			padding: 0 20px;
 		}
 	}
-	
+
 	@media (max-width: 870px) {
-		.product_info{
+		.product_info {
 			flex-direction: column;
-			gap:0;
+			gap: 0;
 		}
-		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+
+		.swiper-horizontal>.swiper-pagination-bullets,
+		.swiper-pagination-bullets.swiper-pagination-horizontal,
+		.swiper-pagination-custom,
+		.swiper-pagination-fraction {
 			bottom: 36px;
 		}
-		.prod_right{
+
+		.prod_right {
 			width: 100%;
 			/*display: flex;
 			flex-wrap: wrap;*/
@@ -340,99 +356,128 @@
 			align-items: center;
 			gap: 12px;
 		}
-		.main_product .breadcrumbs{
+
+		.main_product .breadcrumbs {
 			grid-column: 1 / 3;
 		}
-		.params.products{
+
+		.params.products {
 			grid-column: 1 / 3;
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			grid-auto-flow: dense;
 			gap: 16px;
 		}
-		.prod_right .products .param{
+
+		.prod_right .products .param {
 			flex-direction: column;
 		}
+
 		.credit_text {
 			grid-column: 1 / 3;
 		}
+
 		.prod_right .products .param-big {
 			grid-row: 1 / 3;
 		}
-		.container {
+
+		.container.product_info_ {
 			padding: 0;
 		}
+
 		.tab_description {
 			flex-direction: column;
 		}
+
 		.tab_description .descr_right {
 			width: auto;
 		}
+
 		.headsets_wrapper .headset_item {
 			display: flex;
 			align-items: center;
 			padding: 8px 12px 0 0;
 		}
+
 		.headsets_wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 		}
+
 		.headset_item img {
 			max-width: 155px;
 		}
+
 		.btn.light {
 			margin: 0;
 			padding: 11px 15px;
 		}
+
 		.mebel_best_wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 		}
+
 		.form .file input {
 			padding: 11px 18px;
 		}
+
 		.bl11 .bl11_items {
 			justify-content: space-around;
 		}
+
 		.bl11 .h_menu .menu_item_el ul {
 			flex-direction: column;
 		}
+
 		.bl11 .h_menu .menu_item_el ul.menu_sub_item_block {
 			flex-direction: row;
 			align-items: center;
 		}
-		
+
 		.mebel_best {
 			padding: 48px 28px;
 		}
+
 		.before_green {
 			max-width: 330px;
 		}
+
 		.btn.arrow {
 			align-self: center;
 		}
+
 		.dflex {
 			justify-content: space-between;
 		}
+
 		.bl4 {
 			padding: 64px 20px;
 			margin-bottom: 64px;
 		}
-		.product_desc, .mebel_best {
+
+		.product_desc,
+		.mebel_best {
 			margin-bottom: 64px;
 		}
-		.descr_right{
+
+		.descr_right {
 			padding: 15px 30px;
 		}
-		.tab_description .descr_left{
+
+		.tab_description .descr_left {
 			width: 100%;
 		}
+
 		.prod_right {
 			box-sizing: border-box;
 			padding: 0 20px;
 		}
-		.tab_description, .headsets, .sliders2 {
-			padding: 0 20px;
+
+		.tab_description,
+		.headsets,
+		.sliders2 {
+			padding: 0;
 		}
 	}
 
@@ -441,142 +486,203 @@
 			flex-direction: column;
 			padding: 24px 24px 0 24px;
 		}
+
 		.bl5_l {
 			max-width: none;
 		}
-		.delivery_wrapper{
+
+		.delivery_wrapper {
 			flex-direction: column;
 		}
-		.delivery_left > div {
+
+		.delivery_left>div {
 			min-width: auto;
 		}
 	}
 
 	@media (max-width: 690px) {
+
 		/*.main_container {
 			padding: 0;
 		}*/
 		.main_product {
 			padding: 0;
 		}
-		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+
+		.swiper-horizontal>.swiper-pagination-bullets,
+		.swiper-pagination-bullets.swiper-pagination-horizontal,
+		.swiper-pagination-custom,
+		.swiper-pagination-fraction {
 			text-align: center;
 			padding: 0;
 		}
-		.before_green, .product_alert, .btn.big, .next_product {
+
+		.before_green,
+		.product_alert,
+		.btn.big,
+		.next_product {
 			grid-column: 1 / 3;
 		}
+
 		.prod_right .products .param-big {
 			grid-row: auto;
 		}
-		
+
 		.prod_right {
 			padding: 20px;
 		}
+
 		.params.products {
 			grid-template-columns: repeat(2, 1fr);
 		}
-		
-		.headsets {
-			padding: 0 20px;
-		}
+
+
+
 		.headsets_wrapper .headset_item {
 			flex-direction: column;
 			padding: 8px;
 		}
+
 		.mebel_best {
 			padding: 32px 20px;
 		}
+
 		.form input[type="submit"] {
 			width: 100%;
 		}
+
 		.bl4 {
 			padding: 48px 20px;
 			margin-bottom: 48px;
 		}
-		.bl11 .bl11_item, .bl11 .h_menu .menu_sub_item_block a {
+
+		.bl11 .bl11_item,
+		.bl11 .h_menu .menu_sub_item_block a {
 			font-size: 11px;
 		}
+
 		.prod_right .params.products .param-big:nth-child(3) {
 			grid-column: 1 / 3;
 		}
+
 		.descr_right {
 			font-size: 13px;
 		}
+
 		.descr_right {
 			padding: 20px;
 		}
-		.product_desc, .mebel_best {
+
+		.product_desc,
+		.mebel_best {
 			margin-bottom: 48px;
 		}
+
 		.headsets_wrapper .price {
 			display: flex;
 			flex-direction: column;
 		}
-		.products .button-next, .products .button-prev{
+
+		.params nobr {
+			text-wrap: wrap;
+		}
+
+		.products .button-next,
+		.products .button-prev {
 			display: none;
 		}
-		.bl10_wrapper{
+
+		.bl10_wrapper {
 			align-items: center;
 		}
-		.tab_buttons a{
+
+		.tab_buttons a {
 			padding: 12px 10px;
 		}
-		
+
 	}
+
+	/* @media all and (width < 520px) {
+		.param {
+			flex-direction: column;
+		}
+	} */
 
 	@media (max-width: 480px) {
 		.params.products {
 			max-width: 330px;
 		}
+
 		.bl4 {
-			padding: 40px 12px;
+			padding: 40px 0;
 		}
+
 		/*.main_product .products .param {
 			display: block;
 		}*/
 		.descr_right {
 			padding: 16px;
 		}
-		.product_desc, .mebel_best {
+
+		.product_desc,
+		.mebel_best {
 			margin-bottom: 40px;
 		}
-		.tab_description, .headsets, .prod_right, .sliders2 {
+
+		/* .tab_description,
+		.headsets,
+		.prod_right,
+		.sliders2 {
 			padding: 0 12px;
-		}
+		} */
+
 		.headsets_wrapper {
 			gap: 4px;
 		}
+
 		.headsets_wrapper .headset_item {
 			padding: 0;
 		}
+
 		.mebel_best_item .name {
 			padding: 0;
 		}
-		.mebel_best, .bl5_wrapper {
-			padding: 20px 12px;
+
+		.mebel_best,
+		.bl5_wrapper {
+			padding: 20px 20px;
 		}
+
+		.mebel_best .container {
+			padding: 0;
+		}
+
 		.bl11 .bl11_items {
 			justify-content: start;
 		}
-		.headsets_wrapper .headset_item > div {
+
+		.headsets_wrapper .headset_item>div {
 			align-self: stretch;
 		}
+
 		.mebel_best_wrapper {
 			display: flex;
 			flex-direction: column;
 		}
+
 		.mebel_best_item {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			align-items: center;
 		}
-		.mebel_best_item > .image {
+
+		.mebel_best_item>.image {
 			grid-row: 1 / 3;
 		}
-		
-		
+
+
 	}
+
 	.swiper_free .swiper-slide {
 		width: auto;
 		box-sizing: border-box;
@@ -585,7 +691,7 @@
 </style>
 
 <div class="main_product">
-	<div class="container">
+	<div class="container product_info_">
 		<div class="product_info">
 			<div class="prod_left swiper mainSwiper">
 				<div class="swiper-wrapper">
@@ -826,7 +932,7 @@
 												<div class="swiper swiperFasad">
 													<div class="swiper-wrapper">
 														<?php foreach ($data['dekor'] as $dop3) { ?>
-															<div class="swiper-slide thumbnails5">
+															<div class="swiper-slide thumbnails6">
 																<a class="href" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>">
 																	<img src="<?= $placeholder; ?>" data-original="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>">
 																</a>
@@ -917,49 +1023,49 @@
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_2.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_3.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_4.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_5.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got3; ?>">3 метра: <span><?= $price_got3; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_6.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got3_5; ?>">3,5 метра: <span><?= $price_got3_5; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_7.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got4; ?>">4 метра: <span><?= $price_got4; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
 										</div>
 									</div>
 									<div class="headset_item">
-										<img src="<?= $placeholder; ?>" data-original="images/new/headset_1.jpg" alt="Гарнитур">
+										<img src="<?= $placeholder; ?>" data-original="images/new/headset_8.jpg" alt="Гарнитур">
 										<div>
 											<div class="price" data-price="<?= $price_int_got5; ?>">5 метра: <span><?= $price_got5; ?></span></div>
 											<a href="#pred_zakaz" data-modal="pred_zakaz" class="btn light" onclick="return false">Заказать в один клик</a>
@@ -1044,7 +1150,7 @@
 						</div>
 					</div>
 
-					<div class="bl7">
+					<div class="bl7 container">
 						<div class="sliders2 container">
 							<div class="h2">
 								<h2 class="before_green">Схожие товары</h2>
@@ -1094,96 +1200,96 @@
 					?>
 
 					<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false && $products_stoly) { ?>
-					<div class="bl7">
-						<div class="sliders2 container">
-							<div class="h2">
-								<h2 class="before_green">Столы и стулья</h2>
-							</div>
+						<div class="bl7 container">
+							<div class="sliders2 container">
+								<div class="h2">
+									<h2 class="before_green">Столы и стулья</h2>
+								</div>
 
-							<div class="sl_row products swiper mebel1">
-								<div class="swiper-wrapper">
+								<div class="sl_row products swiper mebel1">
+									<div class="swiper-wrapper">
 
-									<?php foreach ($products_stoly as $product) { ?>
-										<div class="swiper-slide product_slide">
-											<div class="swiper product_images_slider">
-												<div class="swiper-wrapper">
-													<?php foreach ($product['images'] as $image) { ?>
-														<a href="<?php echo $product['href']; ?>" class="swiper-slide"><img src="<?= $image['thumb'] ?>" alt="<?php echo $product['name']; ?>"></a>
-													<?php } ?>
+										<?php foreach ($products_stoly as $product) { ?>
+											<div class="swiper-slide product_slide">
+												<div class="swiper product_images_slider">
+													<div class="swiper-wrapper">
+														<?php foreach ($product['images'] as $image) { ?>
+															<a href="<?php echo $product['href']; ?>" class="swiper-slide"><img src="<?= $image['thumb'] ?>" alt="<?php echo $product['name']; ?>"></a>
+														<?php } ?>
+													</div>
+													<div class="swiper-pagination"></div>
 												</div>
-												<div class="swiper-pagination"></div>
+												<div class="name"><?php echo $product['name']; ?></div>
+												<div class="param"><span>Материал фасадов:</span> <?php echo $product['fasad']; ?></div>
+												<?php if ($product['price']) { ?>
+													<div class="param"><span>Цена за метр:</span>
+														<?php if (!$product['special']) { ?>
+															<span class="price"><?php echo $product['price']; ?></span>
+														<?php } else { ?>
+															<span class="price"><span class="new_price"><?php echo $product['special']; ?></span><span class="ald_price"><?php echo $product['price']; ?> ₽</span></span>
+														<?php } ?>
+													</div>
+													<div class="param"><span>Цена проекта от:</span> <span class="price"><span class="new_price">136 900 ₽</span><span class="ald_price">166 900 ₽</span></span></div>
+												<?php } ?>
 											</div>
-											<div class="name"><?php echo $product['name']; ?></div>
-											<div class="param"><span>Материал фасадов:</span> <?php echo $product['fasad']; ?></div>
-											<?php if ($product['price']) { ?>
-												<div class="param"><span>Цена за метр:</span>
-													<?php if (!$product['special']) { ?>
-														<span class="price"><?php echo $product['price']; ?></span>
-													<?php } else { ?>
-														<span class="price"><span class="new_price"><?php echo $product['special']; ?></span><span class="ald_price"><?php echo $product['price']; ?> ₽</span></span>
-													<?php } ?>
-												</div>
-												<div class="param"><span>Цена проекта от:</span> <span class="price"><span class="new_price">136 900 ₽</span><span class="ald_price">166 900 ₽</span></span></div>
-											<?php } ?>
-										</div>
-									<? } ?>
+										<? } ?>
 
+									</div>
+									<div class="button-next"></div>
+									<div class="button-prev"></div>
+									<div class="swiper-pagination_line">
+										<div class="swiper-pagination mebel"></div>
+									</div>
 								</div>
-								<div class="button-next"></div>
-								<div class="button-prev"></div>
-								<div class="swiper-pagination_line">
-									<div class="swiper-pagination mebel"></div>
-								</div>
+
 							</div>
-
 						</div>
-					</div>
-				<? } ?>
+					<? } ?>
 
-				<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false && $products_tehnika) { ?>
-					<div class="bl7">
-						<div class="sliders2 container">
-							<div class="h2">
-								<h2 class="before_green">Техника</h2>
-							</div>
+					<?php if (mb_stripos(strtolower($heading_title), 'кухня') !== false && $products_tehnika) { ?>
+						<div class="bl7 container">
+							<div class="sliders2 container">
+								<div class="h2">
+									<h2 class="before_green">Техника</h2>
+								</div>
 
-							<div class="sl_row products swiper mebel1" style="margin-bottom: 0;">
-								<div class="swiper-wrapper">
-									<?php foreach ($products_tehnika as $product) { ?>
-										<div class="swiper-slide product_slide">
-											<div class="swiper product_images_slider">
-												<div class="swiper-wrapper">
-													<?php foreach ($product['images'] as $image) { ?>
-														<a href="<?php echo $product['href']; ?>" class="swiper-slide"><img src="<?= $image['thumb'] ?>" alt="<?php echo $product['name']; ?>"></a>
-													<?php } ?>
+								<div class="sl_row products swiper mebel1" style="margin-bottom: 0;">
+									<div class="swiper-wrapper">
+										<?php foreach ($products_tehnika as $product) { ?>
+											<div class="swiper-slide product_slide">
+												<div class="swiper product_images_slider">
+													<div class="swiper-wrapper">
+														<?php foreach ($product['images'] as $image) { ?>
+															<a href="<?php echo $product['href']; ?>" class="swiper-slide"><img src="<?= $image['thumb'] ?>" alt="<?php echo $product['name']; ?>"></a>
+														<?php } ?>
+													</div>
+													<div class="swiper-pagination"></div>
 												</div>
-												<div class="swiper-pagination"></div>
+												<div class="name"><?php echo $product['name']; ?></div>
+												<div class="param"><span>Материал фасадов:</span> <?php echo $product['fasad']; ?></div>
+												<?php if ($product['price']) { ?>
+													<div class="param"><span>Цена за метр:</span>
+														<?php if (!$product['special']) { ?>
+															<span class="price"><?php echo $product['price']; ?></span>
+														<?php } else { ?>
+															<span class="price"><span class="new_price"><?php echo $product['special']; ?></span><span class="ald_price"><?php echo $product['price']; ?> ₽</span></span>
+														<?php } ?>
+													</div>
+													<div class="param"><span>Цена проекта от:</span> <span class="price"><span class="new_price">136 900 ₽</span><span class="ald_price">166 900 ₽</span></span></div>
+												<?php } ?>
 											</div>
-											<div class="name"><?php echo $product['name']; ?></div>
-											<div class="param"><span>Материал фасадов:</span> <?php echo $product['fasad']; ?></div>
-											<?php if ($product['price']) { ?>
-												<div class="param"><span>Цена за метр:</span>
-													<?php if (!$product['special']) { ?>
-														<span class="price"><?php echo $product['price']; ?></span>
-													<?php } else { ?>
-														<span class="price"><span class="new_price"><?php echo $product['special']; ?></span><span class="ald_price"><?php echo $product['price']; ?> ₽</span></span>
-													<?php } ?>
-												</div>
-												<div class="param"><span>Цена проекта от:</span> <span class="price"><span class="new_price">136 900 ₽</span><span class="ald_price">166 900 ₽</span></span></div>
-											<?php } ?>
-										</div>
-									<? } ?>
+										<? } ?>
+									</div>
+									<div class="button-next"></div>
+									<div class="button-prev"></div>
+									<div class="swiper-pagination_line">
+										<div class="swiper-pagination mebel"></div>
+									</div>
 								</div>
-								<div class="button-next"></div>
-								<div class="button-prev"></div>
-								<div class="swiper-pagination_line">
-									<div class="swiper-pagination mebel"></div>
-								</div>
-							</div>
 
+							</div>
 						</div>
-					</div>
-				<? } ?>
+					<? } ?>
 
 				</div>
 
@@ -1347,7 +1453,7 @@
 
 					$('.headset_item a').on('click', function() {
 
-						var obj = $(this).parent();
+						var obj = $(this).closest('.headset_item');
 						itogdop1 = true;
 						itogdop2 = false;
 						console.log(obj);
@@ -1380,6 +1486,7 @@
 							res = sumdop3 + ~~price;
 
 							dop1_img = obj.find('img').attr('src');
+							console.log(dop1_img);
 							dop1_price = obj.find('.price').html();
 							dop1_name = obj.find('.tovar-box1-text').html();
 							//dop1_price = price;
@@ -1477,7 +1584,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($data['dop3'] as $dop3) { ?>
-													<div class="tovar-box1 thumbnails2">
+													<div class="tovar-box1 thumbnails7">
 														<div class="tovar-box1-border">
 															<a class="href" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>">
 																<img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
@@ -1500,7 +1607,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($fasady_emal_r as $dop3) { ?>
-													<div class="tovar-box1 thumbnails2">
+													<div class="tovar-box1 thumbnails8">
 														<div class="tovar-box1-border">
 															<a class="href" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>"><img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
 															<div class="price"><?php echo $dop3['name']; ?></div>
@@ -1515,7 +1622,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($fasady_emal_br as $dop3) { ?>
-													<div class="tovar-box1 thumbnails2">
+													<div class="tovar-box1 thumbnails9">
 														<div class="tovar-box1-border">
 															<a class="href" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>"><img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
 															<div class="price"><?php echo $dop3['name']; ?></div>
@@ -1531,7 +1638,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($fasady_emal_g as $dop3) { ?>
-													<div class="tovar-box1 thumbnails2">
+													<div class="tovar-box1 thumbnails10">
 														<div class="tovar-box1-border">
 															<a class="href" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>"> <img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
 															<div class="price"><?php echo $dop3['name']; ?></div>
@@ -1552,7 +1659,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($fasady_plastik as $dop3) { ?>
-													<div class="tovar-box1 thumbnails2">
+													<div class="tovar-box1 thumbnails11">
 														<div class="tovar-box1-border">
 															<a class="href" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>"><img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
 															<div class="price"><?php echo $dop3['name']; ?></div>
@@ -1586,7 +1693,7 @@
 											<div class="wrapper">
 
 												<?php foreach ($stol as $dop3) { ?>
-													<div class="tovar-box1 thumbnails3">
+													<div class="tovar-box1 thumbnails12">
 														<div class="tovar-box1-border">
 															<a class="" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>"><img src="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>"></a>
 															<div class="price"><?php echo $dop3['name']; ?></div>
@@ -1671,7 +1778,7 @@
 												<div class="wrapper">
 
 													<?php foreach ($access as $dop3) { ?>
-														<div class="tovar-box1 thumbnails3">
+														<div class="tovar-box1 thumbnails13">
 															<div class="tovar-box1-border">
 																<a class="" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>" href="<?php echo MAIN_HTTPS_SERVER . 'image/' . $dop3['popup']; ?>">
 																	<img src="<?= $placeholder; ?>" data-original="<?php echo $dop3['thumb']; ?>" alt="<?php echo $dop3['name']; ?>" title="<?php echo $dop3['name']; ?>">
@@ -1833,56 +1940,57 @@
 
 					//$("a[href='#tabs-1']").click();
 
-					/*$('.thumbnails').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
-					});*/
-					/*$('.thumbnails_').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true,
-					    tCounter: '%curr% из %total%'
-					  }
+					$('.thumbnail').magnificPopup({
+						type: 'image',
+						//delegate: 'a',
+						gallery: {
+							enabled: true
+						}
+					});
+
+					$('.thumbnails1').magnificPopup({
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true,
+							tCounter: '%curr% из %total%'
+						}
 					});
 					$('.thumbnails2').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true
+						}
 					});
 					$('.thumbnails3').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true
+						}
 					});
 					$('.thumbnails4').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true
+						}
 					});
 					$('.thumbnails5').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true
+						}
 					});
 					$('.thumbnails6').magnificPopup({
-					  type: 'image',
-					  delegate: 'a',
-					  gallery: {
-					    enabled: true
-					  }
-					});*/
+						type: 'image',
+						delegate: 'a',
+						gallery: {
+							enabled: true
+						}
+					});
 				});
 
 				document.addEventListener('DOMContentLoaded', function() {
@@ -2001,94 +2109,95 @@
             lazy.update();
           });
         });*/
-	</script>
+			</script>
 
 
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var swiper = new Swiper(".mainSwiper", {
-				pagination: {
-					el: ".swiper-pagination",
-					clickable: true,
-				},
-				navigation: {
-					nextEl: ".button-next",
-					prevEl: ".button-prev",
-				},
-			});
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					var swiper = new Swiper(".mainSwiper", {
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+						navigation: {
+							nextEl: ".button-next",
+							prevEl: ".button-prev",
+						},
+					});
 
-			var swiper = new Swiper(".swiper_free", {
-				slidesPerView:"auto",
-				spaceBetween: 0,
-				pagination: {
-				el: ".swiper-pagination",
-				clickable: true,
-				},
-			});
-			var swiper = new Swiper(".mySwiper", {
-				slidesPerView: "auto",
-				spaceBetween: 30,
-				pagination: {
-				el: ".swiper-pagination",
-				clickable: true,
-				},
-			});
+					var swiper = new Swiper(".swiper_free", {
+						slidesPerView: "auto",
+						spaceBetween: 0,
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+					});
+					var swiper = new Swiper(".mySwiper", {
+						slidesPerView: "auto",
+						spaceBetween: 30,
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+					});
 
-			var swiper = new Swiper(".product_images_slider", {
-				pagination: {
-					el: ".swiper-pagination",
-					clickable: true,
-				},
-				paginationClickable: true,
-				nested: true,
-				spaceBetween: 24,
-			});
+					var swiper = new Swiper(".product_images_slider", {
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+						paginationClickable: true,
+						nested: true,
+						spaceBetween: 24,
+					});
 
-			var swiper = new Swiper(".swiperFasad", {
-				slidesPerView: 8,
-				grid: {
-					rows: 2,
-				},
-				spaceBetween: 10,
-				pagination: {
-					el: ".swiper-pagination",
-					clickable: true,
-				},
-				navigation: {
-					nextEl: ".button-next",
-					prevEl: ".button-prev",
-				},
-			});
+					var swiper = new Swiper(".swiperFasad", {
+						slidesPerView: 8,
+						grid: {
+							rows: 2,
+						},
+						spaceBetween: 10,
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+						navigation: {
+							nextEl: ".button-next",
+							prevEl: ".button-prev",
+						},
+					});
 
-			var swiper = new Swiper(".mebel1", {
-				paginationClickable: true,
-				slidesPerView: 2,
-				spaceBetween: 24,
-				breakpoints: {  
-					/*'480': {
-					slidesPerView: 4,
-					spaceBetween: 40,},*/
-					'1000': {
-					slidesPerView: 3,
-					spaceBetween: 30, },
-				},
-				pagination: {
-					el: ".swiper-pagination",
-					clickable: true,
-				},
-				navigation: {
-					nextEl: ".button-next",
-					prevEl: ".button-prev",
-				},
-			});
+					var swiper = new Swiper(".mebel1", {
+						paginationClickable: true,
+						slidesPerView: 2,
+						spaceBetween: 24,
+						breakpoints: {
+							/*'480': {
+							slidesPerView: 4,
+							spaceBetween: 40,},*/
+							'1000': {
+								slidesPerView: 3,
+								spaceBetween: 30,
+							},
+						},
+						pagination: {
+							el: ".swiper-pagination",
+							clickable: true,
+						},
+						navigation: {
+							nextEl: ".button-next",
+							prevEl: ".button-prev",
+						},
+					});
 
-			//$(function() {
-			$('.tab_buttons a').on('click', function() {
-				$(window).scrollTop($(window).scrollTop() + 1);
-				$(window).scrollTop($(window).scrollTop() - 1);
-			});
-			//});
-		});
-	</script>
-	<?php echo $footer; ?>
+					//$(function() {
+					$('.tab_buttons a').on('click', function() {
+						$(window).scrollTop($(window).scrollTop() + 1);
+						$(window).scrollTop($(window).scrollTop() - 1);
+					});
+					//});
+				});
+			</script>
+			<?php echo $footer; ?>

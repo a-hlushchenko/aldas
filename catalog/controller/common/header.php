@@ -1,15 +1,17 @@
 <?php
-class ControllerCommonHeader extends Controller {
-	public function index() {
+class ControllerCommonHeader extends Controller
+{
+	public function index()
+	{
 		/*echo "<pre>";
 		print_r($_SERVER);
 		echo "</pre>";*/
 		header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
-		if($this->config->get('config_redirects')){
+		if ($this->config->get('config_redirects')) {
 
 			$redirects = array();
 			$redirect_elements = explode(PHP_EOL, $this->config->get('config_redirects'));
-			foreach($redirect_elements as $element){
+			foreach ($redirect_elements as $element) {
 				$to = explode("==", $element);
 				/*echo "<pre>";
 				print_r($to);
@@ -19,11 +21,11 @@ class ControllerCommonHeader extends Controller {
 
 			$server_request = substr($_SERVER["REQUEST_URI"], 1);
 			//echo $server_request;
-			if($server_request){
-				if(array_key_exists($server_request, $redirects)) {
+			if ($server_request) {
+				if (array_key_exists($server_request, $redirects)) {
 					header("HTTP/1.1 301 Moved Permanently");
-					$location = HTTP_SERVER. $redirects[$server_request];
-					header("Location: ".$location);
+					$location = HTTP_SERVER . $redirects[$server_request];
+					header("Location: " . $location);
 					exit;
 				}
 			}
@@ -75,7 +77,7 @@ class ControllerCommonHeader extends Controller {
 
 		$this->load->language('common/header');
 		//$data['og_url'] = (isset($this->request->server['HTTPS']) ? HTTPS_SERVER : HTTP_SERVER) . substr($this->request->server['REQUEST_URI'], 1, (strlen($this->request->server['REQUEST_URI'])-1));
-		$data['og_url'] = HTTP_SERVER . substr($this->request->server['REQUEST_URI'], 1, (strlen($this->request->server['REQUEST_URI'])-1));
+		$data['og_url'] = HTTP_SERVER . substr($this->request->server['REQUEST_URI'], 1, (strlen($this->request->server['REQUEST_URI']) - 1));
 		$data['og_image'] = $this->document->getOgImage();
 		$data['og_description'] = $this->document->getDescription();
 		$data['og_locale'] = 'ru-RU';
@@ -111,7 +113,7 @@ class ControllerCommonHeader extends Controller {
 
 		$data['categories'] = $this->load->controller('module/categoryheader');
 
-		//$data['categories_push'] = $this->load->controller('module/categoryheaderpush');
+		$data['categories_mobile'] = $this->load->controller('module/categoryheadermobile');
 
 		if (isset($this->request->get['search'])) {
 			$data['search'] = $this->request->get['search'];
