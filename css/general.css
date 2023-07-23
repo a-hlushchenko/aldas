@@ -1,6 +1,10 @@
 :root {
     scroll-behavior: smooth;
 }
+::selection {
+    background-color: #18C792;
+    color: white;
+}
 
 
 @font-face{font-family:'Gotham Pro';src:url(GothamPro-BoldItalic.eot);src:local('Gotham Pro Bold Italic'),local(GothamPro-BoldItalic),url(../font/GothamPro-BoldItalic.eot?#iefix) format("embedded-opentype"),url(../font/GothamPro-BoldItalic.woff) format("woff"),url(../font/GothamPro-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}
