@@ -1283,8 +1283,8 @@ class ControllerInformationCallback extends Controller
 			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
 			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-			//$mail->setTo($this->config->get('config_email'));
-			$mail->setTo('gdemonm@gmail.com');
+			$mail->setTo($this->config->get('config_email'));
+			//$mail->setTo('gdemonm@gmail.com');
 			$mail->setFrom($this->config->get('config_email'));
 			//$mail->setFrom('www-data@faida-mebel.ru');
 			$mail->setSender($this->request->post['name']);
@@ -1303,7 +1303,9 @@ class ControllerInformationCallback extends Controller
 				$mail->addAttachment(DIR_UPLOAD . $new_filename);
 			}
 
-			//$mail->send();
+			$mail->send();
+			$mail->setTo('gdemonm@gmail.com');
+			$mail->send();
 			//$this->createLeadAmocrm($this->request->post, $subject, $text);
 
 			$emails = explode(',', $this->config->get('config_mail_alert'));
@@ -1312,7 +1314,7 @@ class ControllerInformationCallback extends Controller
 				if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
 					$mail->setTo($email);
 					//$this->log->write(print_r($mail,1));
-					//$mail->send();
+					$mail->send();
 				}
 			}
 
