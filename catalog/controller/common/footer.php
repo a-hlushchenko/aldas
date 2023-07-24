@@ -1,10 +1,13 @@
 <?php
-class ControllerCommonFooter extends Controller {
-	public function index() {
+class ControllerCommonFooter extends Controller
+{
+	public function index()
+	{
 
 		// Варианты А-Б
 
-		
+		$this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+		$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
 
 		if (isset($this->request->cookie['variat_abc'])) {
 			$var = $this->request->cookie['variat_abc'];
@@ -12,27 +15,27 @@ class ControllerCommonFooter extends Controller {
 		} else {
 			$this->load->model('setting/setting');
 
-			if($this->config->get('variat_abc_count')) {
-				$count = $this->config->get('variat_abc_count')+1;
+			if ($this->config->get('variat_abc_count')) {
+				$count = $this->config->get('variat_abc_count') + 1;
 			} else {
 				$count = 1;
 			}
-			if($count%3==0){
-				$var='C';
-			} elseif($count%2==0){
-				$var='B';
+			if ($count % 3 == 0) {
+				$var = 'C';
+			} elseif ($count % 2 == 0) {
+				$var = 'B';
 			} else {
-				$var='A';
+				$var = 'A';
 			}
 			$data['variat_abc'] = $var;
 		}
 
-		$data['config_ga'] ='';
-		$data['config_metrika'] ='';
+		$data['config_ga'] = '';
+		$data['config_metrika'] = '';
 
 
-		if($this->config->get('config_ga')) $data['config_ga'] = $this->config->get('config_ga');
-		if($this->config->get('config_metrika')) $data['config_metrika'] = html_entity_decode( $this->config->get('config_metrika'), ENT_QUOTES, 'UTF-8');
+		if ($this->config->get('config_ga')) $data['config_ga'] = $this->config->get('config_ga');
+		if ($this->config->get('config_metrika')) $data['config_metrika'] = html_entity_decode($this->config->get('config_metrika'), ENT_QUOTES, 'UTF-8');
 
 		$this->load->language('common/footer');
 
@@ -48,7 +51,7 @@ class ControllerCommonFooter extends Controller {
 
 		$data['categories'] = $this->load->controller('module/categoryfooter');
 
-		if(isset($this->request->get['admin'])){
+		if (isset($this->request->get['admin'])) {
 			$data['admin'] = true;
 		} else {
 			$data['admin'] = false;
