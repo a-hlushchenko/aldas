@@ -684,6 +684,10 @@
 
 	}
 
+	.swiper_free {
+		overflow: hidden;
+	}
+
 	.swiper_free .swiper-slide {
 		width: auto;
 		box-sizing: border-box;

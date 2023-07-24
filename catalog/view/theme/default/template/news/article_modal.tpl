@@ -35,14 +35,14 @@
 				<div class="swiper-wrapper">
 
 					<?php if ($thumb) { ?>
-						<div class="item swiper-slide first-img-container">
+						<div class="item swiper-slide first-img-container thumbnails_otzyv">
 							<a class="thumbnail" href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
 						</div>
 					<?php } ?>
 
 					<?php if ($images) { ?>
 						<?php foreach ($images as $image) { ?>
-							<div class="item swiper-slide">
+							<div class="item swiper-slide thumbnails_otzyv">
 								<a class="thumbnail" href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
 							</div>
 						<?php } ?>
@@ -56,7 +56,8 @@
 
 		<!-- <div class="review-right-content">
 			<strong>В проекте:</strong>
-			<p><?php //echo $reviews; ?></p>
+			<p><?php //echo $reviews; 
+				?></p>
 		</div> -->
 
 	</div>

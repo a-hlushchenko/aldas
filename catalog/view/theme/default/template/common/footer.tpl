@@ -51,7 +51,7 @@
 			<a href="/dizain-mebel/">Бесплатный 3D проект</a>
 			<a href="/mebel-v-rassrochku/">Рассрочка</a>
 			<a href="/sborka_dostavka/">Сборка и доставка</a>
-			<a href="">Сотрудничество</a>
+			<a href="/partnery/">Сотрудничество</a>
 			<a href="/contact/">Контакты</a>
 		</div>
 	</div>
@@ -100,18 +100,27 @@
 						$('#otzyv .otzyv_content').html(json['html']);
 						$('[data-modal="otzyv"]').click();
 						var swiper = new Swiper("#otzyv_swiper", {
-						paginationClickable: true,
-						slidesPerView: 1,
+							paginationClickable: true,
+							slidesPerView: 1,
 
-						pagination: {
-							el: ".swiper-pagination",
-							clickable: true,
-						},
-						navigation: {
-							nextEl: ".button-next",
-							prevEl: ".button-prev",
-						},
+							pagination: {
+								el: ".swiper-pagination",
+								clickable: true,
+							},
+							navigation: {
+								nextEl: ".button-next",
+								prevEl: ".button-prev",
+							},
 						});
+						$('.thumbnails_otzyv').magnificPopup({
+							type: 'image',
+							delegate: 'a',
+							gallery: {
+								enabled: true,
+								tCounter: '%curr% из %total%'
+							}
+						});
+
 
 					}
 				},
