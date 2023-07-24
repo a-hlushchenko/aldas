@@ -52,7 +52,7 @@
 					<p>Все кухни из каталога изготавливаются на заказ по индивидуальным размерам. Каждая модель может быть выполнена в любом формате, комплектации и цветовом решении.</p>
 					<p>Хотите что-то эксклюзивное?<br>Закажите кухню полностью по вашему проекту!</p>
 				</div>
-				<a class="menu_footer_r_image" href="#consultation" data-modal="consultation">
+				<a class="menu_footer_r_image" href="">
 					<img src="images/new/svg/menu_footer_r_image.jpg" alt="Кухня по своему проекту">
 					<span class="shadow"></span>
 					<div class="img_text">Кухня по своему проекту</div>
