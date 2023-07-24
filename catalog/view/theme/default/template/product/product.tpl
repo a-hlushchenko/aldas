@@ -24,7 +24,8 @@
 
 	.prod_left {
 		width: 100%;
-		flex: 1
+		flex: 1;
+		max-width: 811px;
 	}
 
 	.prod_right {
@@ -827,7 +828,7 @@
 		</div>
 	</div>
 
-	<div class="product_desc">
+	<div class="product_desc container">
 		<div class="tab_buttons" id="myTab" role="tablist">
 			<div class="swiper-container swiper_free">
 				<div class="container1 swiper-wrapper">
