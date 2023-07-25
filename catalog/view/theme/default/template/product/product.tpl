@@ -693,12 +693,12 @@
 		display: block;
 	}
 
-	.product_left {
+	.prod_left {
 		align-self: center;
 		max-height: 516px;
 	}
 
-	.product_left img {
+	.prod_left img {
 		object-fit: contain;
 		max-height: 516px;
 	}
