@@ -25,7 +25,6 @@
 	.prod_left {
 		width: 100%;
 		flex: 1;
-		max-width: 811px;
 	}
 
 	.prod_right {
