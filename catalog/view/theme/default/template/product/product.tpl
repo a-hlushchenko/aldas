@@ -33,7 +33,7 @@
 
 	.product_info .swiper img {
 		width: 100%;
-		height: 516px
+		height: auto
 	}
 
 	.product_alert {
@@ -691,6 +691,16 @@
 		width: auto;
 		box-sizing: border-box;
 		display: block;
+	}
+
+	.product_left {
+		align-self: center;
+		max-height: 516px;
+	}
+
+	.product_left img {
+		object-fit: contain;
+		max-height: 516px;
 	}
 </style>
 
