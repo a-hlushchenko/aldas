@@ -1,6 +1,8 @@
 <?php
-class ControllerProductCategory extends Controller {
-	public function index() {
+class ControllerProductCategory extends Controller
+{
+	public function index()
+	{
 
 		// Варианты А-Б
 
@@ -152,8 +154,8 @@ class ControllerProductCategory extends Controller {
 				$data['heading_title'] = $category_info['name'];
 			}
 
-			if($this->config->get('config_city')){
-				$data['heading_title'] .= ' '.morpher_inflect($this->config->get('config_city'),'gde');
+			if ($this->config->get('config_city')) {
+				$data['heading_title'] .= ' ' . morpher_inflect($this->config->get('config_city'), 'gde');
 			}
 
 			$data['text_refine'] = $this->language->get('text_refine');
@@ -189,12 +191,12 @@ class ControllerProductCategory extends Controller {
 				$data['thumb'] = '';
 			}
 
-			if($page==1){
+			if ($page == 1) {
 				$data['description'] = html_entity_decode($category_info['description'], ENT_QUOTES, 'UTF-8');
 				$data['short_description'] = html_entity_decode($category_info['short_description'], ENT_QUOTES, 'UTF-8');
 			} else {
 				$data['description'] = '';
-				$data['short_description'] ='';
+				$data['short_description'] = '';
 			}
 			$data['compare'] = $this->url->link('product/compare');
 
@@ -257,13 +259,14 @@ class ControllerProductCategory extends Controller {
 				if ($result['image']) {
 					//$image = $this->model_tool_image->resize($result['image'], 537, 346,'wh');
 
-					if(in_array('133', $partts)){
-						//$image = $this->model_tool_image->resize($result['image'], 537, 306);
-						$image = $this->model_tool_image->resize($result['image'], 385, 269); // 325
+					if (in_array('133', $partts)) {
+						//$image = $this->model_tool_image->resize($result['image'], 385, 269); // 325
+						$image = $this->model_tool_image->resize($result['image'], 423, 295); // 325
 						//увеличиваем вручную для експериментов А-Б
 						//$image = $this->model_tool_image->resize($result['image'], 1100, 628);
 					} else {
-						$image = $this->model_tool_image->resize($result['image'], 385, 269,'wh'); //325
+						//$image = $this->model_tool_image->resize($result['image'], 385, 269/*,'wh'*/); //325
+						$image = $this->model_tool_image->resize($result['image'], 423, 295/*,'wh'*/); //325
 						//увеличиваем вручную для експериментов А-Б
 						//$image = $this->model_tool_image->resize($result['image'], 1102, 628,'w');
 					}
@@ -274,32 +277,33 @@ class ControllerProductCategory extends Controller {
 
 				$images = array();
 				$images[] = array(
-					'popup' => MAIN_SERVER.'image/'.$result['image'],
+					'popup' => MAIN_SERVER . 'image/' . $result['image'],
 					'thumb' => $image,
 				);
-	
+
 				$res = $this->model_catalog_product->getProductImages($result['product_id']);
-	
+
 				foreach ($res as $res_) {
-					if($res_['image']){
+					if ($res_['image']) {
 						$images[] = array(
-							'popup' => MAIN_SERVER.'image/'.$res_['image'],
-							'thumb' => $this->model_tool_image->resize($res_['image'], 385, 269,'wh'),
+							'popup' => MAIN_SERVER . 'image/' . $res_['image'],
+							//'thumb' => $this->model_tool_image->resize($res_['image'], 385, 269/*, 'wh'*/),
+							'thumb' => $this->model_tool_image->resize($res_['image'], 423, 295/*, 'wh'*/),
 						);
 					}
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
-					$price_plus_30proc = $this->currency->format($this->tax->calculate($result['price']*1.3, $result['tax_class_id'], $this->config->get('config_tax')));
-					$price_minus_10proc = $this->currency->format($this->tax->calculate($result['price']*0.9, $result['tax_class_id'], $this->config->get('config_tax')));
-					$price_got = $this->currency->format($this->tax->calculate($result['price']*3.6, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_plus_30proc = $this->currency->format($this->tax->calculate($result['price'] * 1.3, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_minus_10proc = $this->currency->format($this->tax->calculate($result['price'] * 0.9, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_got = $this->currency->format($this->tax->calculate($result['price'] * 3.6, $result['tax_class_id'], $this->config->get('config_tax')));
 
-					$price_got_old = $this->currency->format($this->tax->calculate($result['price']*3.6*1.3, $result['tax_class_id'], $this->config->get('config_tax')));
-					$price_got_new = $this->currency->format($this->tax->calculate($result['price']*3.6*1.3*0.8, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_got_old = $this->currency->format($this->tax->calculate($result['price'] * 3.6 * 1.3, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_got_new = $this->currency->format($this->tax->calculate($result['price'] * 3.6 * 1.3 * 0.8, $result['tax_class_id'], $this->config->get('config_tax')));
 
-					$price_got3 = $this->currency->format($this->tax->calculate($result['price']*3*1.5, $result['tax_class_id'], $this->config->get('config_tax')));
-					$price_ras = $this->currency->format($this->tax->calculate($result['price']*3.5*0.6/6, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_got3 = $this->currency->format($this->tax->calculate($result['price'] * 3 * 1.5, $result['tax_class_id'], $this->config->get('config_tax')));
+					$price_ras = $this->currency->format($this->tax->calculate($result['price'] * 3.5 * 0.6 / 6, $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$price = false;
 				}
@@ -462,7 +466,7 @@ class ControllerProductCategory extends Controller {
 
 			sort($limits);
 
-			foreach($limits as $value) {
+			foreach ($limits as $value) {
 				$data['limits'][] = array(
 					'text'  => $value,
 					'value' => $value,
@@ -501,15 +505,14 @@ class ControllerProductCategory extends Controller {
 
 			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], 'SSL'), 'prev');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], 'SSL'), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page - 1), 'SSL'), 'prev');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page=' . ($page - 1), 'SSL'), 'prev');
 			}
 
 			if ($limit && ceil($product_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page + 1), 'SSL'), 'next');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page=' . ($page + 1), 'SSL'), 'next');
 			}
 			$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], 'SSL'), 'canonical');
 
@@ -539,7 +542,7 @@ class ControllerProductCategory extends Controller {
 				199 => "Marquiz.showModal('61897170518fd0003f98a06d')", //Кабинеты
 			];
 
-			$data['onclick'] = $onclick[$category_id]??'';
+			$data['onclick'] = $onclick[$category_id] ?? '';
 
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl')) {
