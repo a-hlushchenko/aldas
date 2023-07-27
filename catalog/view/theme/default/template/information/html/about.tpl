@@ -1,100 +1,5 @@
 <?php echo $header; ?>
 <style>
-	img {
-		padding: 0;
-		border: none;
-		margin: 0;
-		border-radius: 0;
-	}
-
-	.information-information #content .row {
-		margin: 40px -15px;
-	}
-
-	h2 {
-		margin-bottom: 30px;
-		margin-top: 20px;
-	}
-
-	p {
-		line-height: 23px;
-	}
-
-	.about-images img {
-		float: left;
-		margin: 0.3%;
-	}
-
-	.about-images .im1 {
-		width: 35.3%
-	}
-
-	.about-images .im2 {
-		width: 16.2%
-	}
-
-	.about-images .im3 {
-		width: 22.5%
-	}
-
-	.about-images .im4 {
-		width: 22.5%
-	}
-
-	.n_price span {
-		font-size: 18px;
-		font-weight: bold;
-		display: block;
-		padding-top: 20px;
-	}
-
-	.n_price>div {
-		position: relative;
-	}
-
-	.fa-minus {
-		position: absolute;
-		top: 29px;
-		left: -15px;
-	}
-
-	.fa-minus.cl1 {
-		top: 27px;
-	}
-
-	.fa-minus.cl2 {
-		top: 31px;
-	}
-
-	.img1 {
-		margin-top: 4px;
-	}
-
-	.img2 {
-		margin-top: 5px;
-	}
-
-	.img4 {
-		margin-top: 19px;
-	}
-
-	#content {
-		color: #000;
-	}
-
-	.priem span {
-		display: block;
-		margin: 15px 0;
-		font-size: 22px;
-		font-weight: bold;
-	}
-
-	.priem a {
-		color: #e84c3d;
-		font-size: 16px;
-		text-decoration: underline;
-	}
-
 	p {
 		margin: 0;
 	}
@@ -142,13 +47,6 @@
 		max-width: 810px;
 	}
 
-	/* .photo {
-	margin-bottom: 80px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 24px;
-	justify-content: center;
-}*/
 	.photo img {
 		width: 273px;
 		height: 200px;
@@ -412,15 +310,9 @@
 
 	<?php echo $content_top; ?>
 
-
-
 	<div id="content" class="info">
 
-
-		<div class="">
-			<h1>О НАС</h1>
-		</div>
-
+		<h1>О НАС</h1>
 
 		<div class="about">
 			<div class="about-content">
@@ -431,9 +323,7 @@
 
 		</div>
 
-		<div class="">
-			<h2>Фото с производства</h2>
-		</div>
+		<h2>Фото с производства</h2>
 
 		<div class="swiper">
 			<div id="photo" class="photo">
@@ -458,15 +348,21 @@
 		</div>
 
 		<div class="price-container">
+
 			<div class="price">
+
 				<div class="price-content">
 					<h2>Лучшие цены</h2>
 					<p>Мы не стремимся открывать множество салонов, так как это в значительной степени сказывается на себестоимости мебели.</p>
 					<p>Использование современных технологий вкупе с жесткой оптимизацией всех этапов работы и высокий профессионализм наших сотрудников позволяют нам избегать излишних затрат, как финансовых, так и временных, поэтому мы предлагаем наши гарнитуры по весьма и весьма приятным ценам.</p>
 				</div>
+
 				<img src="/img/about-price.jpg" alt="img">
+
 			</div>
+
 			<div class="price-blocks">
+
 				<div class="price-block-container">
 					<div class="price-block">
 						<img src="/img/svg/price-1.svg" alt="img">
@@ -474,6 +370,7 @@
 					</div>
 					<img src="/img/svg/plus.svg" alt="+">
 				</div>
+
 				<div class="price-block-container">
 					<div class="price-block">
 						<img src="/img/svg/price-2.svg" alt="img">
@@ -481,6 +378,7 @@
 					</div>
 					<img src="/img/svg/plus.svg" alt="+">
 				</div>
+
 				<div class="price-block-container">
 					<div class="price-block">
 						<img src="/img/svg/price-3.svg" alt="img">
@@ -488,6 +386,7 @@
 					</div>
 					<img src="/img/svg/arrow.svg" alt="=">
 				</div>
+
 				<div class="price-block">
 					<img src="/img/svg/price-4.svg" alt="img">
 					<div>Минимальная цена!</div>

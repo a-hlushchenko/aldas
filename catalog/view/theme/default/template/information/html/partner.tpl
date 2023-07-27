@@ -1,178 +1,5 @@
 <?php echo $header; ?>
 <style>
-	img {
-		padding: 0;
-		border: none;
-		margin: 0;
-		border-radius: 0;
-	}
-
-	.information-information #content .row {
-		margin: 40px -15px;
-	}
-
-	h2 {
-		margin-bottom: 30px;
-		margin-top: 20px;
-	}
-
-	h2.twhite {
-		color: #fff;
-		text-transform: uppercase;
-	}
-
-	p {
-		line-height: 23px;
-	}
-
-	#content {
-		color: #000;
-	}
-
-	.table {
-		display: table;
-		table-layout: fixed;
-	}
-
-	.cell {
-		display: table-cell;
-		padding: 5px;
-	}
-
-	.cell img {
-		width: 100%;
-		height: auto;
-	}
-
-	.cell .txt1 {
-		display: block;
-		margin: 15px 0 0;
-		font-size: 22px;
-		font-weight: bold;
-	}
-
-	.cell .txt2 {
-		color: #e84c3d;
-		font-size: 16px;
-	}
-
-	.information-information #content .row.form {
-		background: url('images/n_aldas/partner_fon1.jpg') center top repeat;
-		padding: 10px 0 50px;
-		margin-bottom: 0;
-	}
-
-	.information-information #content .row.form.f2 {
-		background: url('images/n_aldas/partner_fon2.jpg') center no-repeat;
-	}
-
-	.form .forma {
-		display: block;
-		width: 520px;
-		max-width: 520px;
-		margin-left: -260px;
-		min-width: 320px;
-		border-radius: 10px;
-		box-shadow: 0 0 22px #6f6f6f;
-		-moz-box-shadow: 0 0 22px #6f6f6f;
-		-webkit-box-shadow: 0 0 22px #6f6f6f;
-		color: #747474;
-	}
-
-	.form .mleft {
-		margin-left: 50%;
-	}
-
-	.footer-top {
-		padding-top: 0px;
-	}
-
-	.buttonfile1 {
-		color: #e84c3d;
-		font-size: 16px;
-		font-weight: normal;
-		text-decoration: underline;
-	}
-
-	.send.button {
-		border-radius: 25px;
-		font-size: 20px;
-		font-weight: normal;
-	}
-
-	.lab label {
-		font-size: 14px;
-	}
-
-	.priem .txt1 {
-		display: block;
-		margin: 15px 0;
-		font-size: 22px;
-		font-weight: bold;
-	}
-
-	.priem .txt2 {
-		display: block;
-		font-size: 16px;
-		color: #e84c3d;
-		height: 50px;
-	}
-
-	.priem a {
-		color: #e84c3d;
-		font-size: 16px;
-		text-decoration: underline;
-		height: 50px;
-		display: block;
-	}
-
-	.priem img {
-		width: 100%;
-		max-width: 280px;
-		height: auto;
-	}
-
-	.priem>div {
-		margin-top: 20px;
-	}
-
-	@media (max-width:992px) {
-		.cell .txt1 {
-			font-size: 18px;
-		}
-
-		.cell .txt2 {
-			font-size: 14px;
-		}
-	}
-
-	@media (max-width:768px) {
-		.form .forma {
-			width: 320px;
-			margin-left: -160px;
-		}
-
-		.cell .txt1 {
-			font-size: 15px;
-		}
-
-		.cell .txt2 {
-			font-size: 11px;
-		}
-	}
-
-	@media (max-width:565px) {
-		.table {
-			display: block
-		}
-
-		.cell {
-			display: block;
-			width: 50%;
-			float: left;
-		}
-	}
-
 	p {
 		margin: 0;
 	}
@@ -340,6 +167,7 @@
 
 	}
 </style>
+
 <ul class="breadcrumbs container">
 	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
 		<?php if ($breadcrumb['href']) { ?>
@@ -355,19 +183,16 @@
 		<?php } ?>
 	<?php } ?>
 </ul>
+
 <div class="container information-new">
 
 	<?php echo $content_top; ?>
 
-
-
 	<div id="content" class="info">
-
 
 		<div class="container">
 			<h1>Сотрудничество с нами</h1>
 		</div>
-
 
 		<div class="designer">
 			<div class="designer-content">
@@ -536,7 +361,6 @@
 				<div class="bl5_r"><img src="img/form-partner.png" alt="bl5_r"></div>
 			</div>
 		</div>
-
 	</div>
 </div>
 

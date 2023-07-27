@@ -125,6 +125,7 @@
 
 	}
 </style>
+
 <ul class="breadcrumbs container">
 	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
 		<?php if ($breadcrumb['href']) { ?>
@@ -140,6 +141,7 @@
 		<?php } ?>
 	<?php } ?>
 </ul>
+
 <div class="container otzyvy">
 	<div class="row"><?php echo $column_left; ?>
 		<?php $class = 'col-sm-12'; ?>

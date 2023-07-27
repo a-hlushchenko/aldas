@@ -1,56 +1,5 @@
 <?php echo $header; ?>
 <style>
-	img {
-		padding: 0;
-		border: none;
-		margin: 0;
-		border-radius: 0;
-	}
-
-	.information-information #content .row {
-		margin: 40px -15px;
-	}
-
-	h2 {
-		margin-bottom: 30px;
-		margin-top: 20px;
-	}
-
-	p {
-		line-height: 23px;
-	}
-
-	#content {
-		color: #000;
-	}
-
-	.priem span {
-		display: block;
-		margin: 15px 0;
-		font-size: 18px;
-		font-weight: bold;
-	}
-
-	@media (max-width:768px) {
-		.priem img {
-			float: left;
-			width: 101px;
-			height: auto;
-		}
-
-		.priem .rright {
-			margin-left: 115px;
-		}
-
-		.priem span {
-			margin-top: 0;
-		}
-
-		.priem>div {
-			margin-top: 20px;
-		}
-	}
-
 	h1 {
 		color: #222;
 	}
@@ -173,6 +122,7 @@
 		}
 	}
 </style>
+
 <ul class="breadcrumbs container">
 	<?php foreach ($breadcrumbs as $key => $breadcrumb) { ?>
 		<?php if ($breadcrumb['href']) { ?>
@@ -188,11 +138,10 @@
 		<?php } ?>
 	<?php } ?>
 </ul>
+
 <div class="container information-new">
 
 	<?php echo $content_top; ?>
-
-
 
 	<div id="content" class="info">
 
@@ -200,7 +149,6 @@
 			<h1>Доставка и сборка</h1>
 		</div>
 		<div class="text-center">
-
 
 			<div class="delivery">
 				<div class="delivery-item">
